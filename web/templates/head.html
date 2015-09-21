@@ -22,6 +22,12 @@
         window.config = {{ .ClientProps }};
     </script>
 
+    <script>
+        window.i18n = {
+            locale: {{ .Props.Locale }},
+            messages: {{ rawjs .Props.Messages }}
+        };
+    </script>
 
     <link rel="stylesheet" href="/static/css/bootstrap-3.3.5.min.css">
     <link rel="stylesheet" href="/static/css/jasny-bootstrap.min.css" rel="stylesheet">

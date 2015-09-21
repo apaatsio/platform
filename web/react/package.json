@@ -7,6 +7,7 @@
     "flux": "2.1.1",
     "keymirror": "0.1.1",
     "object-assign": "3.0.0",
+    "react-intl": "2.0.0-pr-1",
     "react-zeroclipboard-mixin": "0.1.0",
     "twemoji": "1.4.1",
     "babel-runtime": "5.8.24"

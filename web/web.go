@@ -13,6 +13,7 @@ import (
 	"github.com/mssola/user_agent"
 	"gopkg.in/fsnotify.v1"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -30,6 +31,29 @@ func NewHtmlTemplatePage(templateName string, title string) *HtmlTemplatePage {
 
 	props := make(map[string]string)
 	props["Title"] = title
+	props["Locale"] = "en"
+	props["Messages"] = "{}"
+	return &HtmlTemplatePage{TemplateName: templateName, Props: props, ClientProps: utils.ClientProperties}
+}
+
+func NewHtmlTemplatePageWithI18n(templateName string, title string, locale string) *HtmlTemplatePage {
+	if len(title) > 0 {
+		title = utils.Cfg.ServiceSettings.SiteName + " - " + title
+	}
+
+	// Load translations from file
+	messagesFilePath := utils.FindDir("web/i18n/") + locale + ".json"
+	messagesBuffer, err := ioutil.ReadFile(messagesFilePath)
+	if err != nil {
+		l4g.Error("Couldn't open translations %v", err)
+	}
+	messages := string(messagesBuffer)
+
+	props := make(map[string]string)
+	props["Title"] = title
+	props["Locale"] = locale
+	props["Messages"] = messages
+
 	return &HtmlTemplatePage{TemplateName: templateName, Props: props, ClientProps: utils.ClientProperties}
 }
 
@@ -84,7 +108,13 @@ func watchAndParseTemplates() {
 	templatesDir := utils.FindDir("web/templates")
 	l4g.Debug("Parsing templates at %v", templatesDir)
 	var err error
-	if Templates, err = template.ParseGlob(templatesDir + "*.html"); err != nil {
+
+	// Helper function to render raw js or json
+	funcMap := template.FuncMap{
+		"rawjs": func(s string) template.JS { return template.JS(s) },
+	}
+
+	if Templates, err = template.New("").Funcs(funcMap).ParseGlob(templatesDir + "*.html"); err != nil {
 		l4g.Error("Failed to parse templates %v", err)
 	}
 
@@ -188,7 +218,18 @@ func login(c *api.Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	page := NewHtmlTemplatePage("login", "Login")
+	// Get locale from URL param
+	// Basically we could get the locale from any source we want (request headers,
+	// cookies, user settings).
+	var locale string;
+	locale = r.URL.Query().Get("locale")
+	if locale == "" {
+		locale = "en"
+	}
+
+	l4g.Debug("Locale: %v", locale)
+
+	page := NewHtmlTemplatePageWithI18n("login", "Login", locale)
 	page.Props["TeamDisplayName"] = team.DisplayName
 	page.Props["TeamName"] = teamName
 	page.Props["AuthServices"] = model.ArrayToJson(utils.GetAllowedAuthServices())

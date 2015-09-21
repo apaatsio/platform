@@ -2,14 +2,22 @@
 // See License.txt for license information.
 
 var Login = require('../components/login.jsx');
+var IntlProvider = require('react-intl').IntlProvider;
+
+var locale = window.i18n.locale;
+var messages = window.i18n.messages;
 
 function setupLoginPage(props) {
     React.render(
-        <Login
-            teamDisplayName={props.TeamDisplayName}
-            teamName={props.TeamName}
-            authServices={props.AuthServices}
-        />,
+        <IntlProvider locale={locale} messages={messages}>
+            {() =>
+                <Login
+                    teamDisplayName={props.TeamDisplayName}
+                    teamName={props.TeamName}
+                    authServices={props.AuthServices}
+                />
+            }
+        </IntlProvider>,
         document.getElementById('login')
     );
 }

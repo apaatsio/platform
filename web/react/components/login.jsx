@@ -6,6 +6,7 @@ const Client = require('../utils/client.jsx');
 const UserStore = require('../stores/user_store.jsx');
 const BrowserStore = require('../stores/browser_store.jsx');
 const Constants = require('../utils/constants.jsx');
+const {intlShape, FormattedMessage} = require('react-intl');
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -73,6 +74,8 @@ export default class Login extends React.Component {
         );
     }
     render() {
+        const {formatMessage} = this.context.intl;
+
         let serverError;
         if (this.state.serverError) {
             serverError = <label className='control-label'>{this.state.serverError}</label>;
@@ -127,7 +130,7 @@ export default class Login extends React.Component {
                             name='email'
                             defaultValue={priorEmail}
                             ref='email'
-                            placeholder='Email'
+                            placeholder={formatMessage({id:'login.email'})}
                         />
                     </div>
                     <div className={'form-group' + errorClass}>
@@ -137,7 +140,7 @@ export default class Login extends React.Component {
                             className='form-control'
                             name='password'
                             ref='password'
-                            placeholder='Password'
+                            placeholder={formatMessage({id:'login.password'})}
                         />
                     </div>
                     <div className='form-group'>
@@ -145,7 +148,7 @@ export default class Login extends React.Component {
                             type='submit'
                             className='btn btn-primary'
                         >
-                            Sign in
+                            <FormattedMessage id='login.signIn' />
                         </button>
                     </div>
                 </div>
@@ -208,8 +211,13 @@ Login.defaultProps = {
     teamDisplayName: '',
     authServices: ''
 };
+
 Login.propTypes = {
     teamName: React.PropTypes.string,
     teamDisplayName: React.PropTypes.string,
     authServices: React.PropTypes.string
+};
+
+Login.contextTypes = {
+    intl: intlShape.isRequired
 };
