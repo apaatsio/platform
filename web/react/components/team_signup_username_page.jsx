@@ -25,10 +25,10 @@ export default class TeamSignupUsernamePage extends React.Component {
 
         var usernameError = Utils.isValidUsername(name);
         if (usernameError === 'Cannot use a reserved word as a username.') {
-            this.setState({nameError: 'This username is reserved, please choose a new one.'});
+            this.setState({nameError: 'Tämä käyttänimi on käytössä. Valitse uusi.'});
             return;
         } else if (usernameError) {
-            this.setState({nameError: 'Username must begin with a letter, and contain 3 to 15 characters in total, which may be numbers, lowercase letters, or any of the symbols \'.\', \'-\', or \'_\''});
+            this.setState({nameError: 'Käyttäjänimen pitää alkaa kirjaimella, sisältää 3-15 merkkiä ja se voi koostua kirjaimista, numeroista sekä merkeistä  \'.\', \'-\', ja \'_\''});
             return;
         }
 
@@ -53,13 +53,13 @@ export default class TeamSignupUsernamePage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h2 className='margin--less'>Your username</h2>
-                    <h5 className='color--light'>{'Select a memorable username that makes it easy for teammates to identify you:'}</h5>
+                    <h2 className='margin--less'>Käyttäjänimesi</h2>
+                    <h5 className='color--light'>{'Valitse helposti muistettava käyttäjänimi, josta muut tiimiläiset voivat tunnistaa sinut:'}</h5>
                     <div className='inner__content margin--extra'>
                         <div className={nameDivClass}>
                             <div className='row'>
                                 <div className='col-sm-11'>
-                                    <h5><strong>Choose your username</strong></h5>
+                                    <h5><strong>Valitse käyttäjänimesi</strong></h5>
                                     <input
                                         autoFocus={true}
                                         type='text'
@@ -69,7 +69,7 @@ export default class TeamSignupUsernamePage extends React.Component {
                                         defaultValue={this.props.state.user.username}
                                         maxLength='128'
                                     />
-                                    <div className='color--light form__hint'>Usernames must begin with a letter and contain 3 to 15 characters made up of lowercase letters, numbers, and the symbols '.', '-' and '_'</div>
+                                    <div className='color--light form__hint'>Käyttäjänimen pitää alkaa kirjaimella, sisältää 3-15 merkkiä ja se voi koostua kirjaimista, numeroista sekä merkeistä '.', '-' ja '_'</div>
                                 </div>
                             </div>
                             {nameError}
@@ -80,7 +80,7 @@ export default class TeamSignupUsernamePage extends React.Component {
                         className='btn btn-primary margin--extra'
                         onClick={this.submitNext}
                     >
-                        Next
+                        Seuraava
                         <i className='glyphicon glyphicon-chevron-right'></i>
                     </button>
                     <div className='margin--extra'>
@@ -88,7 +88,7 @@ export default class TeamSignupUsernamePage extends React.Component {
                             href='#'
                             onClick={this.submitBack}
                         >
-                            Back to previous step
+                            Takaisin
                         </a>
                     </div>
                 </form>

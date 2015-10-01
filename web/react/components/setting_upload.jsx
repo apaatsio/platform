@@ -41,7 +41,7 @@ export default class SettingsUpload extends React.Component {
         if (inputnode.files && inputnode.files[0]) {
             this.props.submit(inputnode.files[0]);
         } else {
-            this.setState({clientError: 'No file selected.'});
+            this.setState({clientError: 'Ei tiedostoa valittu.'});
         }
     }
 
@@ -75,7 +75,7 @@ export default class SettingsUpload extends React.Component {
                     <ul className='setting-list'>
                         <li className='setting-list-item'>
                             <span className='btn btn-sm btn-primary btn-file sel-btn'>
-                                {'Select file'}
+                                {'Valitse tiedosto'}
                                 <input
                                     ref='uploadinput'
                                     accept={this.props.fileTypesAccepted}
@@ -87,7 +87,7 @@ export default class SettingsUpload extends React.Component {
                                 className={submitButtonClass}
                                 onClick={this.doSubmit}
                             >
-                                {'Import'}
+                                {'Lataa'}
                             </a>
                             {fileNameText}
                             {serverError}

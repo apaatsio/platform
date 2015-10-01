@@ -38,12 +38,12 @@ export default class MsgTyping extends React.Component {
             this.props.parentId === msg.props.parent_id) {
             this.lastTime = new Date().getTime();
 
-            var username = 'Someone';
+            var username = 'Joku';
             if (UserStore.hasProfile(msg.user_id)) {
                 username = UserStore.getProfile(msg.user_id).username;
             }
 
-            this.setState({text: username + ' is typing...'});
+            this.setState({text: username + ' kirjoittaa...'});
 
             if (!this.timer) {
                 this.timer = setInterval(function myTimer() {

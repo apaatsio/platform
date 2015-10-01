@@ -24,7 +24,7 @@ export default class TeamSignupPasswordPage extends React.Component {
 
         var password = React.findDOMNode(this.refs.password).value.trim();
         if (!password || password.length < 5) {
-            this.setState({passwordError: 'Please enter at least 5 characters'});
+            this.setState({passwordError: 'Syötä vähintään 5 merkkiä'});
             return;
         }
 
@@ -93,15 +93,15 @@ export default class TeamSignupPasswordPage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h2 className='margin--less'>Your password</h2>
-                    <h5 className='color--light'>Select a password that you'll use to login with your email address:</h5>
+                    <h2 className='margin--less'>Salasanasi</h2>
+                    <h5 className='color--light'>Valitse salasana jota käytät kirjautuessasi:</h5>
                     <div className='inner__content margin--extra'>
-                        <h5><strong>Email</strong></h5>
+                        <h5><strong>Sähköposti</strong></h5>
                         <div className='block--gray form-group'>{this.props.state.team.email}</div>
                         <div className={passwordDivStyle}>
                             <div className='row'>
                                 <div className='col-sm-11'>
-                                    <h5><strong>Choose your password</strong></h5>
+                                    <h5><strong>Valitse salasanasi</strong></h5>
                                     <input
                                         autoFocus={true}
                                         type='password'
@@ -110,7 +110,7 @@ export default class TeamSignupPasswordPage extends React.Component {
                                         placeholder=''
                                         maxLength='128'
                                     />
-                                    <div className='color--light form__hint'>Passwords must contain 5 to 50 characters. Your password will be strongest if it contains a mix of symbols, numbers, and upper and lowercase characters.</div>
+                                    <div className='color--light form__hint'>Salasanan pitää olla 5-50 merkkiä pitkä. Turvallinen salasana sisältää numeroita, erikoismerkkejä sekä isoja ja pieniä kirjaimia.</div>
                                 </div>
                             </div>
                             {passwordError}
@@ -122,19 +122,19 @@ export default class TeamSignupPasswordPage extends React.Component {
                             type='submit'
                             className='btn btn-primary margin--extra'
                             id='finish-button'
-                            data-loading-text={'<span class=\'glyphicon glyphicon-refresh glyphicon-refresh-animate\'></span> Creating team...'}
+                            data-loading-text={'<span class=\'glyphicon glyphicon-refresh glyphicon-refresh-animate\'></span> Luodaan tiimiä...'}
                             onClick={this.submitNext}
                         >
-                            Finish
+                            Valmis
                         </button>
                     </div>
-                    <p>By proceeding to create your account and use {global.window.config.SiteName}, you agree to our <a href='/static/help/terms.html'>Terms of Service</a> and <a href='/static/help/privacy.html'>Privacy Policy</a>. If you do not agree, you cannot use {global.window.config.SiteName}.</p>
+                    <p>Luomalla tilin palveluun {global.window.config.SiteName} hyväksyt <a href='/static/help/terms.html'>käyttöehdot</a> ja <a href='/static/help/privacy.html'>yksityisyyskäytännöt</a>. Jos et hyväksy näitä, et saa käyttää {global.window.config.SiteName}-palvelua.</p>
                     <div className='margin--extra'>
                         <a
                             href='#'
                             onClick={this.submitBack}
                         >
-                            Back to previous step
+                            Takaisin
                         </a>
                     </div>
                 </form>

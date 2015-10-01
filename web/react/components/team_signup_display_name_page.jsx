@@ -23,7 +23,7 @@ export default class TeamSignupDisplayNamePage extends React.Component {
 
         var displayName = React.findDOMNode(this.refs.name).value.trim();
         if (!displayName) {
-            this.setState({nameError: 'This field is required'});
+            this.setState({nameError: 'Tämä kenttä on pakollinen'});
             return;
         }
 
@@ -53,7 +53,7 @@ export default class TeamSignupDisplayNamePage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h2>{'Team Name'}</h2>
+                    <h2>{'Tiimin nimi'}</h2>
                     <div className={nameDivClass}>
                         <div className='row'>
                             <div className='col-sm-9'>
@@ -72,21 +72,21 @@ export default class TeamSignupDisplayNamePage extends React.Component {
                         {nameError}
                     </div>
                     <div>
-                        {'Name your team in any language. Your team name shows in menus and headings.'}
+                        {'Aseta tiimin nimi. Nimi näkyy valikoissa ja otsikoissa.'}
                     </div>
                     <button
                         type='submit'
                         className='btn btn-primary margin--extra'
                         onClick={this.submitNext}
                     >
-                        Next<i className='glyphicon glyphicon-chevron-right'></i>
+                        Jatka<i className='glyphicon glyphicon-chevron-right'></i>
                     </button>
                     <div className='margin--extra'>
                         <a
                             href='#'
                             onClick={this.submitBack}
                         >
-                            Back to previous step
+                            Edellinen
                         </a>
                     </div>
                 </form>

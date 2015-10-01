@@ -75,13 +75,13 @@ export default class FileUpload extends React.Component {
         }
 
         if (files.length > uploadsRemaining) {
-            this.props.onUploadError(`Uploads limited to ${Constants.MAX_UPLOAD_FILES} files maximum. Please use additional posts for more files.`);
+            this.props.onUploadError(`Ladattavien tiedostojen maksimimäärä on ${Constants.MAX_UPLOAD_FILES}kpl. Jos haluat lisätä useamman tiedoston, liitä ne toiseen viestiin.`);
         } else if (tooLargeFiles.length > 1) {
             var tooLargeFilenames = tooLargeFiles.map((file) => file.name).join(', ');
 
-            this.props.onUploadError(`Files above ${Constants.MAX_FILE_SIZE / 1000000}MB could not be uploaded: ${tooLargeFilenames}`);
+            this.props.onUploadError(`Yli ${Constants.MAX_FILE_SIZE / 1000000}MB tiedostoja ei voi ladata: ${tooLargeFilenames}`);
         } else if (tooLargeFiles.length > 0) {
-            this.props.onUploadError(`File above ${Constants.MAX_FILE_SIZE / 1000000}MB could not be uploaded: ${tooLargeFiles[0].name}`);
+            this.props.onUploadError(`Yli ${Constants.MAX_FILE_SIZE / 1000000}MB tiedostoja ei voi ladata: ${tooLargeFiles[0].name}`);
         }
     }
 
@@ -175,7 +175,7 @@ export default class FileUpload extends React.Component {
                 var numToUpload = Math.min(Constants.MAX_UPLOAD_FILES - self.props.getFileCount(ChannelStore.getCurrentId()), numItems);
 
                 if (numItems > numToUpload) {
-                    self.props.onUploadError('Uploads limited to ' + Constants.MAX_UPLOAD_FILES + ' files maximum. Please use additional posts for more files.');
+                    self.props.onUploadError('Ladattavien tiedostojen maksimimäärä on ' + Constants.MAX_UPLOAD_FILES + 'kpl. Jos haluat lisätä useamman tiedoston, liitä ne toiseen viestiin.');
                 }
 
                 for (var i = 0; i < items.length && i < numToUpload; i++) {
@@ -209,7 +209,7 @@ export default class FileUpload extends React.Component {
                             min = String(d.getMinutes());
                         }
 
-                        var name = 'Image Pasted at ' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' + hour + '-' + min + '.' + ext;
+                        var name = 'Kuva liitetty ' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' + hour + '-' + min + '.' + ext;
                         formData.append('files', file, name);
                         formData.append('client_ids', clientId);
 

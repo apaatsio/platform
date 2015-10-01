@@ -104,7 +104,7 @@ export default class Navbar extends React.Component {
                         data-channelid={channel.id}
                         href='#'
                     >
-                        View Info
+                        Näytä info
                     </a>
                 </li>
             );
@@ -120,7 +120,7 @@ export default class Navbar extends React.Component {
                         data-title={channel.display_name}
                         data-channelid={channel.id}
                     >
-                        Set Channel Description...
+                        Aseta kanavan kuvaus...
                     </a>
                 </li>
             );
@@ -136,7 +136,7 @@ export default class Navbar extends React.Component {
                             data-target='#channel_invite'
                             href='#'
                         >
-                            Add Members
+                            Lisää jäseniä
                         </a>
                     </li>
                 );
@@ -148,7 +148,7 @@ export default class Navbar extends React.Component {
                             href='#'
                             onClick={this.handleLeave}
                         >
-                            Leave Channel
+                            Poistu kanavalta
                         </a>
                     </li>
                 );
@@ -166,7 +166,7 @@ export default class Navbar extends React.Component {
                             data-target='#channel_members'
                             href='#'
                         >
-                            Manage Members
+                            Hallitse jäseniä
                         </a>
                     </li>
                 );
@@ -182,7 +182,7 @@ export default class Navbar extends React.Component {
                             data-name={channel.name}
                             data-channelid={channel.id}
                         >
-                            Rename Channel...
+                            Nimeä kanava uudelleen...
                         </a>
                     </li>
                 );
@@ -197,7 +197,7 @@ export default class Navbar extends React.Component {
                             data-title={channel.display_name}
                             data-channelid={channel.id}
                         >
-                            Delete Channel...
+                            Poista kanava...
                         </a>
                     </li>
                 );
@@ -215,7 +215,7 @@ export default class Navbar extends React.Component {
                             data-title={channel.display_name}
                             data-channelid={channel.id}
                         >
-                            Notification Preferences
+                            Ilmoitusasetukset
                         </a>
                     </li>
                 );
@@ -281,7 +281,7 @@ export default class Navbar extends React.Component {
                     data-toggle='collapse'
                     data-target='#navbar-collapse-1'
                 >
-                    <span className='sr-only'>Toggle sidebar</span>
+                    <span className='sr-only'>Sivuvalikko</span>
                     <span className='icon-bar'></span>
                     <span className='icon-bar'></span>
                     <span className='icon-bar'></span>
@@ -297,7 +297,7 @@ export default class Navbar extends React.Component {
                     data-target='#sidebar-nav'
                     onClick={this.toggleLeftSidebar}
                 >
-                    <span className='sr-only'>Toggle sidebar</span>
+                    <span className='sr-only'>Sivuvalikko</span>
                     <span className='icon-bar'></span>
                     <span className='icon-bar'></span>
                     <span className='icon-bar'></span>
@@ -356,7 +356,7 @@ export default class Navbar extends React.Component {
             if (channel.description.length === 0) {
                 popoverContent = React.renderToString(
                     <div>
-                        No channel description yet. <br/>
+                        Kanavalla ei ole vielä kuvausta. <br/>
                         <a
                             href='#'
                             data-toggle='modal'
@@ -365,8 +365,8 @@ export default class Navbar extends React.Component {
                             data-channelid={channel.id}
                             data-target='#edit_channel'
                         >
-                            Click here
-                        </a> to add one.</div>
+                            Klikkaa tästä
+                        </a> lisätäksesi kuvauksen.</div>
                 );
             }
         }

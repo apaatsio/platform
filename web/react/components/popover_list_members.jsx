@@ -63,7 +63,7 @@ export default class PopoverListMembers extends React.Component {
                 id='member_popover'
                 data-toggle='popover'
                 data-content={popoverHtml}
-                data-original-title='Members'
+                data-original-title='Jäsenet'
             >
                 <div
                     id='member_tooltip'

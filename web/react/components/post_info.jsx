@@ -55,13 +55,13 @@ export default class PostInfo extends React.Component {
                         data-toggle='modal'
                         data-target='#edit_post'
                         data-refoucsid='#post_textbox'
-                        data-title={type}
+                        data-title={type === 'Comment' ? 'kommenttia' : 'viestiä'}
                         data-message={post.message}
                         data-postid={post.id}
                         data-channelid={post.channel_id}
                         data-comments={dataComments}
                     >
-                        Edit
+                        Muokkaa
                     </a>
                 </li>
             );
@@ -83,7 +83,7 @@ export default class PostInfo extends React.Component {
                         data-channelid={post.channel_id}
                         data-comments={dataComments}
                     >
-                        Delete
+                        Poista
                     </a>
                 </li>
             );
@@ -100,7 +100,7 @@ export default class PostInfo extends React.Component {
                         href='#'
                         onClick={this.props.handleCommentClick}
                     >
-                        Reply
+                        Vastaa
                     </a>
                 </li>
             );

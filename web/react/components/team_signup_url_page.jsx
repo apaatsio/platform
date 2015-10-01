@@ -25,7 +25,7 @@ export default class TeamSignupUrlPage extends React.Component {
 
         const name = React.findDOMNode(this.refs.name).value.trim();
         if (!name) {
-            this.setState({nameError: 'This field is required'});
+            this.setState({nameError: 'Tämä kenttä on pakollinen'});
             return;
         }
 
@@ -33,16 +33,16 @@ export default class TeamSignupUrlPage extends React.Component {
 
         const urlRegex = /^[a-z]+([a-z\-0-9]+|(__)?)[a-z0-9]+$/g;
         if (cleanedName !== name || !urlRegex.test(name)) {
-            this.setState({nameError: "Use only lower case letters, numbers and dashes. Must start with a letter and can't end in a dash."});
+            this.setState({nameError: "Käytä vain pieniä kirjaimia, numeroita ja väliviivoja. Täytyy alkaa kirjaimella ja ei saa päättyä väliviivaan."});
             return;
         } else if (cleanedName.length <= 2 || cleanedName.length > 15) {
-            this.setState({nameError: 'Name must be 3 or more characters up to a maximum of 15'});
+            this.setState({nameError: 'Nimen pituus pitää olla 3-15 merkkiä'});
             return;
         }
 
         for (let index = 0; index < Constants.RESERVED_TEAM_NAMES.length; index++) {
             if (cleanedName.indexOf(Constants.RESERVED_TEAM_NAMES[index]) === 0) {
-                this.setState({nameError: 'URL is taken or contains a reserved word'});
+                this.setState({nameError: 'Osoite on jo käytössä tai sisältää kielletyn sanan'});
                 return;
             }
         }
@@ -50,7 +50,7 @@ export default class TeamSignupUrlPage extends React.Component {
         Client.findTeamByName(name,
               (data) => {
                   if (data) {
-                      this.setState({nameError: 'This URL is unavailable. Please try another.'});
+                      this.setState({nameError: 'Osoite ei ole saatavilla. Kokeile toista osoitetta.'});
                   } else {
                       this.props.state.wizard = 'send_invites';
                       this.props.state.team.type = 'O';
@@ -90,7 +90,7 @@ export default class TeamSignupUrlPage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h2>{`Team URL`}</h2>
+                    <h2>{`Tiimin osoite`}</h2>
                     <div className={nameDivClass}>
                         <div className='row'>
                             <div className='col-sm-11'>
@@ -117,25 +117,25 @@ export default class TeamSignupUrlPage extends React.Component {
                         </div>
                         {nameError}
                     </div>
-                    <p>{`Choose the web address of your new team:`}</p>
+                    <p>{`Valitse internet-osoite tiimillesi:`}</p>
                     <ul className='color--light'>
-                        <li>Short and memorable is best</li>
-                        <li>Use lowercase letters, numbers and dashes</li>
-                        <li>Must start with a letter and can't end in a dash</li>
+                        <li>Hyvä osoite on lyhyt ja helposti muistettava</li>
+                        <li>Käytä vain pieniä kirjaimia, numeroita ja väliviivoja</li>
+                        <li>Pitää alkaa kirjaimella eikä saa päättyä väliviivaan</li>
                     </ul>
                     <button
                         type='submit'
                         className='btn btn-primary margin--extra'
                         onClick={this.submitNext}
                     >
-                        Next<i className='glyphicon glyphicon-chevron-right'></i>
+                        Seuraava<i className='glyphicon glyphicon-chevron-right'></i>
                     </button>
                     <div className='margin--extra'>
                         <a
                             href='#'
                             onClick={this.submitBack}
                         >
-                            Back to previous step
+                            Takaisin
                         </a>
                     </div>
                 </form>

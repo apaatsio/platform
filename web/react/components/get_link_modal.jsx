@@ -66,7 +66,7 @@ export default class GetLinkModal extends React.Component {
                                     type='button'
                                     className='close'
                                     data-dismiss='modal'
-                                    aria-label='Close'
+                                    aria-label='Sulje'
                                 >
                                     <span aria-hidden='true'>&times;</span>
                                 </button>
@@ -74,14 +74,14 @@ export default class GetLinkModal extends React.Component {
                                     className='modal-title'
                                     id='myModalLabel'
                                 >
-                                    {this.state.title} Link
+                                    {this.state.title} linkki
                                 </h4>
                             </div>
                             <div className='modal-body'>
                                 <p>
-                                Send teammates the link below for them to sign-up to this team site.
+                                Lähetä tiimikavereillesi alla oleva linkki, jonka kautta he voivat liittyä.
                                 <br /><br />
-                                Be careful not to share this link publicly, since anyone with the link can join your team.
+                                Älä jaa linkkiä julkisesti, koska kuka tahansa voi liittyä tiimiin linkin avulla.
                                 </p>
                                 <textarea
                                     className='form-control no-resize'
@@ -96,7 +96,7 @@ export default class GetLinkModal extends React.Component {
                                     className='btn btn-default'
                                     data-dismiss='modal'
                                 >
-                                    Close
+                                    Sulje
                                 </button>
                                 <button
                                     data-copy-btn='true'
@@ -105,7 +105,7 @@ export default class GetLinkModal extends React.Component {
                                     onClick={this.handleClick}
                                     data-clipboard-text={this.state.value}
                                 >
-                                    Copy Link
+                                    Kopioi linkki
                                 </button>
                                 {copyLinkConfirm}
                             </div>

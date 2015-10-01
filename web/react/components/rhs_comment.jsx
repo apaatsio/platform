@@ -97,7 +97,7 @@ export default class RhsComment extends React.Component {
                     href='#'
                     onClick={this.retryComment}
                 >
-                    Retry
+                    Yritä uudelleen
                 </a>
             );
         } else if (post.state === Constants.POST_LOADING) {
@@ -136,7 +136,7 @@ export default class RhsComment extends React.Component {
                                 data-postid={post.id}
                                 data-channelid={post.channel_id}
                             >
-                                Edit
+                                Muokkaa
                             </a>
                         </li>
                         <li role='presentation'>
@@ -150,7 +150,7 @@ export default class RhsComment extends React.Component {
                                 data-channelid={post.channel_id}
                                 data-comments={0}
                             >
-                                Delete
+                                Poista
                             </a>
                         </li>
                     </ul>

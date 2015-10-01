@@ -56,7 +56,7 @@ export default class TeamSettingsModal extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -64,7 +64,7 @@ export default class TeamSettingsModal extends React.Component {
                                 className='modal-title'
                                 ref='title'
                             >
-                                {'Team Settings'}
+                                {'Tiimin asetukset'}
                             </h4>
                         </div>
                         <div className='modal-body'>

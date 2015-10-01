@@ -93,14 +93,14 @@ export default class TeamMembers extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>×</span>
                             </button>
                             <h4
                                 className='modal-title'
                                 id='myModalLabel'
-                            >{this.props.teamDisplayName + ' Members'}</h4>
+                            >{'Tiimin ' + this.props.teamDisplayName + ' jäsenet'}</h4>
                         </div>
                         <div
                             ref='modalBody'
@@ -118,7 +118,7 @@ export default class TeamMembers extends React.Component {
                                 type='button'
                                 className='btn btn-default'
                                 data-dismiss='modal'
-                            >Close</button>
+                            >Sulje</button>
                         </div>
                     </div>
                </div>

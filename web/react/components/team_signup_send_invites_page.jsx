@@ -130,22 +130,22 @@ export default class TeamSignupSendInvitesPage extends React.Component {
 
             bottomContent = (
                 <p className='color--light'>
-                    {'if you prefer, you can invite team members later'}
+                    {'jos haluat, voit kutsua tiimin jäseniä myöhemmin'}
                     <br />
-                    {' and '}
+                    {' ja '}
                     <a
                         href='#'
                         onClick={this.submitSkip}
                     >
-                    {'skip this step '}
+                    {'hypätä tämän vaiheen yli '}
                     </a>
-                    {'for now.'}
+                    {'tällä kertaa.'}
                 </p>
             );
         } else {
             content = (
                 <div className='form-group color--light'>
-                    {'Email is currently disabled for your team, and emails cannot be sent. Contact your system administrator to enable email and email invitations.'}
+                    {'Sähköposti on pois päältä tiimiltäsi, joten sähköpostikutsuja ei voida lähettää. Ota yhteys järjestelmän ylläpitäjään saattaaksesi sähköpostin lähetyksen toimivaksi.'}
                 </div>
             );
         }
@@ -157,7 +157,7 @@ export default class TeamSignupSendInvitesPage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h2>{'Invite Team Members'}</h2>
+                    <h2>{'Kutsu tiimiin jäseniä'}</h2>
                     {content}
                     <div className='form-group'>
                         <button
@@ -165,7 +165,7 @@ export default class TeamSignupSendInvitesPage extends React.Component {
                             className='btn-primary btn'
                             onClick={this.submitNext}
                         >
-                            Next<i className='glyphicon glyphicon-chevron-right' />
+                            Seuraava<i className='glyphicon glyphicon-chevron-right' />
                         </button>
                     </div>
                 </form>
@@ -175,7 +175,7 @@ export default class TeamSignupSendInvitesPage extends React.Component {
                         href='#'
                         onClick={this.submitBack}
                     >
-                        Back to previous step
+                        Takaisin
                     </a>
                 </div>
             </div>

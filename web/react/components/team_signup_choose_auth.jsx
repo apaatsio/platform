@@ -21,7 +21,7 @@ export default class ChooseAuthPage extends React.Component {
                         }
                     >
                         <span className='icon' />
-                        <span>{'Create new team with GitLab Account'}</span>
+                        <span>{'Luo uusi tiimi käyttäen GitLab-tiliä'}</span>
                     </a>
             );
         }
@@ -39,20 +39,20 @@ export default class ChooseAuthPage extends React.Component {
                         }
                     >
                         <span className='fa fa-envelope' />
-                        <span>{'Create new team with email address'}</span>
+                        <span>{'Luo uusi tiimi käyttäen sähköpostiosoitetta'}</span>
                     </a>
             );
         }
 
         if (buttons.length === 0) {
-            buttons = <span>{'No sign-up methods configured, please contact your system administrator.'}</span>;
+            buttons = <span>{'Rekisteröitymistapoja ei ole määritelty. Ota yhteys järjestelmän ylläpitäjään.'}</span>;
         }
 
         return (
             <div>
                 {buttons}
                 <div className='form-group margin--extra-2x'>
-                    <span><a href='/find_team'>{'Find my team'}</a></span>
+                    <span><a href='/find_team'>{'Etsi tiimini'}</a></span>
                 </div>
             </div>
         );

@@ -123,8 +123,8 @@ export default class MoreChannels extends React.Component {
             } else {
                 moreChannels = (
                     <div className='no-channel-message'>
-                       <p className='primary-message'>No more channels to join</p>
-                       <p className='secondary-message'>Click 'Create New Channel' to make a new one</p>
+                       <p className='primary-message'>Ei enempää kanavia joihin voit liittyä</p>
+                       <p className='secondary-message'>Klikkaa 'Luo uusi kanava' luodaksesi uuden</p>
                     </div>
                 );
             }
@@ -148,15 +148,15 @@ export default class MoreChannels extends React.Component {
                                 data-dismiss='modal'
                             >
                                 <span aria-hidden='true'>{'×'}</span>
-                                <span className='sr-only'>{'Close'}</span>
+                                <span className='sr-only'>{'Sulje'}</span>
                             </button>
-                            <h4 className='modal-title'>{'More Channels'}</h4>
+                            <h4 className='modal-title'>{'Lisää kanavia'}</h4>
                             <button
                                 type='button'
                                 className='btn btn-primary channel-create-btn'
                                 onClick={this.handleNewChannel}
                             >
-                                {'Create New Channel'}
+                                {'Luo uusi kanava'}
                             </button>
                             <NewChannelFlow
                                 show={this.state.showNewChannelModal}
@@ -174,7 +174,7 @@ export default class MoreChannels extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                {'Close'}
+                                {'Sulje'}
                             </button>
                         </div>
                     </div>

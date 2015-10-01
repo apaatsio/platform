@@ -216,12 +216,12 @@ export default class Sidebar extends React.Component {
                     return;
                 }
 
-                var username = 'Someone';
+                var username = 'Joku';
                 if (UserStore.hasProfile(msg.user_id)) {
                     username = UserStore.getProfile(msg.user_id).username;
                 }
 
-                var title = 'Posted';
+                var title = 'Lähetetty';
                 if (channel) {
                     title = channel.display_name;
                 }
@@ -237,14 +237,14 @@ export default class Sidebar extends React.Component {
 
                 if (notifyText.length === 0) {
                     if (msgProps.image) {
-                        Utils.notifyMe(title, username + ' uploaded an image', channel);
+                        Utils.notifyMe(title, username + ' lisäsi kuvan', channel);
                     } else if (msgProps.otherFile) {
-                        Utils.notifyMe(title, username + ' uploaded a file', channel);
+                        Utils.notifyMe(title, username + ' lisäsi tiedoston', channel);
                     } else {
-                        Utils.notifyMe(title, username + ' did something new', channel);
+                        Utils.notifyMe(title, username + ' teki jotain uutta', channel);
                     }
                 } else {
-                    Utils.notifyMe(title, username + ' wrote: ' + notifyText, channel);
+                    Utils.notifyMe(title, username + ' kirjoitti: ' + notifyText, channel);
                 }
                 if (!user.notify_props || user.notify_props.desktop_sound === 'true') {
                     Utils.ding();
@@ -494,7 +494,7 @@ export default class Sidebar extends React.Component {
                         data-target='#more_direct_channels'
                         data-channels={JSON.stringify(this.state.hideDirectChannels)}
                     >
-                        {'More (' + this.state.hideDirectChannels.length + ')'}
+                        {'Lisää (' + this.state.hideDirectChannels.length + ')'}
                     </a>
                 </li>
             );
@@ -538,7 +538,7 @@ export default class Sidebar extends React.Component {
                     <ul className='nav nav-pills nav-stacked'>
                         <li>
                             <h4>
-                                Channels
+                                Kanavat
                                 <a
                                     className='add-channel-btn'
                                     href='#'
@@ -557,7 +557,7 @@ export default class Sidebar extends React.Component {
                                 data-target='#more_channels'
                                 data-channeltype='O'
                             >
-                                More...
+                                Lisää...
                             </a>
                         </li>
                     </ul>
@@ -565,7 +565,7 @@ export default class Sidebar extends React.Component {
                     <ul className='nav nav-pills nav-stacked'>
                         <li>
                             <h4>
-                                Private Groups
+                                Yksityisryhmät
                                 <a
                                     className='add-channel-btn'
                                     href='#'
@@ -578,7 +578,7 @@ export default class Sidebar extends React.Component {
                         {privateChannelItems}
                     </ul>
                     <ul className='nav nav-pills nav-stacked'>
-                        <li><h4>Direct Messages</h4></li>
+                        <li><h4>Yksityisviestit</h4></li>
                         {directMessageItems}
                         {directMessageMore}
                     </ul>

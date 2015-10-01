@@ -206,16 +206,16 @@ export default class PostBody extends React.Component {
                 message = parentPost.filenames[0].split('/').pop();
 
                 if (parentPost.filenames.length === 2) {
-                    message += ' plus 1 other file';
+                    message += ' + 1 muu tiedosto';
                 } else if (parentPost.filenames.length > 2) {
-                    message += ` plus ${parentPost.filenames.length - 1} other files`;
+                    message += ` + ${parentPost.filenames.length - 1} muuta tiedostoa`;
                 }
             }
 
             comment = (
                 <p className='post-link'>
                     <span>
-                        {'Commented on '}{name}{apostrophe}{' message:'}
+                        {'Kommentoi käyttäjän '}{name}{' viestiin:'}
                         <a
                             className='theme'
                             onClick={this.props.handleCommentClick}
@@ -238,7 +238,7 @@ export default class PostBody extends React.Component {
                     href='#'
                     onClick={this.props.retryPost}
                 >
-                    {'Retry'}
+                    {'Yritä uudestaan'}
                 </a>
             );
         } else if (post.state === Constants.POST_LOADING) {

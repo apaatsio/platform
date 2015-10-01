@@ -136,7 +136,7 @@ export default class AccessHistoryModal extends React.Component {
                                     type='button'
                                     className='close'
                                     data-dismiss='modal'
-                                    aria-label='Close'
+                                    aria-label='Sulje'
                                 >
                                     <span aria-hidden='true'>&times;</span>
                                 </button>

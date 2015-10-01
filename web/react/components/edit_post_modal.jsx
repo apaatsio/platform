@@ -97,19 +97,19 @@ export default class EditPostModal extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                                 onClick={this.handleEditClose}
                             >
                                 <span aria-hidden='true'>&times;</span>
                             </button>
-                        <h4 className='modal-title'>Edit {this.state.title}</h4>
+                        <h4 className='modal-title'>Muokkaa {this.state.title}</h4>
                         </div>
                         <div className='edit-modal-body modal-body'>
                             <Textbox
                                 onUserInput={this.handleEditInput}
                                 onKeyPress={this.handleEditKeyPress}
                                 messageText={this.state.editText}
-                                createMessage='Edit the post...'
+                                createMessage='Muokkaa viestiä...'
                                 id='edit_textbox'
                                 ref='editbox'
                             />
@@ -121,14 +121,14 @@ export default class EditPostModal extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                Cancel
+                                Peruuta
                             </button>
                             <button
                                 type='button'
                                 className='btn btn-primary'
                                 onClick={this.handleEdit}
                             >
-                                Save
+                                Tallenna
                             </button>
                         </div>
                     </div>

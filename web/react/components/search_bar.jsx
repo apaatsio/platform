@@ -127,7 +127,7 @@ export default class SearchBar extends React.Component {
                     className='search__clear'
                     onClick={this.clearFocus}
                 >
-                    Cancel
+                    Peruuta
                 </span>
                 <form
                     role='form'
@@ -139,7 +139,7 @@ export default class SearchBar extends React.Component {
                         type='text'
                         ref='search'
                         className='form-control search-bar'
-                        placeholder='Search'
+                        placeholder='Hae'
                         value={this.state.searchTerm}
                         onFocus={this.handleUserFocus}
                         onChange={this.handleUserInput}

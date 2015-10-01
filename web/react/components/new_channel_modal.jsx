@@ -27,7 +27,7 @@ export default class NewChannelModal extends React.Component {
 
         const displayName = React.findDOMNode(this.refs.display_name).value.trim();
         if (displayName.length < 1) {
-            this.setState({displayNameError: 'This field is required'});
+            this.setState({displayNameError: 'Tämä kenttä on pakollinen'});
             return;
         }
 
@@ -58,29 +58,29 @@ export default class NewChannelModal extends React.Component {
         var channelSwitchText = '';
         switch (this.props.channelType) {
         case 'P':
-            channelTerm = 'Group';
+            channelTerm = 'ryhmä';
             channelSwitchText = (
                 <div className='modal-intro'>
-                    {'Create a new private group with restricted membership. '}
+                    {'Luo uusi yksityinen rajoitettu ryhmä. '}
                     <a
                         href='#'
                         onClick={this.props.onTypeSwitched}
                     >
-                        {'Create a public channel'}
+                        {'Luo julkinen kanava'}
                     </a>
                 </div>
             );
             break;
         case 'O':
-            channelTerm = 'Channel';
+            channelTerm = 'kanava';
             channelSwitchText = (
                 <div className='modal-intro'>
-                    {'Create a new public channel anyone can join. '}
+                    {'Luo uusi julkinen kanava johon kuka vain voi liittyä. '}
                     <a
                         href='#'
                         onClick={this.props.onTypeSwitched}
                     >
-                        {'Create a private group'}
+                        {'Luo yksityisryhmä'}
                     </a>
                 </div>
             );
@@ -97,7 +97,7 @@ export default class NewChannelModal extends React.Component {
                     onHide={this.props.onModalDismissed}
                 >
                     <Modal.Header closeButton={true}>
-                        <Modal.Title>{'New ' + channelTerm}</Modal.Title>
+                        <Modal.Title>{'Uusi ' + channelTerm}</Modal.Title>
                     </Modal.Header>
                     <form
                         role='form'
@@ -108,14 +108,14 @@ export default class NewChannelModal extends React.Component {
                                 {channelSwitchText}
                             </div>
                             <div className={displayNameClass}>
-                                <label className='col-sm-3 form__label control-label'>{'Name'}</label>
+                                <label className='col-sm-3 form__label control-label'>{'Nimi'}</label>
                                 <div className='col-sm-9'>
                                     <input
                                         onChange={this.handleChange}
                                         type='text'
                                         ref='display_name'
                                         className='form-control'
-                                        placeholder='Ex: "Bugs", "Marketing", "办公室恋情"'
+                                        placeholder='Esim: "Ötökät", "Markkinointi"'
                                         maxLength='22'
                                         value={this.props.channelData.displayName}
                                         autoFocus={true}
@@ -123,12 +123,12 @@ export default class NewChannelModal extends React.Component {
                                     />
                                     {displayNameError}
                                     <p className='input__help dark'>
-                                        {'URL: ' + prettyTeamURL + this.props.channelData.name + ' ('}
+                                        {'Osoite: ' + prettyTeamURL + this.props.channelData.name + ' ('}
                                         <a
                                             href='#'
                                             onClick={this.props.onChangeURLPressed}
                                         >
-                                            {'Edit'}
+                                            {'Muokkaa'}
                                         </a>
                                         {')'}
                                     </p>
@@ -136,22 +136,22 @@ export default class NewChannelModal extends React.Component {
                             </div>
                             <div className='form-group less'>
                                 <div className='col-sm-3'>
-                                    <label className='form__label control-label'>{'Description'}</label>
-                                    <label className='form__label light'>{'(optional)'}</label>
+                                    <label className='form__label control-label'>{'Kuvaus'}</label>
+                                    <label className='form__label light'>{'(ei pakollinen)'}</label>
                                 </div>
                                 <div className='col-sm-9'>
                                     <textarea
                                         className='form-control no-resize'
                                         ref='channel_desc'
                                         rows='4'
-                                        placeholder='Description'
+                                        placeholder='Kuvaus'
                                         maxLength='1024'
                                         value={this.props.channelData.description}
                                         onChange={this.handleChange}
                                         tabIndex='2'
                                     />
                                     <p className='input__help'>
-                                        {'Description helps others decide whether to join this channel.'}
+                                        {'Kuvaus auttaa toisia päättelemään kannattaako kanavalle liittyä.'}
                                     </p>
                                     {serverError}
                                 </div>
@@ -163,7 +163,7 @@ export default class NewChannelModal extends React.Component {
                                 className='btn btn-default'
                                 onClick={this.props.onModalDismissed}
                             >
-                                {'Cancel'}
+                                {'Peruuta'}
                             </button>
                             <button
                                 onClick={this.handleSubmit}
@@ -171,7 +171,7 @@ export default class NewChannelModal extends React.Component {
                                 className='btn btn-primary'
                                 tabIndex='3'
                             >
-                                {'Create New ' + channelTerm}
+                                {'Luo uusi ' + channelTerm}
                             </button>
                         </Modal.Footer>
                     </form>

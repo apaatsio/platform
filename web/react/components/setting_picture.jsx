@@ -76,10 +76,10 @@ export default class SettingPicture extends React.Component {
                 <a
                     className={confirmButtonClass}
                     onClick={this.props.submit}
-                >Save</a>
+                >Tallenna</a>
             );
         }
-        var helpText = 'Upload a profile picture in either JPG or PNG format, at least ' + global.window.config.ProfileWidth + 'px in width and ' + global.window.config.ProfileHeight + 'px height.';
+        var helpText = 'Lataa profiilikuva joko JPG- tai PNG-muodossa, vähintään ' + global.window.config.ProfileWidth + ' pikseliä leveä ja ' + global.window.config.ProfileHeight + ' pikseliä korkea.';
 
         var self = this;
         return (
@@ -97,7 +97,7 @@ export default class SettingPicture extends React.Component {
                             {serverError}
                             {clientError}
                             <span className='btn btn-sm btn-primary btn-file sel-btn'>
-                                Select
+                                Valitse
                                 <input
                                     ref='input'
                                     accept='.jpg,.png,.bmp'
@@ -110,7 +110,7 @@ export default class SettingPicture extends React.Component {
                                 className='btn btn-sm theme'
                                 href='#'
                                 onClick={self.props.updateSection}
-                            >Cancel</a>
+                            >Peruuta</a>
                         </li>
                     </ul>
                 </li>

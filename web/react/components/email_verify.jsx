@@ -19,21 +19,21 @@ export default class EmailVerify extends React.Component {
         var resend = '';
         var resendConfirm = '';
         if (this.props.isVerified === 'true') {
-            title = global.window.config.SiteName + ' Email Verified';
-            body = <p>Your email has been verified! Click <a href={this.props.teamURL + '?email=' + this.props.userEmail}>here</a> to log in.</p>;
+            title = global.window.config.SiteName + ' Sähköposti on vahvistettu';
+            body = <p>Sähköpostisi on vahvistettu! <a href={this.props.teamURL + '?email=' + this.props.userEmail}>Klikkaa tästä kirjautuaksesi.</a></p>;
         } else {
-            title = global.window.config.SiteName + ' Email Not Verified';
-            body = <p>Please verify your email address. Check your inbox for an email.</p>;
+            title = global.window.config.SiteName + ' Sähköpostia ei ole vahvista';
+            body = <p>Vahvista sähköpostiosoitteesi. Tarkista sähköpostilaatikkosi.</p>;
             resend = (
                 <button
                     onClick={this.handleResend}
                     className='btn btn-primary'
                 >
-                    Resend Email
+                    Lähetä sähköposti uudelleen
                 </button>
             );
             if (this.props.resendSuccess) {
-                resendConfirm = <div><br /><p className='alert alert-success'><i className='fa fa-check'></i>{' Verification email sent.'}</p></div>;
+                resendConfirm = <div><br /><p className='alert alert-success'><i className='fa fa-check'></i>{' Vahvistusviesti lähetetty sähköpostiisi.'}</p></div>;
             }
         }
 

@@ -108,7 +108,7 @@ export default class MemberListTeamItem extends React.Component {
                         href='#'
                         onClick={this.handleMakeAdmin}
                     >
-                        Make Admin
+                        Muuta ylläpitäjäksi
                     </a>
                 </li>
             );
@@ -123,7 +123,7 @@ export default class MemberListTeamItem extends React.Component {
                         href='#'
                         onClick={this.handleMakeMember}
                     >
-                        Make Member
+                        Muuta jäseneksi
                     </a>
                 </li>
             );
@@ -138,7 +138,7 @@ export default class MemberListTeamItem extends React.Component {
                         href='#'
                         onClick={this.handleMakeActive}
                     >
-                        Make Active
+                        Aktivoi
                     </a>
                 </li>
             );
@@ -153,7 +153,7 @@ export default class MemberListTeamItem extends React.Component {
                         href='#'
                         onClick={this.handleMakeNotActive}
                     >
-                        Make Inactive
+                        Inaktivoi
                     </a>
                 </li>
             );

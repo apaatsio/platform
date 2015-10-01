@@ -71,7 +71,7 @@ export default class InviteMemberModal extends React.Component {
             var invite = {};
             invite.email = React.findDOMNode(this.refs['email' + index]).value.trim();
             if (!invite.email || !utils.isEmail(invite.email)) {
-                emailErrors[index] = 'Please enter a valid email address';
+                emailErrors[index] = 'Syötä toimiva sähköpostiosoite';
                 valid = false;
             } else {
                 emailErrors[index] = '';
@@ -99,7 +99,7 @@ export default class InviteMemberModal extends React.Component {
                 $(React.findDOMNode(this.refs.modal)).modal('hide');
             }.bind(this),
             function fail(err) {
-                if (err.message === 'This person is already on your team') {
+                if (err.message === 'Tämä henkilö on jo tiimissäsi') {
                     emailErrors[err.detailed_error] = err.message;
                     this.setState({emailErrors: emailErrors});
                 } else {
@@ -208,7 +208,7 @@ export default class InviteMemberModal extends React.Component {
                                             type='text'
                                             className='form-control'
                                             ref={'first_name' + index}
-                                            placeholder='First name'
+                                            placeholder='Etunimi'
                                             maxLength='64'
                                             disabled={!this.state.emailEnabled}
                                         />
@@ -221,7 +221,7 @@ export default class InviteMemberModal extends React.Component {
                                             type='text'
                                             className='form-control'
                                             ref={'last_name' + index}
-                                            placeholder='Last name'
+                                            placeholder='Sukunimi'
                                             maxLength='64'
                                             disabled={!this.state.emailEnabled}
                                         />
@@ -265,10 +265,10 @@ export default class InviteMemberModal extends React.Component {
                             type='button'
                             className='btn btn-default'
                             onClick={this.addInviteFields}
-                        >Add another</button>
+                        >Lisää toinen</button>
                         <br/>
                         <br/>
-                        <span>People invited automatically join Town Square channel.</span>
+                        <span>Kutsutut ihmiset liitetään automaattisesti Town Square -kanavalle.</span>
                     </div>
                 );
 
@@ -278,7 +278,7 @@ export default class InviteMemberModal extends React.Component {
                             onClick={this.handleSubmit}
                             type='button'
                             className='btn btn-primary'
-                        >Send Invitations</button>
+                        >Lähetä kutsut</button>
                     );
             } else {
                 var teamInviteLink = null;
@@ -290,26 +290,26 @@ export default class InviteMemberModal extends React.Component {
                                 href='#'
                                 data-toggle='modal'
                                 data-target='#get_link'
-                                data-title='Team Invite'
+                                data-title='Tiimikutsu'
                                 data-value={linkUrl}
                                 onClick={
                                     function click() {
                                         $('#invite_member').modal('hide');
                                     }
                                 }
-                            >Team Invite Link</a>
+                            >tiimikutsulinkkiä</a>
                     );
 
                     teamInviteLink = (
                         <p>
-                            You can also invite people using the {link}.
+                            Voit kutsua ihmisiä myös käyttämällä {link}.
                         </p>
                     );
                 }
 
                 content = (
                     <div>
-                        <p>Email is currently disabled for your team, and email invitations cannot be sent. Contact your system administrator to enable email and email invitations.</p>
+                        <p>Sähköposti on pois päältä tiimiltäsi, joten sähköpostikutsuja ei voida lähettää. Ota yhteys järjestelmän ylläpitäjään saattaaksesi sähköpostin lähetyksen toimivaksi.</p>
                         {teamInviteLink}
                     </div>
                 );
@@ -332,14 +332,14 @@ export default class InviteMemberModal extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>×</span>
                             </button>
                             <h4
                                 className='modal-title'
                                 id='myModalLabel'
-                            >Invite New Member</h4>
+                            >Kutsu uusi jäsen</h4>
                             </div>
                             <div
                                 ref='modalBody'
@@ -355,7 +355,7 @@ export default class InviteMemberModal extends React.Component {
                                     type='button'
                                     className='btn btn-default'
                                     data-dismiss='modal'
-                                >Cancel</button>
+                                >Peruuta</button>
                                 {sendButton}
                             </div>
                           </div>
@@ -364,9 +364,9 @@ export default class InviteMemberModal extends React.Component {
                     <ConfirmModal
                         id='confirm_invite_modal'
                         parent_id='invite_member'
-                        title='Discard Invitations?'
-                        message='You have unsent invitations, are you sure you want to discard them?'
-                        confirm_button='Yes, Discard'
+                        title='Hylkää kutsut?'
+                        message='Sinulla on lähettämättömiä kutsuja. Haluatko varmasti hylätä ne?'
+                        confirm_button='Kyllä, hylkää'
                     />
                 </div>
             );

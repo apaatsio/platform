@@ -241,7 +241,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={notifyActive[1]}
                                 onChange={this.handleNotifyRadio.bind(this, 'mention')}
                             >
-                                Only for mentions and direct messages
+                                Vain maininnat and direct messages
                             </input>
                         </label>
                         <br/>
@@ -280,7 +280,7 @@ export default class NotificationsTab extends React.Component {
         } else {
             let describe = '';
             if (this.state.notifyLevel === 'mention') {
-                describe = 'Only for mentions and direct messages';
+                describe = 'Vain maininnat and direct messages';
             } else if (this.state.notifyLevel === 'none') {
                 describe = 'Never';
             } else {
@@ -656,7 +656,7 @@ export default class NotificationsTab extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>

@@ -164,17 +164,17 @@ export default class ChannelMembers extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>×</span>
                             </button>
-                            <h4 className='modal-title'><span className='name'>{this.state.channelName}</span> Members</h4>
+                            <h4 className='modal-title'>Kanavan <span className='name'>{this.state.channelName}</span> jäsenet</h4>
                             <a
                                 className='btn btn-md btn-primary'
                                 data-toggle='modal'
                                 data-target='#channel_invite'
                             >
-                                <i className='glyphicon glyphicon-envelope'/> Add New Members
+                                <i className='glyphicon glyphicon-envelope'/> Lisää uusia jäseniä
                             </a>
                         </div>
                         <div
@@ -193,7 +193,7 @@ export default class ChannelMembers extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                Close
+                                Sulje
                             </button>
                         </div>
                     </div>

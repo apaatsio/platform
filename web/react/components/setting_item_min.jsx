@@ -13,7 +13,7 @@ export default class SettingItemMin extends React.Component {
                         onClick={this.props.updateSection}
                     >
                         <i className='fa fa-pencil'/>
-                        {'Edit'}
+                        {'Muokkaa'}
                     </a>
                 </li>
             );

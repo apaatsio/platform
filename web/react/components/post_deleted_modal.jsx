@@ -29,7 +29,7 @@ export default class PostDeletedModal extends React.Component {
                                     type='button'
                                     className='close'
                                     data-dismiss='modal'
-                                    aria-label='Close'
+                                    aria-label='Sulje'
                                 >
                                     <span aria-hidden='true'>&times;</span>
                                 </button>
@@ -37,11 +37,11 @@ export default class PostDeletedModal extends React.Component {
                                     className='modal-title'
                                     id='myModalLabel'
                                 >
-                                    Comment could not be posted
+                                    Kommenttia ei voitu lähettää
                                 </h4>
                             </div>
                             <div className='modal-body'>
-                                <p>Someone deleted the message on which you tried to post a comment.</p>
+                                <p>Joku posti viestin, jota yritit kommentoida.</p>
                             </div>
                             <div className='modal-footer'>
                                 <button
@@ -49,7 +49,7 @@ export default class PostDeletedModal extends React.Component {
                                     className='btn btn-primary'
                                     data-dismiss='modal'
                                 >
-                                    Okay
+                                    Ok
                                 </button>
                             </div>
                         </div>

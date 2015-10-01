@@ -17,7 +17,7 @@ export default class PasswordResetForm extends React.Component {
 
         var password = React.findDOMNode(this.refs.password).value.trim();
         if (!password || password.length < 5) {
-            state.error = 'Please enter at least 5 characters.';
+            state.error = 'Syötä vähintään 5 merkkiä.';
             this.setState(state);
             return;
         }
@@ -33,7 +33,7 @@ export default class PasswordResetForm extends React.Component {
 
         client.resetPassword(data,
             function resetSuccess() {
-                this.setState({error: null, updateText: 'Your password has been updated successfully.'});
+                this.setState({error: null, updateText: 'Salasana on päivitetty onnistuneesti.'});
             }.bind(this),
             function resetFailure(err) {
                 this.setState({error: err.message, updateText: null});
@@ -59,16 +59,16 @@ export default class PasswordResetForm extends React.Component {
         return (
             <div className='col-sm-12'>
                 <div className='signup-team__container'>
-                    <h3>Password Reset</h3>
+                    <h3>Salasanan uudelleenasetus</h3>
                     <form onSubmit={this.handlePasswordReset}>
-                        <p>{'Enter a new password for your ' + this.props.teamDisplayName + ' ' + global.window.config.SiteName + ' account.'}</p>
+                        <p>{'Syötä uusi salasana tilille ' + this.props.teamDisplayName + ' ' + global.window.config.SiteName}</p>
                         <div className={formClass}>
                             <input
                                 type='password'
                                 className='form-control'
                                 name='password'
                                 ref='password'
-                                placeholder='Password'
+                                placeholder='Salasana'
                             />
                         </div>
                         {error}
@@ -76,7 +76,7 @@ export default class PasswordResetForm extends React.Component {
                             type='submit'
                             className='btn btn-primary'
                         >
-                            Change my password
+                            Muuta salasana
                         </button>
                         {updateText}
                     </form>

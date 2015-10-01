@@ -17,7 +17,7 @@ export default class MemberList extends React.Component {
 
         var message = '';
         if (members.length === 0) {
-            message = <span>No users to add.</span>;
+            message = <span>Ei käyttäjiä lisättäväksi.</span>;
         }
 
         return (

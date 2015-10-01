@@ -265,7 +265,7 @@ export default class CreateComment extends React.Component {
                             onUserInput={this.handleUserInput}
                             onKeyPress={this.commentMsgKeyPress}
                             messageText={this.state.messageText}
-                            createMessage='Add a comment...'
+                            createMessage='Lisää kommentti...'
                             initialText=''
                             id='reply_textbox'
                             ref='textbox'
@@ -289,7 +289,7 @@ export default class CreateComment extends React.Component {
                         <input
                             type='button'
                             className='btn btn-primary comment-btn pull-right'
-                            value='Add Comment'
+                            value='Lisää kommentti'
                             onClick={this.handleSubmit}
                         />
                         {postError}

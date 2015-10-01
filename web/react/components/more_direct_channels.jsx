@@ -112,9 +112,9 @@ export default class MoreDirectChannels extends React.Component {
                                 data-dismiss='modal'
                             >
                                 <span aria-hidden='true'>&times;</span>
-                                <span className='sr-only'>Close</span>
+                                <span className='sr-only'>Sulje</span>
                             </button>
-                            <h4 className='modal-title'>More Direct Messages</h4>
+                            <h4 className='modal-title'>Lisää yksityisviestejä</h4>
                         </div>
                         <div className='modal-body'>
                             <ul className='nav nav-pills nav-stacked'>
@@ -126,7 +126,7 @@ export default class MoreDirectChannels extends React.Component {
                                 type='button'
                                 className='btn btn-default'
                                 data-dismiss='modal'
-                            >Close</button>
+                            >Sulje</button>
                         </div>
                     </div>
                 </div>

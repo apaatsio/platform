@@ -102,7 +102,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         }
 
         if (email === '' || !utils.isEmail(email)) {
-            this.setState({emailError: 'Please enter a valid email address'});
+            this.setState({emailError: 'Syötä toimiva sähköpostiosoite'});
             return;
         }
 
@@ -523,7 +523,7 @@ export default class UserSettingsGeneralTab extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>{'×'}</span>
                     </button>

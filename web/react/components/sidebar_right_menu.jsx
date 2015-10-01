@@ -40,7 +40,7 @@ export default class SidebarRightMenu extends React.Component {
                     <a href='#'
                         data-toggle='modal'
                         data-target='#invite_member'
-                    ><i className='glyphicon glyphicon-user'></i>Invite New Member</a>
+                    ><i className='glyphicon glyphicon-user'></i>Kutsu uusi jäsen</a>
                 </li>
             );
 
@@ -52,7 +52,7 @@ export default class SidebarRightMenu extends React.Component {
                             data-target='#get_link'
                             data-title='Team Invite'
                             data-value={utils.getWindowLocationOrigin() + '/signup_user_complete/?id=' + currentUser.team_id}
-                        ><i className='glyphicon glyphicon-link'></i>Get Team Invite Link</a>
+                        ><i className='glyphicon glyphicon-link'></i>Hae tiimikutsulinkki</a>
                     </li>
                 );
             }
@@ -65,7 +65,7 @@ export default class SidebarRightMenu extends React.Component {
                         href='#'
                         data-toggle='modal'
                         data-target='#team_settings'
-                    ><i className='glyphicon glyphicon-globe'></i>Team Settings</a>
+                    ><i className='glyphicon glyphicon-globe'></i>Tiimiasetukset</a>
                 </li>
             );
             manageLink = (
@@ -75,7 +75,7 @@ export default class SidebarRightMenu extends React.Component {
                         data-toggle='modal'
                         data-target='#team_members'
                     >
-                    <i className='glyphicon glyphicon-wrench'></i>Manage Team</a>
+                    <i className='glyphicon glyphicon-wrench'></i>Hallinnoi tiimiä</a>
                 </li>
             );
         }
@@ -86,7 +86,7 @@ export default class SidebarRightMenu extends React.Component {
                     <a
                         href='/admin_console'
                     >
-                    <i className='glyphicon glyphicon-wrench'></i>System Console</a>
+                    <i className='glyphicon glyphicon-wrench'></i>Järjestelmäkonsoli</a>
                 </li>
             );
         }
@@ -116,7 +116,7 @@ export default class SidebarRightMenu extends React.Component {
                                 href='#'
                                 data-toggle='modal'
                                 data-target='#user_settings'
-                            ><i className='glyphicon glyphicon-cog'></i>Account Settings</a></li>
+                            ><i className='glyphicon glyphicon-cog'></i>Tilin asetukset</a></li>
                         {teamSettingsLink}
                         {inviteLink}
                         {teamLink}
@@ -126,18 +126,18 @@ export default class SidebarRightMenu extends React.Component {
                             <a
                                 href='#'
                                 onClick={this.handleLogoutClick}
-                            ><i className='glyphicon glyphicon-log-out'></i>Logout</a></li>
+                            ><i className='glyphicon glyphicon-log-out'></i>Kirjaudu ulos</a></li>
                         <li className='divider'></li>
                         <li>
                             <a
                                 target='_blank'
                                 href='/static/help/configure_links.html'
-                            ><i className='glyphicon glyphicon-question-sign'></i>Help</a></li>
+                            ><i className='glyphicon glyphicon-question-sign'></i>Ohjeet</a></li>
                         <li>
                             <a
                                 target='_blank'
                                 href='/static/help/configure_links.html'
-                            ><i className='glyphicon glyphicon-earphone'></i>Report a Problem</a></li>
+                            ><i className='glyphicon glyphicon-earphone'></i>Ilmoita ongelmasta</a></li>
                     </ul>
                 </div>
             </div>

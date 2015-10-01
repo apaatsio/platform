@@ -155,11 +155,11 @@ export default class ChannelInviteModal extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>
-                    <h4 className='modal-title'>Add New Members to <span className='name'>{this.state.channelName}</span></h4>
+                    <h4 className='modal-title'>Lisää uusia jäseniä kanavalle <span className='name'>{this.state.channelName}</span></h4>
                   </div>
                   <div className='modal-body'>
                     {inviteError}
@@ -170,7 +170,7 @@ export default class ChannelInviteModal extends React.Component {
                         type='button'
                         className='btn btn-default'
                         data-dismiss='modal'
-                    >Close</button>
+                    >Sulje</button>
                   </div>
                 </div>
               </div>

@@ -94,7 +94,7 @@ export default class CreatePost extends React.Component {
         }
 
         if (post.message.length > Constants.CHARACTER_LIMIT) {
-            this.setState({postError: `Post length must be less than ${Constants.CHARACTER_LIMIT} characters.`});
+            this.setState({postError: `Viestin enimmäispituus on ${Constants.CHARACTER_LIMIT} merkkiä.`});
             return;
         }
 
@@ -155,7 +155,7 @@ export default class CreatePost extends React.Component {
                 (err) => {
                     const state = {};
 
-                    if (err.message === 'Invalid RootId parameter') {
+                    if (err.message === 'Virheellinen RootId-parametri') {
                         if ($('#post_deleted').length > 0) {
                             $('#post_deleted').modal('show');
                         }
@@ -335,7 +335,7 @@ export default class CreatePost extends React.Component {
                                 onKeyPress={this.postMsgKeyPress}
                                 onHeightChange={this.resizePostHolder}
                                 messageText={this.state.messageText}
-                                createMessage='Write a message...'
+                                createMessage='Kirjoita viesti...'
                                 channelId={this.state.channelId}
                                 id='post_textbox'
                                 ref='textbox'
