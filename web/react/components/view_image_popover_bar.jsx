@@ -14,7 +14,7 @@ export default class ViewImagePopoverBar extends React.Component {
                         href='#'
                         className='public-link text'
                         data-title='Public Image'
-                        onClick={this.getPublicLink}
+                        onClick={this.props.onGetPublicLinkPressed}
                     >
                         {'Get Public Link'}
                     </a>
