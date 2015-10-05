@@ -120,6 +120,27 @@ module.exports = {
     COMMENT_ICON: "<svg version='1.1' id='Layer_2' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'width='15px' height='15px' viewBox='1 1.5 15 15' enable-background='new 1 1.5 15 15' xml:space='preserve'> <g> <g> <path fill='#211B1B' d='M14,1.5H3c-1.104,0-2,0.896-2,2v8c0,1.104,0.896,2,2,2h1.628l1.884,3l1.866-3H14c1.104,0,2-0.896,2-2v-8 C16,2.396,15.104,1.5,14,1.5z M15,11.5c0,0.553-0.447,1-1,1H8l-1.493,2l-1.504-1.991L5,12.5H3c-0.552,0-1-0.447-1-1v-8 c0-0.552,0.448-1,1-1h11c0.553,0,1,0.448,1,1V11.5z'/> </g> </g> </svg>",
     THEMES: {
         default: {
+            type: 'TeliaSonera',
+            sidebarBg: 'rgb(246, 246, 246)',
+            sidebarText: '#999999',
+            sidebarUnreadText: '#333333',
+            sidebarTextHoverBg: '#e6f2fa',
+            sidebarTextHoverColor: '#999999',
+            sidebarTextActiveBg: '#e1e1e1',
+            sidebarTextActiveColor: '#111111',
+            sidebarHeaderBg: 'rgb(83, 39, 108)',
+            sidebarHeaderTextColor: '#ffffff',
+            onlineIndicator: '#7DBE00',
+            mentionBj: '#2389d7',
+            mentionColor: '#ffffff',
+            centerChannelBg: '#ffffff',
+            centerChannelColor: '#333333',
+            newMessageSeparator: '#FF8800',
+            linkColor: 'rgb(101, 45, 134)',
+            buttonBg: 'rgb(101, 45, 134)',
+            buttonColor: '#FFFFFF'
+        },
+        defaultmattermost: {
             type: 'Mattermost',
             sidebarBg: '#fafafa',
             sidebarText: '#999999',
