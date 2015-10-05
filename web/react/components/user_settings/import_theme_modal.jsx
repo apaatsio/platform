@@ -132,7 +132,7 @@ export default class ImportThemeModal extends React.Component {
                     onHide={() => this.setState({show: false})}
                 >
                     <Modal.Header closeButton={true}>
-                        <Modal.Title>{'Import Slack Theme'}</Modal.Title>
+                        <Modal.Title>{'Tuo Slack-teema'}</Modal.Title>
                     </Modal.Header>
                     <form
                         role='form'
@@ -162,15 +162,15 @@ export default class ImportThemeModal extends React.Component {
                                 className='btn btn-default'
                                 onClick={() => this.setState({show: false})}
                             >
-                                {'Cancel'}
+                                {'Peruuta'}
                             </button>
                             <button
                                 onClick={this.handleSubmit}
-                                type='submit'
+                                type='Lähetä'
                                 className='btn btn-primary'
                                 tabIndex='3'
                             >
-                                {'Submit'}
+                                {'Lähetä'}
                             </button>
                         </Modal.Footer>
                     </form>

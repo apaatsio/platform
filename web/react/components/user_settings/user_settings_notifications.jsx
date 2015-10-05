@@ -229,7 +229,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={notifyActive[0]}
                                 onChange={this.handleNotifyRadio.bind(this, 'all')}
                             >
-                                For all activity
+                                Kaikki
                             </input>
                         </label>
                         <br/>
@@ -241,7 +241,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={notifyActive[1]}
                                 onChange={this.handleNotifyRadio.bind(this, 'mention')}
                             >
-                                Vain maininnat and direct messages
+                                Vain maininnat ja yksityisviestit
                             </input>
                         </label>
                         <br/>
@@ -253,7 +253,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={notifyActive[2]}
                                 onChange={this.handleNotifyRadio.bind(this, 'none')}
                             >
-                                Never
+                                Ei koskaan
                             </input>
                         </label>
                     </div>
@@ -265,11 +265,11 @@ export default class NotificationsTab extends React.Component {
                 e.preventDefault();
             }.bind(this);
 
-            const extraInfo = <span>{'Desktop notifications are available on Firefox, Safari, and Chrome.'}</span>;
+            const extraInfo = <span>{'Työpöytäilmoitukset ovat saatavilla Firefox-, Safari- ja Chrome-selaimissa.'}</span>;
 
             desktopSection = (
                 <SettingItemMax
-                    title='Send desktop notifications'
+                    title='Lähetä työpöytäilmoitukset'
                     extraInfo={extraInfo}
                     inputs={inputs}
                     submit={this.handleSubmit}
@@ -280,11 +280,11 @@ export default class NotificationsTab extends React.Component {
         } else {
             let describe = '';
             if (this.state.notifyLevel === 'mention') {
-                describe = 'Vain maininnat and direct messages';
+                describe = 'Vain maininnat ja yksityisviestit';
             } else if (this.state.notifyLevel === 'none') {
-                describe = 'Never';
+                describe = 'Ei koskaan';
             } else {
-                describe = 'For all activity';
+                describe = 'Kaikki';
             }
 
             handleUpdateDesktopSection = function updateDesktopSection() {
@@ -293,7 +293,7 @@ export default class NotificationsTab extends React.Component {
 
             desktopSection = (
                 <SettingItemMin
-                    title='Send desktop notifications'
+                    title='Lähetä työpöytäilmoitukset'
                     describe={describe}
                     updateSection={handleUpdateDesktopSection}
                 />
@@ -321,7 +321,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={soundActive[0]}
                                 onChange={this.handleSoundRadio.bind(this, 'true')}
                             >
-                                On
+                                Päällä
                             </input>
                         </label>
                         <br/>
@@ -333,7 +333,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={soundActive[1]}
                                 onChange={this.handleSoundRadio.bind(this, 'false')}
                             >
-                                Off
+                                Pois
                             </input>
                         </label>
                         <br/>
@@ -346,11 +346,11 @@ export default class NotificationsTab extends React.Component {
                 e.preventDefault();
             }.bind(this);
 
-            const extraInfo = <span>{'Desktop notification sounds are available on Firefox, Safari, Chrome, Internet Explorer, and Edge.'}</span>;
+            const extraInfo = <span>{'Työpöytäilmoituksen äänet ovat saatavilla Firefox-, Safari-, Chrome-, Internet Explorer- ja Edge-selaimissa.'}</span>;
 
             soundSection = (
                 <SettingItemMax
-                    title='Desktop notification sounds'
+                    title='Työpöytäilmoituksen äänet'
                     extraInfo={extraInfo}
                     inputs={inputs}
                     submit={this.handleSubmit}
@@ -361,11 +361,11 @@ export default class NotificationsTab extends React.Component {
         } else {
             let describe = '';
             if (!this.state.soundNeeded) {
-                describe = 'Please configure notification sounds in your browser settings';
+                describe = 'Muokkaa selaimesi ilmoitusäänen asetuksia';
             } else if (this.state.enableSound === 'false') {
-                describe = 'Off';
+                describe = 'Pois';
             } else {
-                describe = 'On';
+                describe = 'Päällä';
             }
 
             handleUpdateSoundSection = function updateSoundSection() {
@@ -374,7 +374,7 @@ export default class NotificationsTab extends React.Component {
 
             soundSection = (
                 <SettingItemMin
-                    title='Desktop notification sounds'
+                    title='Työpöytäilmoituksen äänet'
                     describe={describe}
                     updateSection={handleUpdateSoundSection}
                     disableOpen = {!this.state.soundNeeded}
@@ -403,7 +403,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={emailActive[0]}
                                 onChange={this.handleEmailRadio.bind(this, 'true')}
                             >
-                                On
+                                Päällä
                             </input>
                         </label>
                         <br/>
@@ -415,12 +415,12 @@ export default class NotificationsTab extends React.Component {
                                 checked={emailActive[1]}
                                 onChange={this.handleEmailRadio.bind(this, 'false')}
                             >
-                                Off
+                                Pois
                             </input>
                         </label>
                         <br/>
                     </div>
-                    <div><br/>{'Email notifications are sent for mentions and direct messages after you’ve been offline for more than 60 seconds or away from ' + global.window.config.SiteName + ' for more than 5 minutes.'}</div>
+                    <div><br/>{'Sähköposti-ilmoitukset lähetetään maininnoista ja yksityisviesteistä mikäli et ole ollut online 60 sekuntiin tai olet ollut poissa ' + global.window.config.SiteName + '-palvelusta yli 5 minuuttia.'}</div>
                 </div>
             );
 
@@ -431,7 +431,7 @@ export default class NotificationsTab extends React.Component {
 
             emailSection = (
                 <SettingItemMax
-                    title='Email notifications'
+                    title='Sähköposti-ilmoitukset'
                     inputs={inputs}
                     submit={this.handleSubmit}
                     server_error={serverError}
@@ -441,9 +441,9 @@ export default class NotificationsTab extends React.Component {
         } else {
             let describe = '';
             if (this.state.enableEmail === 'false') {
-                describe = 'Off';
+                describe = 'Pois';
             } else {
-                describe = 'On';
+                describe = 'Päällä';
             }
 
             handleUpdateEmailSection = function updateEmailSection() {
@@ -452,7 +452,7 @@ export default class NotificationsTab extends React.Component {
 
             emailSection = (
                 <SettingItemMin
-                    title='Email notifications'
+                    title='Sähköposti-ilmoitukset'
                     describe={describe}
                     updateSection={handleUpdateEmailSection}
                 />
@@ -483,7 +483,7 @@ export default class NotificationsTab extends React.Component {
                                     checked={this.state.firstNameKey}
                                     onChange={handleUpdateFirstNameKey}
                                 >
-                                    {'Your case sensitive first name "' + user.first_name + '"'}
+                                    {'Etunimesi (isot ja pienet kirjaimet merkitseviä) "' + user.first_name + '"'}
                                 </input>
                             </label>
                         </div>
@@ -503,7 +503,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={this.state.usernameKey}
                                 onChange={handleUpdateUsernameKey}
                             >
-                                {'Your non-case sensitive username "' + user.username + '"'}
+                                {'Käyttäjänimesi (isot ja pienet kirjaimet eivät merkitseviä) "' + user.username + '"'}
                             </input>
                         </label>
                     </div>
@@ -522,7 +522,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={this.state.mentionKey}
                                 onChange={handleUpdateMentionKey}
                             >
-                                {'Your username mentioned "@' + user.username + '"'}
+                                {'Käyttäjänimesi mainitaan "@' + user.username + '"'}
                             </input>
                         </label>
                     </div>
@@ -541,7 +541,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={this.state.allKey}
                                 onChange={handleUpdateAllKey}
                             >
-                                {'Team-wide mentions "@all"'}
+                                {'Koko tiimin maininnat "@all"'}
                             </input>
                         </label>
                     </div>
@@ -560,7 +560,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={this.state.channelKey}
                                 onChange={handleUpdateChannelKey}
                             >
-                                {'Channel-wide mentions "@channel"'}
+                                {'Koko kanavan maininnat "@channel"'}
                             </input>
                         </label>
                     </div>
@@ -577,7 +577,7 @@ export default class NotificationsTab extends React.Component {
                                 checked={this.state.customKeysChecked}
                                 onChange={this.updateCustomMentionKeys}
                             >
-                                {'Other non-case sensitive words, separated by commas:'}
+                                {'Muut pilkulla erotellut avainsanat (isot ja pienet kirjaimet eivät merkitseviä):'}
                             </input>
                         </label>
                     </div>
@@ -597,7 +597,7 @@ export default class NotificationsTab extends React.Component {
             }.bind(this);
             keysSection = (
                 <SettingItemMax
-                    title='Words that trigger mentions'
+                    title='Sanat jotka laukaisevat maininnan'
                     inputs={inputs}
                     submit={this.handleSubmit}
                     server_error={serverError}
@@ -633,7 +633,7 @@ export default class NotificationsTab extends React.Component {
             if (describe.length > 0) {
                 describe = describe.substring(0, describe.length - 2);
             } else {
-                describe = 'No words configured';
+                describe = 'Ei sanoja määritelty';
             }
 
             handleUpdateKeysSection = function updateKeysSection() {
@@ -642,7 +642,7 @@ export default class NotificationsTab extends React.Component {
 
             keysSection = (
                 <SettingItemMin
-                    title='Words that trigger mentions'
+                    title='Sanat jotka laukaisevat maininnan'
                     describe={describe}
                     updateSection={handleUpdateKeysSection}
                 />
@@ -665,14 +665,14 @@ export default class NotificationsTab extends React.Component {
                         ref='title'
                     >
                         <i className='modal-back'></i>
-                        Notifications
+                        Ilmoitukset
                     </h4>
                 </div>
                 <div
                     ref='wrapper'
                     className='user-settings'
                 >
-                    <h3 className='tab-header'>Notifications</h3>
+                    <h3 className='tab-header'>Ilmoitukset</h3>
                     <div className='divider-dark first'/>
                     {desktopSection}
                     <div className='divider-light'/>

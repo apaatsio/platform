@@ -112,10 +112,10 @@ export default class ManageIncomingHooks extends React.Component {
                 <div className='font--small'>
                     <div className='padding-top x2 divider-light'></div>
                     <div className='padding-top x2'>
-                        <strong>{'URL: '}</strong><span className='word-break--all'>{Utils.getWindowLocationOrigin() + '/hooks/' + hook.id}</span>
+                        <strong>{'Osoite: '}</strong><span className='word-break--all'>{Utils.getWindowLocationOrigin() + '/hooks/' + hook.id}</span>
                     </div>
                     <div className='padding-top'>
-                        <strong>{'Channel: '}</strong>{c.name}
+                        <strong>{'Kanava: '}</strong>{c.name}
                     </div>
                     <div className='padding-top'>
                         <a
@@ -123,7 +123,7 @@ export default class ManageIncomingHooks extends React.Component {
                             href='#'
                             onClick={this.removeHook.bind(this, hook.id)}
                         >
-                            {'Remove'}
+                            {'Poista'}
                         </a>
                     </div>
                 </div>
@@ -167,7 +167,7 @@ export default class ManageIncomingHooks extends React.Component {
                             href='#'
                             onClick={this.addNewHook}
                         >
-                            {'Add'}
+                            {'Lisää'}
                         </a>
                     </div>
                 </div>

@@ -81,7 +81,7 @@ export default class CustomThemeChooser extends React.Component {
         const pasteBox = (
             <div className='col-sm-12'>
                 <label className='custom-label'>
-                    {'Copy and paste to share theme colors:'}
+                    {'Leikkaa ja liitä jakaaksesi teeman värit:'}
                 </label>
                 <input
                     type='text'

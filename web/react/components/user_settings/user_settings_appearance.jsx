@@ -153,7 +153,7 @@ export default class UserSettingsAppearance extends React.Component {
                                 checked={!displayCustom}
                                 onChange={this.updateType.bind(this, 'premade')}
                             >
-                                {'Theme Colors'}
+                                {'Teeman värit'}
                             </input>
                         </label>
                         <br/>
@@ -165,7 +165,7 @@ export default class UserSettingsAppearance extends React.Component {
                                 checked={displayCustom}
                                 onChange={this.updateType.bind(this, 'custom')}
                             >
-                                {'Custom Theme'}
+                                {'Kustomoitu teema'}
                             </input>
                         </label>
                         <br/>
@@ -178,14 +178,14 @@ export default class UserSettingsAppearance extends React.Component {
                         href='#'
                         onClick={this.submitTheme}
                     >
-                        {'Submit'}
+                        {'Lähetä'}
                     </a>
                     <a
                         className='btn btn-sm theme'
                         href='#'
                         onClick={this.handleClose}
                     >
-                        {'Cancel'}
+                        {'Peruuta'}
                     </a>
                 </div>
             </div>
@@ -206,11 +206,11 @@ export default class UserSettingsAppearance extends React.Component {
                         className='modal-title'
                         ref='title'
                     >
-                        <i className='modal-back'></i>{'Appearance Settings'}
+                        <i className='modal-back'></i>{'Ulkonäköasetukset'}
                     </h4>
                 </div>
                 <div className='user-settings'>
-                    <h3 className='tab-header'>{'Appearance Settings'}</h3>
+                    <h3 className='tab-header'>{'Ulkonäköasetukset'}</h3>
                     <div className='divider-dark first'/>
                     {themeUI}
                     <div className='divider-dark'/>
@@ -220,7 +220,7 @@ export default class UserSettingsAppearance extends React.Component {
                     className='theme'
                     onClick={this.handleImportModal}
                 >
-                    {'Import theme colors from Slack'}
+                    {'Tuo teeman värit Slackistä'}
                 </a>
             </div>
         );

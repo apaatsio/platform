@@ -277,20 +277,20 @@ export default class UserSettingsGeneralTab extends React.Component {
                     href='#'
                     onClick={notifClick.bind(this)}
                 >
-                    {'Notifications'}
+                    {'Ilmoitukset'}
                 </a>
             );
 
             const extraInfo = (
                 <span>
-                    {'By default, you will receive mention notifications when someone types your first name. '}
-                    {'Go to '} {notifLink} {'settings to change this default.'}
+                    {'Oletuksena saat ilmoituksen aina, kun etunimesi mainitaan.'}
+                    {'Mene '} {notifLink} {'-asetuksiin muuttaaksesi asetuksen.'}
                 </span>
             );
 
             nameSection = (
                 <SettingItemMax
-                    title='Full Name'
+                    title='Koko nimi'
                     inputs={inputs}
                     submit={this.submitName}
                     server_error={serverError}
@@ -315,7 +315,7 @@ export default class UserSettingsGeneralTab extends React.Component {
 
             nameSection = (
                 <SettingItemMin
-                    title='Full Name'
+                    title='Koko nimi'
                     describe={fullName}
                     updateSection={function updateNameSection() {
                         this.updateSection('name');
@@ -326,7 +326,7 @@ export default class UserSettingsGeneralTab extends React.Component {
 
         var nicknameSection;
         if (this.props.activeSection === 'nickname') {
-            let nicknameLabel = 'Nickname';
+            let nicknameLabel = 'Lempinimi';
             if (utils.isMobile()) {
                 nicknameLabel = '';
             }
@@ -350,14 +350,13 @@ export default class UserSettingsGeneralTab extends React.Component {
 
             const extraInfo = (
                 <span>
-                    {'Use Nickname for a name you might be called that is different from your first name and user name.'}
-                    {'This is most often used when two or more people have similar sounding names and usernames.'}
+                    {'Käytä lempinimeä mikäli sinulla on kutsumanimi joka ei ole etunimesi eikä käyttäjänimesi.'}
                 </span>
             );
 
             nicknameSection = (
                 <SettingItemMax
-                    title='Nickname'
+                    title='Lempinimi'
                     inputs={inputs}
                     submit={this.submitNickname}
                     server_error={serverError}
@@ -372,7 +371,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         } else {
             nicknameSection = (
                 <SettingItemMin
-                    title='Nickname'
+                    title='Lempinimi'
                     describe={UserStore.getCurrentUser().nickname}
                     updateSection={function updateNicknameSection() {
                         this.updateSection('nickname');
@@ -383,7 +382,7 @@ export default class UserSettingsGeneralTab extends React.Component {
 
         var usernameSection;
         if (this.props.activeSection === 'username') {
-            let usernameLabel = 'Username';
+            let usernameLabel = 'Käyttäjänimi';
             if (utils.isMobile()) {
                 usernameLabel = '';
             }
@@ -405,11 +404,11 @@ export default class UserSettingsGeneralTab extends React.Component {
                 </div>
             );
 
-            const extraInfo = (<span>{'Pick something easy for teammates to recognize and recall.'}</span>);
+            const extraInfo = (<span>{'Valitse käyttäjänimi, josta muut voivat tunnistaa sinut.'}</span>);
 
             usernameSection = (
                 <SettingItemMax
-                    title='Username'
+                    title='Käyttäjänimi'
                     inputs={inputs}
                     submit={this.submitUsername}
                     server_error={serverError}
@@ -424,7 +423,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         } else {
             usernameSection = (
                 <SettingItemMin
-                    title='Username'
+                    title='Käyttäjänimi'
                     describe={UserStore.getCurrentUser().username}
                     updateSection={function updateUsernameSection() {
                         this.updateSection('username');
@@ -434,7 +433,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         }
         var emailSection;
         if (this.props.activeSection === 'email') {
-            let helpText = <div>Email is used for notifications, and requires verification if changed.</div>;
+            let helpText = <div>Sähköpostia käytetään ilmoituksiin. Sinun pitää vahvistaa sähköpostiosoite mikäli muutat sen.</div>;
 
             if (!this.state.emailEnabled) {
                 helpText = <div className='setting-list__hint text-danger'>{'Email has been disabled by your system administrator. No notification emails will be sent until it is enabled.'}</div>;
@@ -443,7 +442,7 @@ export default class UserSettingsGeneralTab extends React.Component {
             inputs.push(
                 <div key='emailSetting'>
                     <div className='form-group'>
-                        <label className='col-sm-5 control-label'>{'Primary Email'}</label>
+                        <label className='col-sm-5 control-label'>{'Sähköposti (ensisijainen)'}</label>
                         <div className='col-sm-7'>
                             <input
                                 className='form-control'
@@ -459,7 +458,7 @@ export default class UserSettingsGeneralTab extends React.Component {
 
             emailSection = (
                 <SettingItemMax
-                    title='Email'
+                    title='Sähköposti'
                     inputs={inputs}
                     submit={this.submitEmail}
                     server_error={serverError}
@@ -473,7 +472,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         } else {
             emailSection = (
                 <SettingItemMin
-                    title='Email'
+                    title='Sähköposti'
                     describe={UserStore.getCurrentUser().email}
                     updateSection={function updateEmailSection() {
                         this.updateSection('email');
@@ -486,7 +485,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         if (this.props.activeSection === 'picture') {
             pictureSection = (
                 <SettingPicture
-                    title='Profile Picture'
+                    title='Profiilikuva'
                     submit={this.submitPicture}
                     src={'/api/v1/users/' + user.id + '/image?time=' + user.last_picture_update}
                     server_error={serverError}
@@ -502,13 +501,13 @@ export default class UserSettingsGeneralTab extends React.Component {
                 />
             );
         } else {
-            var minMessage = 'Click \'Edit\' to upload an image.';
+            var minMessage = 'Klikkaa \'Muokkaa\' ladataksesi kuvan.';
             if (user.last_picture_update) {
-                minMessage = 'Image last updated ' + utils.displayDate(user.last_picture_update);
+                minMessage = 'Kuva päivitetty ' + utils.displayDate(user.last_picture_update);
             }
             pictureSection = (
                 <SettingItemMin
-                    title='Profile Picture'
+                    title='Profiilikuva'
                     describe={minMessage}
                     updateSection={function updatePictureSection() {
                         this.updateSection('picture');
@@ -532,11 +531,11 @@ export default class UserSettingsGeneralTab extends React.Component {
                         ref='title'
                     >
                         <i className='modal-back'></i>
-                        {'General Settings'}
+                        {'Yleiset asetukset'}
                     </h4>
                 </div>
                 <div className='user-settings'>
-                    <h3 className='tab-header'>{'General Settings'}</h3>
+                    <h3 className='tab-header'>{'Yleiset asetukset'}</h3>
                     <div className='divider-dark first'/>
                     {nameSection}
                     <div className='divider-light'/>
