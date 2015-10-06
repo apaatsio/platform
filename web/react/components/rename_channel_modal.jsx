@@ -42,10 +42,10 @@ export default class RenameChannelModal extends React.Component {
 
         channel.display_name = this.state.displayName.trim();
         if (!channel.display_name) {
-            state.displayNameError = 'This field is required';
+            state.displayNameError = 'Tämä kenttä on pakollinen';
             state.invalid = true;
         } else if (channel.display_name.length > 22) {
-            state.displayNameError = 'This field must be less than 22 characters';
+            state.displayNameError = 'Tämän kentän enimmäispituus on 22 merkkiä';
             state.invalid = true;
         } else {
             state.displayNameError = '';
@@ -53,17 +53,17 @@ export default class RenameChannelModal extends React.Component {
 
         channel.name = this.state.channelName.trim();
         if (!channel.name) {
-            state.nameError = 'This field is required';
+            state.nameError = 'Tämä kenttä on pakollinen';
             state.invalid = true;
         } else if (channel.name.length > 22) {
-            state.nameError = 'This field must be less than 22 characters';
+            state.nameError = 'Tämän kentän enimmäispituus on 22 merkkiä';
             state.invalid = true;
         } else {
             let cleanedName = Utils.cleanUpUrlable(channel.name);
             if (cleanedName === channel.name) {
                 state.nameError = '';
             } else {
-                state.nameError = 'Must be lowercase alphanumeric characters';
+                state.nameError = 'Vain pienet kirjaimet ja numerot ovat sallittuja';
                 state.invalid = true;
             }
         }
@@ -163,34 +163,34 @@ export default class RenameChannelModal extends React.Component {
                                 data-dismiss='modal'
                             >
                                 <span aria-hidden='true'>&times;</span>
-                                <span className='sr-only'>Close</span>
+                                <span className='sr-only'>Sulje</span>
                             </button>
-                        <h4 className='modal-title'>Rename Channel</h4>
+                        <h4 className='modal-title'>Nimeä kanava uudelleen</h4>
                         </div>
                         <form role='form'>
                             <div className='modal-body'>
                                 <div className={displayNameClass}>
-                                    <label className='control-label'>Display Name</label>
+                                    <label className='control-label'>Nimi</label>
                                     <input
                                         onKeyUp={this.displayNameKeyUp}
                                         onChange={this.onDisplayNameChange}
                                         type='text'
                                         ref='displayName'
                                         className='form-control'
-                                        placeholder='Enter display name'
+                                        placeholder='Syötä nimi'
                                         value={this.state.displayName}
                                         maxLength='64'
                                     />
                                     {displayNameError}
                                 </div>
                                 <div className={nameClass}>
-                                    <label className='control-label'>Handle</label>
+                                    <label className='control-label'>Tunniste</label>
                                     <input
                                         onChange={this.onNameChange}
                                         type='text'
                                         className='form-control'
                                         ref='channelName'
-                                        placeholder='lowercase alphanumeric&#39;s only'
+                                        placeholder='vain pieniä kirjaimia ja numeroita'
                                         value={this.state.channelName}
                                         maxLength='64'
                                     />
@@ -204,14 +204,14 @@ export default class RenameChannelModal extends React.Component {
                                     className='btn btn-default'
                                     data-dismiss='modal'
                                 >
-                                    Cancel
+                                    Peruuta
                                 </button>
                                 <button
                                     onClick={this.handleSubmit}
                                     type='submit'
                                     className='btn btn-primary'
                                 >
-                                    Save
+                                    Tallenna
                                 </button>
                             </div>
                         </form>

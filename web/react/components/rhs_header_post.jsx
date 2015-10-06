@@ -58,11 +58,11 @@ export default class RhsHeaderPost extends React.Component {
 
         return (
             <div className='sidebar--right__header'>
-                <span className='sidebar--right__title'>{back}Message Details</span>
+                <span className='sidebar--right__title'>{back}Viestin tiedot</span>
                 <button
                     type='button'
                     className='sidebar--right__close'
-                    aria-label='Close'
+                    aria-label='Sulje'
                     onClick={this.handleClose}
                 >
                     <i className='fa fa-sign-out'/>

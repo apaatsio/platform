@@ -84,7 +84,7 @@ export default class RhsRootPost extends React.Component {
                                 data-postid={post.id}
                                 data-channelid={post.channel_id}
                             >
-                                Edit
+                                Muokkaa
                             </a>
                         </li>
                         <li role='presentation'>
@@ -98,7 +98,7 @@ export default class RhsRootPost extends React.Component {
                                 data-channelid={post.channel_id}
                                 data-comments={this.props.commentCount}
                             >
-                                Delete
+                                Poista
                             </a>
                         </li>
                     </ul>

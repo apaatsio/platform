@@ -24,7 +24,7 @@ export default class RegisterAppModal extends React.Component {
 
         var name = this.refs.name.getDOMNode().value;
         if (!name || name.length === 0) {
-            state.nameError = 'Application name must be filled in.';
+            state.nameError = 'Sovelluksen nimi on pakollinen.';
             this.setState(state);
             return;
         }
@@ -33,7 +33,7 @@ export default class RegisterAppModal extends React.Component {
 
         var homepage = this.refs.homepage.getDOMNode().value;
         if (!homepage || homepage.length === 0) {
-            state.homepageError = 'Homepage must be filled in.';
+            state.homepageError = 'Kotisivu on pakollinen.';
             this.setState(state);
             return;
         }
@@ -45,7 +45,7 @@ export default class RegisterAppModal extends React.Component {
 
         var rawCallbacks = this.refs.callback.getDOMNode().value.trim();
         if (!rawCallbacks || rawCallbacks.length === 0) {
-            state.callbackError = 'At least one callback URL must be filled in.';
+            state.callbackError = 'Vähintään yksi callback URL pitää olla määritelty.';
             this.setState(state);
             return;
         }
@@ -97,33 +97,33 @@ export default class RegisterAppModal extends React.Component {
         if (this.state.clientId === '') {
             body = (
                 <div className='form-group user-settings'>
-                    <h3>{'Register a New Application'}</h3>
+                    <h3>{'Rekisteröi uusi sovellus'}</h3>
                     <br/>
-                    <label className='col-sm-4 control-label'>{'Application Name'}</label>
+                    <label className='col-sm-4 control-label'>{'Sovelluksen nimi'}</label>
                     <div className='col-sm-7'>
                         <input
                             ref='name'
                             className='form-control'
                             type='text'
-                            placeholder='Required'
+                            placeholder='Pakollinen'
                         />
                         {nameError}
                     </div>
                     <br/>
                     <br/>
-                    <label className='col-sm-4 control-label'>{'Homepage URL'}</label>
+                    <label className='col-sm-4 control-label'>{'Kotisivun osoite'}</label>
                     <div className='col-sm-7'>
                         <input
                             ref='homepage'
                             className='form-control'
                             type='text'
-                            placeholder='Required'
+                            placeholder='Pakollinen'
                         />
                         {homepageError}
                     </div>
                     <br/>
                     <br/>
-                    <label className='col-sm-4 control-label'>{'Description'}</label>
+                    <label className='col-sm-4 control-label'>{'Kuvaus'}</label>
                     <div className='col-sm-7'>
                         <input
                             ref='desc'
@@ -140,7 +140,7 @@ export default class RegisterAppModal extends React.Component {
                             ref='callback'
                             className='form-control'
                             type='text'
-                            placeholder='Required'
+                            placeholder='Pakollinen'
                             rows='5'
                         />
                         {callbackError}
@@ -155,15 +155,15 @@ export default class RegisterAppModal extends React.Component {
                         className='btn btn-sm theme pull-right'
                         href='#'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Peruuta'
                     >
-                        {'Cancel'}
+                        {'Peruuta'}
                     </a>
                     <a
                         className='btn btn-sm btn-primary pull-right'
                         onClick={this.register}
                     >
-                        {'Register'}
+                        {'Rekisteröi'}
                     </a>
                 </div>
             );
@@ -203,7 +203,7 @@ export default class RegisterAppModal extends React.Component {
                         className={'btn btn-sm btn-primary pull-right' + btnClass}
                         href='#'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         {'Close'}
                     </a>
@@ -226,7 +226,7 @@ export default class RegisterAppModal extends React.Component {
                             type='button'
                             className='close'
                             data-dismiss='modal'
-                            aria-label='Close'
+                            aria-label='Sulje'
                         >
                             <span aria-hidden='true'>{'×'}</span>
                         </button>

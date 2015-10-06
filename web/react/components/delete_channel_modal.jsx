@@ -45,9 +45,9 @@ export default class DeleteChannelModal extends React.Component {
     }
     render() {
         const channel = ChannelStore.getCurrent();
-        let channelType = 'channel';
+        let channelType = 'kanava';
         if (channel && channel.type === 'P') {
-            channelType = 'private group';
+            channelType = 'yksityisryhmä';
         }
 
         return (
@@ -66,15 +66,15 @@ export default class DeleteChannelModal extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>&times;</span>
                             </button>
-                            <h4 className='modal-title'>Confirm DELETE Channel</h4>
+                            <h4 className='modal-title'>Vahvista kanavan POISTO</h4>
                         </div>
                         <div className='modal-body'>
                             <p>
-                                Are you sure you wish to delete the {this.state.title} {channelType}?
+                                Oletko varma että haluat poistaa {this.state.title} ({channelType})?
                             </p>
                         </div>
                         <div className='modal-footer'>
@@ -83,7 +83,7 @@ export default class DeleteChannelModal extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                Cancel
+                                Peruuta
                             </button>
                             <button
                                 type='button'
@@ -91,7 +91,7 @@ export default class DeleteChannelModal extends React.Component {
                                 data-dismiss='modal'
                                 onClick={this.handleDelete}
                             >
-                                Delete
+                                Poista
                             </button>
                         </div>
                     </div>

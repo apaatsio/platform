@@ -158,7 +158,7 @@ export function getDateForUnixTicks(ticks) {
 
 export function displayDate(ticks) {
     var d = new Date(ticks);
-    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var monthNames = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu'];
 
     return monthNames[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 }
@@ -168,19 +168,10 @@ export function displayTime(ticks) {
     var hours = d.getHours();
     var minutes = d.getMinutes();
 
-    var ampm = 'AM';
-    if (hours >= 12) {
-        ampm = 'PM';
-    }
-
-    hours = hours % 12;
-    if (!hours) {
-        hours = '12';
-    }
     if (minutes <= 9) {
         minutes = '0' + minutes;
     }
-    return hours + ':' + minutes + ' ' + ampm;
+    return hours + ':' + minutes;
 }
 
 export function displayDateTime(ticks) {
@@ -193,19 +184,29 @@ export function displayDateTime(ticks) {
     }
 
     if (interval > 1) {
-        return interval + ' hours ago';
+        return interval + ' tuntia sitten';
     }
 
     if (interval === 1) {
-        return interval + ' hour ago';
+        return interval + ' tunti sitten';
     }
 
     interval = Math.floor(seconds / 60);
     if (interval > 1) {
-        return interval + ' minutes ago';
+        return interval + ' minuuttia sitten';
     }
 
-    return '1 minute ago';
+    return '1 minuutti sitten';
+}
+
+export function displayDate(date) {
+    var dateObj;
+    if (typeof date === 'number') {
+        dateObj = new Date(date);
+    } else {
+        dateObj = date;
+    }
+    return dateObj.getDate() + '.' + (dateObj.getMonth() + 1) + '.' + (dateObj.getYear() + 1900);
 }
 
 export function displayCommentDateTime(ticks) {

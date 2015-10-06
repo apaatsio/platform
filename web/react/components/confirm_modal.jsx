@@ -37,7 +37,7 @@ export default class ConfirmModal extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                Cancel
+                                Peruuta
                             </button>
                             <button
                                 onClick={this.handleConfirm}

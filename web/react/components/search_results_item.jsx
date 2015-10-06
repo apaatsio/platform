@@ -59,7 +59,7 @@ export default class SearchResultsItem extends React.Component {
         if (channel) {
             channelName = channel.display_name;
             if (channel.type === 'D') {
-                channelName = 'Direct Message';
+                channelName = 'Yksityisviesti';
             }
         }
 

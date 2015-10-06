@@ -26,10 +26,10 @@ export default class GeneralTab extends React.Component {
 
         const name = this.state.name.trim();
         if (!name) {
-            state.clientError = 'This field is required';
+            state.clientError = 'Tämä kenttä on pakollinen';
             valid = false;
         } else if (name === this.props.teamDisplayName) {
-            state.clientError = 'Please choose a new name for your team';
+            state.clientError = 'Valitse uusi nimi tiimillesi';
             valid = false;
         } else {
             state.clientError = '';
@@ -98,7 +98,7 @@ export default class GeneralTab extends React.Component {
         if (this.props.activeSection === 'name') {
             let inputs = [];
 
-            let teamNameLabel = 'Team Name';
+            let teamNameLabel = 'Tiimin nimi';
             if (Utils.isMobile()) {
                 teamNameLabel = '';
             }
@@ -122,7 +122,7 @@ export default class GeneralTab extends React.Component {
 
             nameSection = (
                 <SettingItemMax
-                    title={`Team Name`}
+                    title={`Tiimin nimi`}
                     inputs={inputs}
                     submit={this.handleNameSubmit}
                     server_error={serverError}
@@ -135,7 +135,7 @@ export default class GeneralTab extends React.Component {
 
             nameSection = (
                 <SettingItemMin
-                    title={`Team Name`}
+                    title={`Tiimin nimi`}
                     describe={describe}
                     updateSection={this.onUpdateSection}
                 />
@@ -149,7 +149,7 @@ export default class GeneralTab extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>
@@ -158,14 +158,14 @@ export default class GeneralTab extends React.Component {
                         ref='title'
                     >
                         <i className='modal-back'></i>
-                        General Settings
+                        Yleiset asetukset
                     </h4>
                 </div>
                 <div
                     ref='wrapper'
                     className='user-settings'
                 >
-                    <h3 className='tab-header'>General Settings</h3>
+                    <h3 className='tab-header'>Yleiset asetukset</h3>
                     <div className='divider-dark first'/>
                     {nameSection}
                     <div className='divider-dark'/>

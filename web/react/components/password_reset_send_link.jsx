@@ -18,7 +18,7 @@ export default class PasswordResetSendLink extends React.Component {
 
         var email = React.findDOMNode(this.refs.email).value.trim().toLowerCase();
         if (!email || !Utils.isEmail(email)) {
-            state.error = 'Please enter a valid email address.';
+            state.error = 'Syötä toimiva sähköpostiosoite.';
             this.setState(state);
             return;
         }
@@ -59,20 +59,20 @@ export default class PasswordResetSendLink extends React.Component {
         return (
             <div className='col-sm-12'>
                 <div className='signup-team__container'>
-                    <h3>Password Reset</h3>
+                    <h3>Salasanan uudelleenasetus</h3>
                     {updateText}
                     <form
                         onSubmit={this.handleSendLink}
                         ref='reset_form'
                     >
-                        <p>{'To reset your password, enter the email address you used to sign up for ' + this.props.teamDisplayName + '.'}</p>
+                        <p>{'Asettaaksesi uuden salasanan syötä sähköpostiosoite, jolla olet rekisteröitynyt tiimiin ' + this.props.teamDisplayName + '.'}</p>
                         <div className={formClass}>
                             <input
                                 type='email'
                                 className='form-control'
                                 name='email'
                                 ref='email'
-                                placeholder='Email'
+                                placeholder='Sähköposti'
                             />
                         </div>
                         {error}
@@ -80,7 +80,7 @@ export default class PasswordResetSendLink extends React.Component {
                             type='submit'
                             className='btn btn-primary'
                         >
-                            Reset my password
+                            Aseta salasana uudelleen
                         </button>
                     </form>
                 </div>

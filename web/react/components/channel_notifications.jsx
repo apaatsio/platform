@@ -114,11 +114,11 @@ export default class ChannelNotifications extends React.Component {
 
         let globalNotifyLevelName;
         if (globalNotifyLevel === 'all') {
-            globalNotifyLevelName = 'For all activity';
+            globalNotifyLevelName = 'Kaikki tapahtumat';
         } else if (globalNotifyLevel === 'mention') {
-            globalNotifyLevelName = 'Only for mentions';
+            globalNotifyLevelName = 'Vain maininnat';
         } else {
-            globalNotifyLevelName = 'Never';
+            globalNotifyLevelName = 'Ei koskaan';
         }
 
         if (this.state.activeSection === 'desktop') {
@@ -144,7 +144,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={notifyActive[0]}
                                 onChange={this.handleUpdateNotifyLevel.bind(this, 'default')}
                             >
-                                {`Global default (${globalNotifyLevelName})`}
+                                {`Yleinen oletus (${globalNotifyLevelName})`}
                             </input>
                         </label>
                         <br/>
@@ -156,7 +156,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={notifyActive[1]}
                                 onChange={this.handleUpdateNotifyLevel.bind(this, 'all')}
                             >
-                                {'For all activity'}
+                                {'Kaikki tapahtumat'}
                             </input>
                         </label>
                         <br/>
@@ -168,7 +168,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={notifyActive[2]}
                                 onChange={this.handleUpdateNotifyLevel.bind(this, 'mention')}
                             >
-                                {'Only for mentions'}
+                                {'Vain maininnat'}
                             </input>
                         </label>
                         <br/>
@@ -180,7 +180,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={notifyActive[3]}
                                 onChange={this.handleUpdateNotifyLevel.bind(this, 'none')}
                             >
-                                {'Never'}
+                                {'Ei koskaan'}
                             </input>
                         </label>
                     </div>
@@ -195,15 +195,15 @@ export default class ChannelNotifications extends React.Component {
 
             const extraInfo = (
                 <span>
-                    {'Selecting an option other than "Default" will override the global notification settings.'}
+                    {'Valitsemalla muun kuin "Oletus", asetukset yliajavat yleiset ilmoitusasetukset.'}
                     <br/>
-                    {'Desktop notifications are available on Firefox, Safari, and Chrome.'}
+                    {'Työpöytäilmoitukset ovat saatavilla Firefox-, Safari- ja Chrome-selaimissa.'}
                 </span>
             );
 
             return (
                 <SettingItemMax
-                    title='Send desktop notifications'
+                    title='Lähetä työpöytäilmoitukset'
                     inputs={inputs}
                     submit={this.handleSubmitNotifyLevel}
                     server_error={serverError}
@@ -215,13 +215,13 @@ export default class ChannelNotifications extends React.Component {
 
         var describe;
         if (this.state.notifyLevel === 'default') {
-            describe = `Global default (${globalNotifyLevelName})`;
+            describe = `Yleinen oletus (${globalNotifyLevelName})`;
         } else if (this.state.notifyLevel === 'mention') {
-            describe = 'Only for mentions';
+            describe = 'Vain maininnat';
         } else if (this.state.notifyLevel === 'all') {
-            describe = 'For all activity';
+            describe = 'Kaikki tapahtumat';
         } else {
-            describe = 'Never';
+            describe = 'Ei koskaan';
         }
 
         handleUpdateSection = function updateSection(e) {
@@ -231,7 +231,7 @@ export default class ChannelNotifications extends React.Component {
 
         return (
             <SettingItemMin
-                title='Send desktop notifications'
+                title='Lähetä työpöytäilmoitukset'
                 describe={describe}
                 updateSection={handleUpdateSection}
             />
@@ -284,7 +284,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={this.state.markUnreadLevel === 'all'}
                                 onChange={this.handleUpdateMarkUnreadLevel.bind(this, 'all')}
                             >
-                                {'For all unread messages'}
+                                {'Kaikki lukemattomat viestit'}
                             </input>
                         </label>
                         <br />
@@ -296,7 +296,7 @@ export default class ChannelNotifications extends React.Component {
                                 checked={this.state.markUnreadLevel === 'mention'}
                                 onChange={this.handleUpdateMarkUnreadLevel.bind(this, 'mention')}
                             >
-                                {'Only for mentions'}
+                                {'Vain maininnat'}
                             </input>
                         </label>
                         <br />
@@ -314,7 +314,7 @@ export default class ChannelNotifications extends React.Component {
 
             content = (
                 <SettingItemMax
-                    title='Mark Channel Unread'
+                    title='Merkitse kanava lukemattomaksi'
                     inputs={inputs}
                     submit={this.handleSubmitMarkUnreadLevel}
                     server_error={serverError}
@@ -326,9 +326,9 @@ export default class ChannelNotifications extends React.Component {
             let describe;
 
             if (!this.state.markUnreadLevel || this.state.markUnreadLevel === 'all') {
-                describe = 'For all unread messages';
+                describe = 'Kaikki lukemattomat viestit';
             } else {
-                describe = 'Only for mentions';
+                describe = 'Vain maininnat';
             }
 
             const handleUpdateSection = function handleUpdateSection(e) {
@@ -338,7 +338,7 @@ export default class ChannelNotifications extends React.Component {
 
             content = (
                 <SettingItemMin
-                    title='Mark Channel Unread'
+                    title='Merkitse kanava lukemattomaksi'
                     describe={describe}
                     updateSection={handleUpdateSection}
                 />
@@ -372,9 +372,9 @@ export default class ChannelNotifications extends React.Component {
                                 data-dismiss='modal'
                             >
                                 <span aria-hidden='true'>&times;</span>
-                                <span className='sr-only'>Close</span>
+                                <span className='sr-only'>Sulje</span>
                             </button>
-                            <h4 className='modal-title'>Notification Preferences for <span className='name'>{this.state.title}</span></h4>
+                            <h4 className='modal-title'>Ilmoitusasetukset kanavalle <span className='name'>{this.state.title}</span></h4>
                         </div>
                         <div className='modal-body'>
                             <div className='settings-table'>

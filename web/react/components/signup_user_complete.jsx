@@ -32,28 +32,28 @@ export default class SignupUserComplete extends React.Component {
 
         const providedEmail = React.findDOMNode(this.refs.email).value.trim();
         if (!providedEmail) {
-            this.setState({nameError: '', emailError: 'This field is required', passwordError: ''});
+            this.setState({nameError: '', emailError: 'Tämä kenttä on pakollinen', passwordError: ''});
             return;
         }
 
         if (!Utils.isEmail(providedEmail)) {
-            this.setState({nameError: '', emailError: 'Please enter a valid email address', passwordError: ''});
+            this.setState({nameError: '', emailError: 'Syötä toimiva sähköpostiosoite', passwordError: ''});
             return;
         }
 
         const providedUsername = React.findDOMNode(this.refs.name).value.trim().toLowerCase();
         if (!providedUsername) {
-            this.setState({nameError: 'This field is required', emailError: '', passwordError: '', serverError: ''});
+            this.setState({nameError: 'Tämä kenttä on pakollinen', emailError: '', passwordError: '', serverError: ''});
             return;
         }
 
         const usernameError = Utils.isValidUsername(this.state.user.username);
         if (usernameError === 'Cannot use a reserved word as a username.') {
-            this.setState({nameError: 'This username is reserved, please choose a new one.', emailError: '', passwordError: '', serverError: ''});
+            this.setState({nameError: 'Tämä käyttäjänimi on jo käytössä. Valitse toinen.', emailError: '', passwordError: '', serverError: ''});
             return;
         } else if (usernameError) {
             this.setState({
-                nameError: 'Username must begin with a letter, and contain between 3 to 15 lowercase characters made up of numbers, letters, and the symbols \'.\', \'-\' and \'_\'.',
+                nameError: 'Käyttäjänimen pitää alkaa kirjaimella, sisältää 3-15 merkkiä ja se voi koostua kirjaimista, numeroista sekä merkeistä \'.\', \'-\' and \'_\'.',
                 emailError: '',
                 passwordError: '',
                 serverError: ''
@@ -63,7 +63,7 @@ export default class SignupUserComplete extends React.Component {
 
         const providedPassword = React.findDOMNode(this.refs.password).value.trim();
         if (!providedPassword || providedPassword.length < 5) {
-            this.setState({nameError: '', emailError: '', passwordError: 'Please enter at least 5 characters', serverError: ''});
+            this.setState({nameError: '', emailError: '', passwordError: 'Syötä vähintään 5 merkkiä', serverError: ''});
             return;
         }
 
@@ -94,7 +94,7 @@ export default class SignupUserComplete extends React.Component {
                         window.location.href = '/' + this.props.teamName + '/channels/town-square';
                     }.bind(this),
                     function emailLoginFailure(err) {
-                        if (err.message === 'Login failed because email address has not been verified') {
+                        if (err.message === 'Kirjautuminen epäonnistui, koska sähköpostiosoitetta ei ole vahvistettu.') {
                             window.location.href = '/verify_email?email=' + encodeURIComponent(this.state.user.email) + '&teamname=' + encodeURIComponent(this.props.teamName);
                         } else {
                             this.setState({serverError: err.message});
@@ -111,7 +111,7 @@ export default class SignupUserComplete extends React.Component {
         client.track('signup', 'signup_user_01_welcome');
 
         if (this.state.wizard === 'finished') {
-            return <div>You've already completed the signup process for this invitation or this invitation has expired.</div>;
+            return <div>Olet jo rekisteröitynyt tällä kutsulla tai kutsu on vanhentunut.</div>;
         }
 
         // set up error labels
@@ -148,7 +148,7 @@ export default class SignupUserComplete extends React.Component {
         // set up the email entry and hide it if an email was provided
         var yourEmailIs = '';
         if (this.state.user.email) {
-            yourEmailIs = <span>Your email address is {this.state.user.email}. You'll use this address to sign in to {global.window.config.SiteName}.</span>;
+            yourEmailIs = <span>Sähköpostiosoitteesi on {this.state.user.email}. Käytä tätä sähköpostiosoitetta kirjautuaksesi {global.window.config.SiteName}-palveluun.</span>;
         }
 
         var emailContainerStyle = 'margin--extra';
@@ -158,7 +158,7 @@ export default class SignupUserComplete extends React.Component {
 
         var email = (
             <div className={emailContainerStyle}>
-                <h5><strong>What's your email address?</strong></h5>
+                <h5><strong>Mikä on sähköpostiosoitteesi?</strong></h5>
                 <div className={emailDivStyle}>
                     <input
                         type='email'
@@ -182,7 +182,7 @@ export default class SignupUserComplete extends React.Component {
                         href={'/' + this.props.teamName + '/signup/gitlab' + window.location.search}
                     >
                         <span className='icon' />
-                        <span>with GitLab</span>
+                        <span>GitLab</span>
                     </a>
            );
         }
@@ -195,7 +195,7 @@ export default class SignupUserComplete extends React.Component {
                         {email}
                         {yourEmailIs}
                         <div className='margin--extra'>
-                            <h5><strong>Choose your username</strong></h5>
+                            <h5><strong>Valitse käyttäjänimesi</strong></h5>
                             <div className={nameDivStyle}>
                                 <input
                                     type='text'
@@ -205,11 +205,11 @@ export default class SignupUserComplete extends React.Component {
                                     maxLength='128'
                                 />
                                 {nameError}
-                                <p className='form__hint'>Username must begin with a letter, and contain between 3 to 15 lowercase characters made up of numbers, letters, and the symbols '.', '-' and '_'</p>
+                                <p className='form__hint'>Käyttäjänimen pitää alkaa kirjaimella, sisältää 3-15 merkkiä ja se voi koostua kirjaimista, numeroista sekä merkeistä '.', '-' ja '_'.</p>
                             </div>
                         </div>
                         <div className='margin--extra'>
-                            <h5><strong>Choose your password</strong></h5>
+                            <h5><strong>Valitse salasanasi</strong></h5>
                             <div className={passwordDivStyle}>
                             <input
                                 type='password'
@@ -228,7 +228,7 @@ export default class SignupUserComplete extends React.Component {
                             onClick={this.handleSubmit}
                             className='btn-primary btn'
                         >
-                            Create Account
+                            Luo käyttäjätili
                         </button>
                     </p>
                 </div>
@@ -240,7 +240,7 @@ export default class SignupUserComplete extends React.Component {
                 <div>
                     {signupMessage}
                     <div className='or__container'>
-                        <span>or</span>
+                        <span>tai</span>
                     </div>
                 </div>
             );
@@ -253,10 +253,10 @@ export default class SignupUserComplete extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h5 className='margin--less'>Welcome to:</h5>
+                    <h5 className='margin--less'>Tervetuloa</h5>
                     <h2 className='signup-team__name'>{this.props.teamDisplayName}</h2>
-                    <h2 className='signup-team__subdomain'>on {global.window.config.SiteName}</h2>
-                    <h4 className='color--light'>Let's create your account</h4>
+                    <h2 className='signup-team__subdomain'>{global.window.config.SiteName}</h2>
+                    <h4 className='color--light'>Luo käyttäjätili</h4>
                     {signupMessage}
                     {emailSignup}
                     {serverError}

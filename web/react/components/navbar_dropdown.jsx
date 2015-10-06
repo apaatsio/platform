@@ -71,7 +71,7 @@ export default class NavbarDropdown extends React.Component {
                         data-toggle='modal'
                         data-target='#invite_member'
                     >
-                        {'Invite New Member'}
+                        {'Kutsu uusi jäsen'}
                     </a>
                 </li>
             );
@@ -83,10 +83,10 @@ export default class NavbarDropdown extends React.Component {
                             href='#'
                             data-toggle='modal'
                             data-target='#get_link'
-                            data-title='Team Invite'
+                            data-title='Tiimikutsu'
                             data-value={Utils.getWindowLocationOrigin() + '/signup_user_complete/?id=' + currentUser.team_id}
                         >
-                            {'Get Team Invite Link'}
+                            {'Katso tiimikutsulinkki'}
                         </a>
                     </li>
                 );
@@ -101,7 +101,7 @@ export default class NavbarDropdown extends React.Component {
                         data-toggle='modal'
                         data-target='#team_members'
                     >
-                        {'Manage Team'}
+                        {'Tiimin hallinta'}
                     </a>
                 </li>
             );
@@ -115,7 +115,7 @@ export default class NavbarDropdown extends React.Component {
                         data-toggle='modal'
                         data-target='#team_settings'
                     >
-                        {'Team Settings'}
+                        {'Tiimin asetukset'}
                     </a>
                 </li>
             );
@@ -127,7 +127,7 @@ export default class NavbarDropdown extends React.Component {
                     <a
                         href='/admin_console'
                     >
-                        {'System Console'}
+                        {'Järjestelmäkonsoli'}
                     </a>
                 </li>
             );
@@ -146,7 +146,7 @@ export default class NavbarDropdown extends React.Component {
         if (this.state.teams.length > 1) {
             this.state.teams.forEach((teamName) => {
                 if (teamName !== this.props.teamName) {
-                    teams.push(<li key={teamName}><a href={Utils.getWindowLocationOrigin() + '/' + teamName}>{'Switch to ' + teamName}</a></li>);
+                    teams.push(<li key={teamName}><a href={Utils.getWindowLocationOrigin() + '/' + teamName}>{'Siirry ' + teamName}</a></li>);
                 }
             });
         }
@@ -156,7 +156,7 @@ export default class NavbarDropdown extends React.Component {
                             target='_blank'
                             href={Utils.getWindowLocationOrigin() + '/signup_team'}
                         >
-                            {'Create a New Team'}
+                            {'Luo uusi tiimi'}
                         </a>
                     </li>);
 
@@ -188,7 +188,7 @@ export default class NavbarDropdown extends React.Component {
                                 data-toggle='modal'
                                 data-target='#user_settings'
                             >
-                                {'Account Settings'}
+                                {'Tilin asetukset'}
                             </a>
                         </li>
                         {inviteLink}
@@ -198,7 +198,7 @@ export default class NavbarDropdown extends React.Component {
                                 href='#'
                                 onClick={this.handleLogoutClick}
                             >
-                                {'Logout'}
+                                {'Kirjaudu ulos'}
                             </a>
                         </li>
                         {adminDivider}
@@ -212,7 +212,7 @@ export default class NavbarDropdown extends React.Component {
                                 target='_blank'
                                 href='/static/help/help.html'
                             >
-                                {'Help'}
+                                {'Ohjeet'}
                             </a>
                         </li>
                         <li>
@@ -220,7 +220,7 @@ export default class NavbarDropdown extends React.Component {
                                 target='_blank'
                                 href='/static/help/report_problem.html'
                             >
-                                {'Report a Problem'}
+                                {'Ilmoita ongelmasta'}
                             </a>
                         </li>
                     </ul>

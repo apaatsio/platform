@@ -96,7 +96,7 @@ export default class SignupTeamComplete extends React.Component {
             );
         }
 
-        return (<div>You've already completed the signup process for this invitation or this invitation has expired.</div>);
+        return (<div>Olet jo rekisteröitynyt tällä kutsulla tai kutsu on vanhentunut.</div>);
     }
 }
 

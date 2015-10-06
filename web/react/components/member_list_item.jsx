@@ -32,7 +32,7 @@ export default class MemberListItem extends React.Component {
 
         var invite;
         if (member.invited && this.props.handleInvite) {
-            invite = <span className='member-role'>Added</span>;
+            invite = <span className='member-role'>Lisätty</span>;
         } else if (this.props.handleInvite) {
             invite = (
                     <a
@@ -40,7 +40,7 @@ export default class MemberListItem extends React.Component {
                         className='btn btn-sm btn-primary member-invite'
                     >
                         <i className='glyphicon glyphicon-envelope'/>
-                        {' Add'}
+                        {' Lisää'}
                     </a>
             );
         } else if (isAdmin && !isMemberAdmin && (member.id !== UserStore.getCurrentId())) {
@@ -55,7 +55,7 @@ export default class MemberListItem extends React.Component {
                                             role='menuitem'
                                             onClick={self.handleMakeAdmin}
                                         >
-                                            Make Admin
+                                            Muuta ylläpitäjäksi
                                         </a>
                                     </li>);
             }
@@ -69,7 +69,7 @@ export default class MemberListItem extends React.Component {
                                                 role='menuitem'
                                                 onClick={self.handleRemove}
                                             >
-                                                Remove Member
+                                                Poista jäsen
                                             </a>
                                         </li>);
             }
@@ -84,7 +84,7 @@ export default class MemberListItem extends React.Component {
                                 data-toggle='dropdown'
                                 aria-expanded='true'
                             >
-                                <span className='text-capitalize'>{member.roles || 'Member'} </span>
+                                <span className='text-capitalize'>{member.roles || 'Jäsen'} </span>
                                 <span className='caret'></span>
                             </a>
                             <ul
@@ -98,7 +98,7 @@ export default class MemberListItem extends React.Component {
                         </div>
                     );
         } else {
-            invite = <div className='member-role text-capitalize'>{member.roles || 'Member'}<span className='caret hidden'></span></div>;
+            invite = <div className='member-role text-capitalize'>{member.roles || 'Jäsen'}<span className='caret hidden'></span></div>;
         }
 
         return (

@@ -14,7 +14,7 @@ export default class FileUploadOverlay extends React.Component {
             <div className={overlayClass}>
                 <div>
                     <i className='fa fa-upload'></i>
-                    <span>Drop a file to upload it.</span>
+                    <span>Raahaa tiedosto ladataksesi.</span>
                 </div>
             </div>
         );

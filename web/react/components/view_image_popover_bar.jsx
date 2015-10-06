@@ -13,10 +13,10 @@ export default class ViewImagePopoverBar extends React.Component {
                     <a
                         href='#'
                         className='public-link text'
-                        data-title='Public Image'
+                        data-title='Julkinen kuva'
                         onClick={this.getPublicLink}
                     >
-                        {'Get Public Link'}
+                        {'Näytä julkinen linkki'}
                     </a>
                     <span className='text'>{' | '}</span>
                 </div>
@@ -33,7 +33,7 @@ export default class ViewImagePopoverBar extends React.Component {
                 ref='imageFooter'
                 className={footerClass}
             >
-                <span className='pull-left text'>{'File ' + (this.props.fileId + 1) + ' of ' + this.props.totalFiles}</span>
+                <span className='pull-left text'>{'Tiedosto ' + (this.props.fileId + 1) + '/' + this.props.totalFiles}</span>
                 <div className='image-links'>
                     {publicLink}
                     <a
@@ -41,7 +41,7 @@ export default class ViewImagePopoverBar extends React.Component {
                         download={this.props.filename}
                         className='text'
                     >
-                        {'Download'}
+                        {'Lataa'}
                     </a>
                 </div>
             </div>

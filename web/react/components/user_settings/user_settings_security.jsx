@@ -29,17 +29,17 @@ export default class SecurityTab extends React.Component {
         var confirmPassword = this.state.confirmPassword;
 
         if (currentPassword === '') {
-            this.setState({passwordError: 'Please enter your current password', serverError: ''});
+            this.setState({passwordError: 'Syötä nykyinen salasanasi', serverError: ''});
             return;
         }
 
         if (newPassword.length < 5) {
-            this.setState({passwordError: 'New passwords must be at least 5 characters', serverError: ''});
+            this.setState({passwordError: 'Uuden salasanan vähimmäispituus on 5 merkkiä', serverError: ''});
             return;
         }
 
         if (newPassword !== confirmPassword) {
-            this.setState({passwordError: 'The new passwords you entered do not match', serverError: ''});
+            this.setState({passwordError: 'Uudet salasanat eivät täsmää', serverError: ''});
             return;
         }
 
@@ -121,7 +121,7 @@ export default class SecurityTab extends React.Component {
                         key='currentPasswordUpdateForm'
                         className='form-group'
                     >
-                        <label className='col-sm-5 control-label'>Current Password</label>
+                        <label className='col-sm-5 control-label'>Nykyinen salasana</label>
                         <div className='col-sm-7'>
                             <input
                                 className='form-control'
@@ -137,7 +137,7 @@ export default class SecurityTab extends React.Component {
                         key='newPasswordUpdateForm'
                         className='form-group'
                     >
-                        <label className='col-sm-5 control-label'>New Password</label>
+                        <label className='col-sm-5 control-label'>Uusi salasana</label>
                         <div className='col-sm-7'>
                             <input
                                 className='form-control'
@@ -153,7 +153,7 @@ export default class SecurityTab extends React.Component {
                         key='retypeNewPasswordUpdateForm'
                         className='form-group'
                     >
-                        <label className='col-sm-5 control-label'>Retype New Password</label>
+                        <label className='col-sm-5 control-label'>Uusi salasana uudestaan</label>
                         <div className='col-sm-7'>
                             <input
                                 className='form-control'
@@ -185,7 +185,7 @@ export default class SecurityTab extends React.Component {
 
             passwordSection = (
                 <SettingItemMax
-                    title='Password'
+                    title='Salasana'
                     inputs={inputs}
                     submit={submit}
                     server_error={serverError}
@@ -210,7 +210,7 @@ export default class SecurityTab extends React.Component {
                     timeOfDay = ' pm';
                 }
 
-                describe = 'Last updated ' + Constants.MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' at ' + hour + ':' + min + timeOfDay;
+                describe = 'Viimeksi päivitetty ' + Constants.MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' at ' + hour + ':' + min + timeOfDay;
             } else {
                 describe = 'Log in done through GitLab';
             }
@@ -221,7 +221,7 @@ export default class SecurityTab extends React.Component {
 
             passwordSection = (
                 <SettingItemMin
-                    title='Password'
+                    title='Salasana'
                     describe={describe}
                     updateSection={updateSectionStatus}
                 />
@@ -235,7 +235,7 @@ export default class SecurityTab extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>
@@ -243,11 +243,11 @@ export default class SecurityTab extends React.Component {
                         className='modal-title'
                         ref='title'
                     >
-                        <i className='modal-back'></i>Security Settings
+                        <i className='modal-back'></i>Turvallisuusasetukset
                     </h4>
                 </div>
                 <div className='user-settings'>
-                    <h3 className='tab-header'>Security Settings</h3>
+                    <h3 className='tab-header'>Turvallisuusasetukset</h3>
                     <div className='divider-dark first'/>
                     {passwordSection}
                     <div className='divider-dark'/>
@@ -270,7 +270,7 @@ export default class SecurityTab extends React.Component {
                         href='#'
                         onClick={this.handleHistoryOpen}
                     >
-                        <i className='fa fa-clock-o'></i>View Access History
+                        <i className='fa fa-clock-o'></i>Katso käyttöhistoria
                     </a>
                     <b> </b>
                     <a
@@ -280,7 +280,7 @@ export default class SecurityTab extends React.Component {
                         href='#'
                         onClick={this.handleDevicesOpen}
                     >
-                        <i className='fa fa-globe'></i>View and Logout of Active Sessions
+                        <i className='fa fa-globe'></i>Katso ja kirjaudu ulos aktiivista sessioista
                     </a>
                 </div>
             </div>

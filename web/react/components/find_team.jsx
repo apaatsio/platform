@@ -19,7 +19,7 @@ export default class FindTeam extends React.Component {
 
         var email = React.findDOMNode(this.refs.email).value.trim().toLowerCase();
         if (!email || !utils.isEmail(email)) {
-            state.email_error = 'Please enter a valid email address';
+            state.email_error = 'Syötä toimiva sähköpostiosoite';
             this.setState(state);
             return;
         }
@@ -50,25 +50,25 @@ export default class FindTeam extends React.Component {
         if (this.state.sent) {
             return (
                 <div>
-                    <h4>{'Find Your team'}</h4>
-                    <p>{'An email was sent with links to any teams to which you are a member.'}</p>
+                    <h4>{'Etsi tiimisi'}</h4>
+                    <p>{'Sinulle on lähetetty sähköposti, jossa on linkit kaikkiin tiimeihisi.'}</p>
                 </div>
             );
         }
 
         return (
         <div>
-                <h4>Find Your Team</h4>
+                <h4>Etsi tiimisi</h4>
                 <form onSubmit={this.handleSubmit}>
-                    <p>{'Get an email with links to any teams to which you are a member.'}</p>
+                    <p>{'Sinulle lähetetään sähköposti, jossa on linkit kaikkiin tiimeihisi.'}</p>
                     <div className='form-group'>
-                        <label className='control-label'>Email</label>
+                        <label className='control-label'>Sähköposti</label>
                         <div className={emailErrorClass}>
                             <input
                                 type='text'
                                 ref='email'
                                 className='form-control'
-                                placeholder='you@domain.com'
+                                placeholder='nimi@domain.fi'
                                 maxLength='128'
                             />
                             {emailError}
@@ -78,7 +78,7 @@ export default class FindTeam extends React.Component {
                         className='btn btn-md btn-primary'
                         type='submit'
                     >
-                        Send
+                        Lähetä
                     </button>
                 </form>
                 </div>

@@ -53,7 +53,7 @@ export default class NewChannelFlow extends React.Component {
 
         channel.display_name = this.state.channelDisplayName;
         if (!channel.display_name) {
-            this.setState({serverError: 'Invalid Channel Name'});
+            this.setState({serverError: 'Virheellinen kanavan nimi'});
             return;
         }
 
@@ -79,7 +79,7 @@ export default class NewChannelFlow extends React.Component {
                     this.setState({flowState: SHOW_EDIT_URL_THEN_COMPLETE});
                 }
                 if (err.message === 'A channel with that handle already exists') {
-                    this.setState({serverError: 'A channel with that URL already exists'});
+                    this.setState({serverError: 'Kanava on jo olemassa kyseisellä tunnisteella'});
                     return;
                 }
                 this.setState({serverError: err.message});
@@ -136,21 +136,21 @@ export default class NewChannelFlow extends React.Component {
             case SHOW_NEW_CHANNEL:
                 if (this.state.channelType === 'O') {
                     showChannelModal = true;
-                    channelTerm = 'Channel';
+                    channelTerm = 'kanava';
                 } else {
                     showGroupModal = true;
-                    channelTerm = 'Group';
+                    channelTerm = 'ryhmä';
                 }
                 break;
             case SHOW_EDIT_URL:
                 showChangeURLModal = true;
-                changeURLTitle = 'Change ' + channelTerm + ' URL';
-                changeURLSubmitButtonText = 'Change ' + channelTerm + ' URL';
+                changeURLTitle = 'Muuta ' + channelTerm + 'n osoite';
+                changeURLSubmitButtonText = 'Muuta ' + channelTerm + 'n osoite';
                 break;
             case SHOW_EDIT_URL_THEN_COMPLETE:
                 showChangeURLModal = true;
-                changeURLTitle = 'Set ' + channelTerm + ' URL';
-                changeURLSubmitButtonText = 'Create ' + channelTerm;
+                changeURLTitle = 'Aseta ' + channelTerm + 'n osoite';
+                changeURLSubmitButtonText = 'Luo ' + channelTerm;
                 break;
             }
         }
@@ -181,8 +181,8 @@ export default class NewChannelFlow extends React.Component {
                 <ChangeURLModal
                     show={showChangeURLModal}
                     title={changeURLTitle}
-                    description={'Some characters are not allowed in URLs and may be removed.'}
-                    urlLabel={channelTerm + ' URL'}
+                    description={'Jotkin merkit eivät ole sallittuja osoitteissa ja ne poistetaan.'}
+                    urlLabel={channelTerm + 'n osoite'}
                     submitButtonText={changeURLSubmitButtonText}
                     currentURL={this.state.channelName}
                     serverError={this.state.serverError}

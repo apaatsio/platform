@@ -126,9 +126,9 @@ export default class ChannelHeader extends React.Component {
             }
         }
 
-        let channelTerm = 'Channel';
+        let channelTerm = 'kanava';
         if (channel.type === 'P') {
-            channelTerm = 'Group';
+            channelTerm = 'ryhmä';
         }
 
         let dropdownContents = [];
@@ -147,7 +147,7 @@ export default class ChannelHeader extends React.Component {
                         data-title={channel.display_name}
                         data-channelid={channel.id}
                     >
-                        Set Channel Description...
+                        Aseta kanavan kuvaus...
                     </a>
                 </li>
             );
@@ -164,7 +164,7 @@ export default class ChannelHeader extends React.Component {
                         data-channelid={channel.id}
                         href='#'
                     >
-                        View Info
+                        Info
                     </a>
                 </li>
             );
@@ -181,7 +181,7 @@ export default class ChannelHeader extends React.Component {
                             data-target='#channel_invite'
                             href='#'
                         >
-                            Add Members
+                            Lisää jäseniä
                         </a>
                     </li>
                 );
@@ -198,7 +198,7 @@ export default class ChannelHeader extends React.Component {
                                 data-target='#channel_members'
                                 href='#'
                             >
-                                Manage Members
+                                Hallitse jäseniä
                             </a>
                         </li>
                     );
@@ -219,7 +219,7 @@ export default class ChannelHeader extends React.Component {
                         data-title={channel.display_name}
                         data-channelid={channel.id}
                     >
-                        Set {channelTerm} Description...
+                        Aseta {channelTerm}n kuvaus...
                     </a>
                 </li>
             );
@@ -236,7 +236,7 @@ export default class ChannelHeader extends React.Component {
                         data-title={channel.display_name}
                         data-channelid={channel.id}
                     >
-                        Notification Preferences
+                        Ilmoitusasetukset
                     </a>
                 </li>
             );
@@ -257,7 +257,7 @@ export default class ChannelHeader extends React.Component {
                                 data-name={channel.name}
                                 data-channelid={channel.id}
                             >
-                                Rename {channelTerm}...
+                                Nimeä {channelTerm} uudelleen...
                             </a>
                         </li>
                     );
@@ -274,7 +274,7 @@ export default class ChannelHeader extends React.Component {
                                 data-title={channel.display_name}
                                 data-channelid={channel.id}
                             >
-                                Delete {channelTerm}...
+                                Poista {channelTerm}...
                             </a>
                         </li>
                     );
@@ -290,7 +290,7 @@ export default class ChannelHeader extends React.Component {
                             href='#'
                             onClick={this.handleLeave}
                         >
-                            Leave {channelTerm}
+                            Poistu {channelTerm === 'kanava' ? 'kanavasta' : 'ryhmästä'}
                         </a>
                     </li>
                 );
@@ -361,7 +361,7 @@ export default class ChannelHeader extends React.Component {
                                         href='#'
                                         onClick={this.searchMentions}
                                     >
-                                        Recent Mentions
+                                        Viimeisimmät maininnat
                                     </a>
                                 </li>
                             </ul>

@@ -39,21 +39,21 @@ export default class ChangeUrlModal extends React.Component {
     getURLError(url) {
         let error = []; //eslint-disable-line prefer-const
         if (url.length < 2) {
-            error.push(<span key='error1'>{'Must be longer than two characters'}<br/></span>);
+            error.push(<span key='error1'>{'Pitää olla vähintään 2 merkkiä pitkä'}<br/></span>);
         }
         if (url.charAt(0) === '-' || url.charAt(0) === '_') {
-            error.push(<span key='error2'>{'Must start with a letter or number'}<br/></span>);
+            error.push(<span key='error2'>{'Pitää alkaa kirjaimella tai numerolla'}<br/></span>);
         }
         if (url.length > 1 && (url.charAt(url.length - 1) === '-' || url.charAt(url.length - 1) === '_')) {
-            error.push(<span key='error3'>{'Must end with a letter or number'}<br/></span>);
+            error.push(<span key='error3'>{'Pitää loppua kirjaimeen tai numeroon'}<br/></span>);
         }
         if (url.indexOf('__') > -1) {
-            error.push(<span key='error4'>{'Can not contain two underscores in a row.'}<br/></span>);
+            error.push(<span key='error4'>{'Ei saa sisältää kahta alaviivaa peräkkäin'}<br/></span>);
         }
 
         // In case of error we don't detect
         if (error.length === 0) {
-            error.push(<span key='errorlast'>{'Invalid URL'}<br/></span>);
+            error.push(<span key='errorlast'>{'Virheellinen URL-osoite'}<br/></span>);
         }
         return error;
     }

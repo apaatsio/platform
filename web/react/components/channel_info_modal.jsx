@@ -27,9 +27,9 @@ export default class CommandList extends React.Component {
 
         if (!channel) {
             channel = {};
-            channel.display_name = 'No Channel Found';
-            channel.name = 'No Channel Found';
-            channel.id = 'No Channel Found';
+            channel.display_name = 'Kanavaa ei löytynyt';
+            channel.name = 'Kanavaa ei löytynyt';
+            channel.id = 'Kanavaa ei löytynyt';
         }
 
         return (
@@ -48,7 +48,7 @@ export default class CommandList extends React.Component {
                           type='button'
                           className='close'
                           data-dismiss='modal'
-                          aria-label='Close'
+                          aria-label='Sulje'
                       >
                         <span aria-hidden='true'>&times;</span>
                       </button>
@@ -61,15 +61,15 @@ export default class CommandList extends React.Component {
                     </div>
                     <div className='modal-body'>
                       <div className='row form-group'>
-                        <div className='col-sm-3 info__label'>Channel Name: </div>
+                        <div className='col-sm-3 info__label'>Nimi:</div>
                         <div className='col-sm-9'>{channel.display_name}</div>
                       </div>
                       <div className='row form-group'>
-                        <div className='col-sm-3 info__label'>Channel Handle:</div>
+                        <div className='col-sm-3 info__label'>Tunniste:</div>
                         <div className='col-sm-9'>{channel.name}</div>
                       </div>
                       <div className='row'>
-                        <div className='col-sm-3 info__label'>Channel ID:</div>
+                        <div className='col-sm-3 info__label'>ID:</div>
                         <div className='col-sm-9'>{channel.id}</div>
                       </div>
                     </div>
@@ -78,7 +78,7 @@ export default class CommandList extends React.Component {
                           type='button'
                           className='btn btn-default'
                           data-dismiss='modal'
-                      >Close</button>
+                      >Sulje</button>
                     </div>
                   </div>
                </div>

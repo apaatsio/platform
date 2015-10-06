@@ -20,27 +20,27 @@ export default class Login extends React.Component {
 
         const name = this.props.teamName;
         if (!name) {
-            state.serverError = 'Bad team name';
+            state.serverError = 'Virheellinen tiimin nimi';
             this.setState(state);
             return;
         }
 
         const email = React.findDOMNode(this.refs.email).value.trim();
         if (!email) {
-            state.serverError = 'An email is required';
+            state.serverError = 'Sähköposti on pakollinen tieto';
             this.setState(state);
             return;
         }
 
         const password = React.findDOMNode(this.refs.password).value.trim();
         if (!password) {
-            state.serverError = 'A password is required';
+            state.serverError = 'Salasana on pakollinen tieto';
             this.setState(state);
             return;
         }
 
         if (!BrowserStore.isLocalStorageSupported()) {
-            state.serverError = 'This service requires local storage to be enabled. Please enable it or exit private browsing.';
+            state.serverError = 'Tätä palvelua ei voi käyttää selaimen yksityistilassa (Yksityinen Selailu/Private Mode/Incognito). Käytä selainta normaalitilassa.';
             this.setState(state);
             return;
         }
@@ -102,7 +102,7 @@ export default class Login extends React.Component {
                         href={'/' + teamName + '/login/gitlab'}
                     >
                         <span className='icon' />
-                        <span>with GitLab</span>
+                        <span>GitLab</span>
                     </a>
            );
         }
@@ -124,7 +124,7 @@ export default class Login extends React.Component {
                             name='email'
                             defaultValue={priorEmail}
                             ref='email'
-                            placeholder='Email'
+                            placeholder='Sähköposti'
                         />
                     </div>
                     <div className={'form-group' + errorClass}>
@@ -134,7 +134,7 @@ export default class Login extends React.Component {
                             className='form-control'
                             name='password'
                             ref='password'
-                            placeholder='Password'
+                            placeholder='Salasana'
                         />
                     </div>
                     <div className='form-group'>
@@ -142,7 +142,7 @@ export default class Login extends React.Component {
                             type='submit'
                             className='btn btn-primary'
                         >
-                            Sign in
+                            Kirjaudu sisään
                         </button>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ export default class Login extends React.Component {
                 <div>
                     {loginMessage}
                     <div className='or__container'>
-                        <span>or</span>
+                        <span>tai</span>
                     </div>
                 </div>
             );
@@ -164,16 +164,16 @@ export default class Login extends React.Component {
         if (emailSignup) {
             forgotPassword = (
                 <div className='form-group'>
-                    <a href={'/' + teamName + '/reset_password'}>I forgot my password</a>
+                    <a href={'/' + teamName + '/reset_password'}>Unohtuiko salasana?</a>
                 </div>
             );
         }
 
         return (
             <div className='signup-team__container'>
-                <h5 className='margin--less'>Sign in to:</h5>
+                <h5 className='margin--less'>Kirjaudu</h5>
                 <h2 className='signup-team__name'>{teamDisplayName}</h2>
-                <h2 className='signup-team__subdomain'>on {global.window.config.SiteName}</h2>
+                <h2 className='signup-team__subdomain'>{global.window.config.SiteName}</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className={'form-group' + errorClass}>
                         {serverError}
@@ -181,16 +181,16 @@ export default class Login extends React.Component {
                     {loginMessage}
                     {emailSignup}
                     <div className='form-group margin--extra form-group--small'>
-                        <span><a href='/find_team'>{'Find other teams'}</a></span>
+                        <span><a href='/find_team'>{'Etsi muita tiimejä'}</a></span>
                     </div>
                     {forgotPassword}
                     <div className='margin--extra'>
-                        <span>{'Want to create your own team? '}
+                        <span>{'Haluatko luoda oman tiimisi? '}
                             <a
                                 href='/'
                                 className='signup-team-login'
                             >
-                                Sign up now
+                                Rekisteröidy
                             </a>
                         </span>
                     </div>

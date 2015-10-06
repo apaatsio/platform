@@ -38,7 +38,7 @@ export default class EditChannelModal extends React.Component {
             }.bind(this),
             function handleUpdateError(err) {
                 if (err.message === 'Invalid channel_description parameter') {
-                    this.setState({serverError: 'This description is too long, please enter a shorter one'});
+                    this.setState({serverError: 'Tämä kuvaus on liian pitkä, kokeile lyhyempää kuvausta'});
                 } else {
                     this.setState({serverError: err.message});
                 }
@@ -73,7 +73,7 @@ export default class EditChannelModal extends React.Component {
                 className='modal-title'
                 ref='title'
             >
-                Edit Description
+                Muokkaa kuvausta
             </h4>
         );
         if (this.state.title) {
@@ -82,7 +82,7 @@ export default class EditChannelModal extends React.Component {
                     className='modal-title'
                     ref='title'
                 >
-                    Edit Description for <span className='name'>{this.state.title}</span>
+                    Muokkaa kanavan <span className='name'>{this.state.title}</span> kuvausta
                 </h4>
             );
         }
@@ -103,7 +103,7 @@ export default class EditChannelModal extends React.Component {
                                 type='button'
                                 className='close'
                                 data-dismiss='modal'
-                                aria-label='Close'
+                                aria-label='Sulje'
                             >
                                 <span aria-hidden='true'>&times;</span>
                             </button>
@@ -126,14 +126,14 @@ export default class EditChannelModal extends React.Component {
                                 className='btn btn-default'
                                 data-dismiss='modal'
                             >
-                                Cancel
+                                Peruuta
                             </button>
                             <button
                                 type='button'
                                 className='btn btn-primary'
                                 onClick={this.handleEdit}
                             >
-                                Save
+                                Tallenna
                             </button>
                         </div>
                     </div>

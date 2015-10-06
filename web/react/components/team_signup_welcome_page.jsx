@@ -20,7 +20,7 @@ export default class TeamSignupWelcomePage extends React.Component {
     }
     submitNext(e) {
         if (!BrowserStore.isLocalStorageSupported()) {
-            this.setState({storageError: 'This service requires local storage to be enabled. Please enable it or exit private browsing.'});
+            this.setState({storageError: 'Tätä palvelua ei voi käyttää selaimen yksityistilassa (Yksityinen Selailu/Private Mode/Incognito). Käytä selainta normaalitilassa.'});
             return;
         }
         e.preventDefault();
@@ -38,11 +38,11 @@ export default class TeamSignupWelcomePage extends React.Component {
 
         var email = React.findDOMNode(this.refs.email).value.trim().toLowerCase();
         if (!email || !Utils.isEmail(email)) {
-            state.emailError = 'Please enter a valid email address';
+            state.emailError = 'Syötä toimiva sähköpostiosoite';
             this.setState(state);
             return;
         } else if (!BrowserStore.isLocalStorageSupported()) {
-            state.emailError = 'This service requires local storage to be enabled. Please enable it or exit private browsing.';
+            state.emailError = 'Tätä palvelua ei voi käyttää selaimen yksityistilassa (Yksityinen Selailu/Private Mode/Incognito). Käytä selainta normaalitilassa.';
             this.setState(state);
             return;
         }
@@ -109,19 +109,19 @@ export default class TeamSignupWelcomePage extends React.Component {
                         className='signup-team-logo'
                         src='/static/images/logo.png'
                     />
-                    <h3 className='sub-heading'>Welcome to:</h3>
+                    <h3 className='sub-heading'>Tervetuloa</h3>
                     <h1 className='margin--top-none'>{global.window.config.SiteName}</h1>
                 </p>
-                <p className='margin--less'>Let's set up your new team</p>
+                <p className='margin--less'>Luodaan uusi tiimi</p>
                 <p>
-                    Please confirm your email address:<br />
+                    Vahvista sähköpostiosoitteesi:<br />
                     <div className='inner__content'>
                         <div className='block--gray'>{this.props.state.team.email}</div>
                     </div>
                 </p>
                 <p className='margin--extra color--light'>
-                    Your account will administer the new team site. <br />
-                    You can add other administrators later.
+                    Sinun tilisi on uuden tiimisivun ylläpitäjä. <br />
+                    Voit lisätä muita ylläpitäjiä myöhemmin.
                 </p>
                 <div className='form-group'>
                     <button
@@ -130,7 +130,7 @@ export default class TeamSignupWelcomePage extends React.Component {
                         onClick={this.submitNext}
                     >
                         <i className='glyphicon glyphicon-ok'></i>
-                        Yes, this address is correct
+                        Kyllä, sähköpostiosoite on oikein
                     </button>
                     {storageError}
                 </div>
@@ -143,7 +143,7 @@ export default class TeamSignupWelcomePage extends React.Component {
                                     type='email'
                                     ref='email'
                                     className='form-control'
-                                    placeholder='Email Address'
+                                    placeholder='Sähköpostiosoite'
                                     maxLength='128'
                                 />
                             </div>
@@ -156,7 +156,7 @@ export default class TeamSignupWelcomePage extends React.Component {
                         type='button'
                         onClick={this.handleDiffSubmit}
                     >
-                        Use this instead
+                        Käytät tätä sähköpostiosoitetta
                     </button>
                 </div>
                 <a
@@ -164,7 +164,7 @@ export default class TeamSignupWelcomePage extends React.Component {
                     onClick={this.handleDiffEmail}
                     className={differentEmailLinkClass}
                 >
-                    Use a different email
+                    Käytä eri sähköpostiosoitetta
                 </a>
             </div>
         );

@@ -26,7 +26,7 @@ export default class SettingItemMax extends React.Component {
                     href='#'
                     onClick={this.props.submit}
                 >
-                    Save
+                    Tallenna
                 </a>
             );
         }
@@ -52,7 +52,7 @@ export default class SettingItemMax extends React.Component {
                                 href='#'
                                 onClick={this.props.updateSection}
                             >
-                                Cancel
+                                Peruuta
                             </a>
                         </li>
                     </ul>

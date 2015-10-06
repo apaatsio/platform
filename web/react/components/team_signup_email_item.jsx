@@ -23,10 +23,10 @@ export default class TeamSignupEmailItem extends React.Component {
         }
 
         if (!Utils.isEmail(email)) {
-            this.setState({emailError: 'Please enter a valid email address'});
+            this.setState({emailError: 'Syötä toimiva sähköpostiosoite'});
             return false;
         } else if (email === teamEmail) {
-            this.setState({emailError: 'Please use a different email than the one used at signup'});
+            this.setState({emailError: 'Käytä eri osoitetta kuin sisäänkirjautuessa'});
             return false;
         }
 
@@ -48,7 +48,7 @@ export default class TeamSignupEmailItem extends React.Component {
                     type='email'
                     ref='email'
                     className='form-control'
-                    placeholder='Email Address'
+                    placeholder='Sähköpostiosoite'
                     defaultValue={this.props.email}
                     maxLength='128'
                 />

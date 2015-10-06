@@ -34,10 +34,10 @@ export default class SearchResultsHeader extends React.Component {
     }
 
     render() {
-        var title = 'Search Results';
+        var title = 'Hakutulokset';
 
         if (this.props.isMentionSearch) {
-            title = 'Recent Mentions';
+            title = 'Viimeisimmät maininnat';
         }
 
         return (
@@ -46,8 +46,8 @@ export default class SearchResultsHeader extends React.Component {
                 <button
                     type='button'
                     className='sidebar--right__close'
-                    aria-label='Close'
-                    title='Close'
+                    aria-label='Sulje'
+                    title='Sulje'
                     onClick={this.handleClose}
                 >
                     <i className='fa fa-sign-out'/>

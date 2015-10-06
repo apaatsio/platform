@@ -136,15 +136,21 @@ export default class ViewImageModal extends React.Component {
         data.channel_id = this.props.channelId;
         data.user_id = this.props.userId;
         data.filename = this.props.filenames[this.state.imgId];
+        console.log(data);
         Client.getPublicLink(data,
             function sucess(serverData) {
+                console.log("success", serverData);
                 if (Utils.isMobile()) {
                     window.location.href = serverData.public_link;
                 } else {
+                    console.log("open");
+                    window.alert("oepn");
                     window.open(serverData.public_link);
                 }
             },
-            function error() {}
+            function error() {
+                console.log("error", arguments);
+            }
         );
     }
     getPreviewImagePath(filename) {
@@ -273,7 +279,7 @@ export default class ViewImageModal extends React.Component {
                             src='/static/images/load.gif'
                         />
                         <span className='loader-percent'>
-                            {'Previewing ' + percentage + '%'}
+                            {'Esikatselu ' + percentage + '%'}
                         </span>
                     </div>
                 );

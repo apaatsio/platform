@@ -93,7 +93,7 @@ export default class DeletePostModal extends React.Component {
 
         var commentWarning = '';
         if (this.state.comments > 0) {
-            commentWarning = 'This post has ' + this.state.comments + ' comment(s) on it.';
+            commentWarning = 'Tässä viestissä on ' + this.state.comments + ' kommenttia.';
         }
 
         return (
@@ -112,14 +112,14 @@ export default class DeletePostModal extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>&times;</span>
                     </button>
-                    <h4 className='modal-title'>Confirm {this.state.title} Delete</h4>
+                    <h4 className='modal-title'>Vahvista viestin {this.state.title} poisto</h4>
                   </div>
                   <div className='modal-body'>
-                    Are you sure you want to delete the {this.state.title.toLowerCase()}?
+                    Oletko varma että haluat poistaa viestin {this.state.title.toLowerCase()}?
                     <br/>
                     <br/>
                     {commentWarning}
@@ -131,7 +131,7 @@ export default class DeletePostModal extends React.Component {
                         className='btn btn-default'
                         data-dismiss='modal'
                     >
-                        Cancel
+                        Peruuta
                     </button>
                     <button
                         type='button'
@@ -139,7 +139,7 @@ export default class DeletePostModal extends React.Component {
                         data-dismiss='modal'
                         onClick={this.handleDelete}
                     >
-                        Delete
+                        Poista
                     </button>
                   </div>
                 </div>

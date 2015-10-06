@@ -337,8 +337,8 @@ export default class PostList extends React.Component {
                         <strong><UserProfile userId={teammate.id} /></strong>
                     </div>
                     <p className='channel-intro-text'>
-                        {'This is the start of your direct message history with ' + teammateName + '.'}<br/>
-                        {'Direct messages and files shared here are not shown to people outside this area.'}
+                        {'Tästä alkaa viestihistoriasi käyttäjän ' + teammateName + ' kanssa.'}<br/>
+                        {'Viestit ja tiedostot täällä eivät näy muille käyttäjille.'}
                     </p>
                     <a
                         className='intro-links'
@@ -349,7 +349,7 @@ export default class PostList extends React.Component {
                         data-title={channel.display_name}
                         data-channelid={channel.id}
                     >
-                        <i className='fa fa-pencil'></i>Set a description
+                        <i className='fa fa-pencil'></i>Aseta kuvaus
                     </a>
                 </div>
             );
@@ -357,7 +357,7 @@ export default class PostList extends React.Component {
 
         return (
             <div className='channel-intro'>
-                <p className='channel-intro-text'>{'This is the start of your direct message history with this teammate. Direct messages and files shared here are not shown to people outside this area.'}</p>
+                <p className='channel-intro-text'>{'Tästä alkaa viestihistoriasi tämän käyttäjän kanssa. Viestit ja tiedostot täällä eivät näy muille käyttäjille.'}</p>
             </div>
         );
     }
@@ -375,17 +375,21 @@ export default class PostList extends React.Component {
     createDefaultIntroMessage(channel) {
         return (
             <div className='channel-intro'>
-                <h4 className='channel-intro__title'>Beginning of {channel.display_name}</h4>
+                <h4 className='channel-intro__title'>Kanavan {channel.display_name} alku</h4>
                 <p className='channel-intro__content'>
-                    Welcome to {channel.display_name}!
+                    Tervetuloa kanavalle {channel.display_name}!
                     <br/><br/>
-                    This is the first channel teammates see when they
+                    Tämä on ensimmäinen kanava, jonka tiimin jäsenet näkevät
                     <br/>
-                    sign up - use it for posting updates everyone needs to know.
+                    kun he kirjautuvat. Käytä sitä viesteihin, jotka haluat
+                    <br/>
+                    kaikkien näkevän.
                     <br/><br/>
-                    To create a new channel or join an existing one, go to
+                    Luodaksesi uuden kanavan tai liittyäksesi olemassolevalle
                     <br/>
-                    the Left Hand Sidebar under “Channels” and click “More…”.
+                    kanavalle mene vasemmalla olevaan valikkoon ja "Kanavat"-
+                    <br/>
+                    otsikon alta klikkaa "Lisää…"
                     <br/>
                 </p>
             </div>
@@ -394,9 +398,9 @@ export default class PostList extends React.Component {
     createOffTopicIntroMessage(channel) {
         return (
             <div className='channel-intro'>
-                <h4 className='channel-intro__title'>Beginning of {channel.display_name}</h4>
+                <h4 className='channel-intro__title'>Kanavan {channel.display_name} alku</h4>
                 <p className='channel-intro__content'>
-                    {'This is the start of ' + channel.display_name + ', a channel for non-work-related conversations.'}
+                    {'Tämä on kanavan ' + channel.display_name + ' alku. Tämä on tarkoitettu työhön liittymättömään keskusteluun.'}
                     <br/>
                 </p>
                 <a
@@ -408,7 +412,7 @@ export default class PostList extends React.Component {
                     data-title={channel.display_name}
                     data-channelid={channel.id}
                 >
-                    <i className='fa fa-pencil'></i>Set a description
+                    <i className='fa fa-pencil'></i>Aseta kuvaus
                 </a>
                 <a
                     className='intro-links'
@@ -416,7 +420,7 @@ export default class PostList extends React.Component {
                     data-toggle='modal'
                     data-target='#channel_invite'
                 >
-                    <i className='fa fa-user-plus'></i>Invite others to this channel
+                    <i className='fa fa-user-plus'></i>Kutsu muita tälle kanavalle
                 </a>
             </div>
         );
@@ -443,23 +447,23 @@ export default class PostList extends React.Component {
         var uiType;
         var memberMessage;
         if (channel.type === 'P') {
-            uiType = 'private group';
-            memberMessage = ' Only invited members can see this private group.';
+            uiType = 'yksityiryhmän';
+            memberMessage = ' Vain kutsutut jäsenet näkevät tämän yksityisryhmän.';
         } else {
-            uiType = 'channel';
-            memberMessage = ' Any member can join and read this channel.';
+            uiType = 'kanavan';
+            memberMessage = ' Kuka tahansa voi liittyä tälle kanavalle ja lukea sen viestejä.';
         }
 
         var createMessage;
         if (creatorName === '') {
-            createMessage = 'This is the start of the ' + uiName + ' ' + uiType + ', created on ' + utils.displayDate(channel.create_at) + '.';
+            createMessage = 'Tämä on ' + uiName + '-' + uiType + ' alku, (' + utils.displayDate(channel.create_at) + ').';
         } else {
-            createMessage = (<span>This is the start of the <strong>{uiName}</strong> {uiType}, created by <strong>{creatorName}</strong> on <strong>{utils.displayDate(channel.create_at)}</strong></span>);
+            createMessage = (<span>Tämä on <strong>{uiName}</strong>-{uiType} alku, luoja: <strong>{creatorName}</strong> (<strong>{utils.displayDate(channel.create_at)})</strong></span>);
         }
 
         return (
             <div className='channel-intro'>
-                <h4 className='channel-intro__title'>Beginning of {uiName}</h4>
+                <h4 className='channel-intro__title'>Alueen {uiName} alku</h4>
                 <p className='channel-intro__content'>
                     {createMessage}
                     {memberMessage}
@@ -474,7 +478,7 @@ export default class PostList extends React.Component {
                     data-title={channel.display_name}
                     data-channelid={channel.id}
                 >
-                    <i className='fa fa-pencil'></i>Set a description
+                    <i className='fa fa-pencil'></i>Aseta kuvaus
                 </a>
                 <a
                     className='intro-links'
@@ -482,7 +486,7 @@ export default class PostList extends React.Component {
                     data-toggle='modal'
                     data-target='#channel_invite'
                 >
-                    <i className='fa fa-user-plus'></i>Invite others to this {uiType}
+                    <i className='fa fa-user-plus'></i>Kutsu muita
                 </a>
             </div>
         );
@@ -559,7 +563,7 @@ export default class PostList extends React.Component {
                         className='date-separator'
                     >
                         <hr className='separator__hr' />
-                        <div className='separator__text'>{currentPostDay.toDateString()}</div>
+                        <div className='separator__text'>{utils.displayDate(currentPostDay)}</div>
                     </div>
                 );
             }
@@ -581,7 +585,7 @@ export default class PostList extends React.Component {
                         <hr
                             className='separator__hr'
                         />
-                        <div className='separator__text'>New Messages</div>
+                        <div className='separator__text'>Uudet viestit</div>
                     </div>
                 );
             }
@@ -600,14 +604,14 @@ export default class PostList extends React.Component {
         var order = this.state.postList.order;
         var channelId = this.props.channelId;
 
-        $(React.findDOMNode(this.refs.loadmore)).text('Retrieving more messages...');
+        $(React.findDOMNode(this.refs.loadmore)).text('Ladataan lisää viestejä...');
 
         Client.getPostsPage(
             channelId,
             order.length,
             Constants.POST_CHUNK_SIZE,
             function success(data) {
-                $(React.findDOMNode(this.refs.loadmore)).text('Load more messages');
+                $(React.findDOMNode(this.refs.loadmore)).text('Lataa lisää viestejä');
                 this.gotMorePosts = true;
                 this.setState({numToDisplay: this.state.numToDisplay + Constants.POST_CHUNK_SIZE});
 
@@ -632,7 +636,7 @@ export default class PostList extends React.Component {
                 Client.getProfiles();
             }.bind(this),
             function fail(err) {
-                $(React.findDOMNode(this.refs.loadmore)).text('Load more messages');
+                $(React.findDOMNode(this.refs.loadmore)).text('Lataa lisää viestejä');
                 AsyncClient.dispatchError(err, 'getPosts');
             }.bind(this)
         );
@@ -647,7 +651,7 @@ export default class PostList extends React.Component {
             order = this.state.postList.order;
         }
 
-        var moreMessages = <p className='beginning-messages-text'>Beginning of Channel</p>;
+        var moreMessages = <p className='beginning-messages-text'>Kanavan alku</p>;
         if (channel != null) {
             if (order.length >= this.state.numToDisplay) {
                 moreMessages = (
@@ -657,7 +661,7 @@ export default class PostList extends React.Component {
                         href='#'
                         onClick={this.loadMorePosts}
                     >
-                            Load more messages
+                            Lataa lisää viestejä
                     </a>
                 );
             } else {

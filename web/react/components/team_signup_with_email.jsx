@@ -19,7 +19,7 @@ export default class EmailSignUpPage extends React.Component {
 
         team.email = React.findDOMNode(this.refs.email).value.trim().toLowerCase();
         if (!team.email || !Utils.isEmail(team.email)) {
-            state.emailError = 'Please enter a valid email address';
+            state.emailError = 'Syötä toimiva sähköpostiosoite';
             state.inValid = true;
         } else {
             state.emailError = '';
@@ -56,7 +56,7 @@ export default class EmailSignUpPage extends React.Component {
                         type='email'
                         ref='email'
                         className='form-control'
-                        placeholder='Email Address'
+                        placeholder='Sähköpostiosoite'
                         maxLength='128'
                     />
                 </div>
@@ -65,11 +65,11 @@ export default class EmailSignUpPage extends React.Component {
                         className='btn btn-md btn-primary'
                         type='submit'
                     >
-                        Sign up
+                        Rekisteröidy
                     </button>
                 </div>
                 <div className='form-group margin--extra-2x'>
-                    <span><a href='/find_team'>{`Find my team`}</a></span>
+                    <span><a href='/find_team'>{`Etsi tiimini`}</a></span>
                 </div>
             </form>
         );

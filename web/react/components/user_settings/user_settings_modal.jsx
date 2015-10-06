@@ -31,15 +31,15 @@ export default class UserSettingsModal extends React.Component {
     }
     render() {
         var tabs = [];
-        tabs.push({name: 'general', uiName: 'General', icon: 'glyphicon glyphicon-cog'});
-        tabs.push({name: 'security', uiName: 'Security', icon: 'glyphicon glyphicon-lock'});
-        tabs.push({name: 'notifications', uiName: 'Notifications', icon: 'glyphicon glyphicon-exclamation-sign'});
-        tabs.push({name: 'appearance', uiName: 'Appearance', icon: 'glyphicon glyphicon-wrench'});
+        tabs.push({name: 'general', uiName: 'Yleiset', icon: 'glyphicon glyphicon-cog'});
+        tabs.push({name: 'security', uiName: 'Turvallisuus', icon: 'glyphicon glyphicon-lock'});
+        tabs.push({name: 'notifications', uiName: 'Ilmoitukset', icon: 'glyphicon glyphicon-exclamation-sign'});
+        tabs.push({name: 'appearance', uiName: 'Ulkonäkö', icon: 'glyphicon glyphicon-wrench'});
         if (global.window.config.EnableOAuthServiceProvider === 'true') {
             tabs.push({name: 'developer', uiName: 'Developer', icon: 'glyphicon glyphicon-th'});
         }
         if (global.window.config.EnableIncomingWebhooks === 'true') {
-            tabs.push({name: 'integrations', uiName: 'Integrations', icon: 'glyphicon glyphicon-transfer'});
+            tabs.push({name: 'integrations', uiName: 'Integraatiot', icon: 'glyphicon glyphicon-transfer'});
         }
 
         return (
@@ -58,7 +58,7 @@ export default class UserSettingsModal extends React.Component {
                         type='button'
                         className='close'
                         data-dismiss='modal'
-                        aria-label='Close'
+                        aria-label='Sulje'
                     >
                         <span aria-hidden='true'>{'×'}</span>
                     </button>
@@ -66,7 +66,7 @@ export default class UserSettingsModal extends React.Component {
                         className='modal-title'
                         ref='title'
                     >
-                        {'Account Settings'}
+                        {'Tilin asetukset'}
                     </h4>
                   </div>
                   <div className='modal-body'>
