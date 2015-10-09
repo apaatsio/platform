@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var ChannelStore = require('../stores/channel_store.jsx');
@@ -205,7 +205,7 @@ export default class Sidebar extends React.Component {
                 const user = UserStore.getCurrentUser();
                 const member = ChannelStore.getMember(msg.channel_id);
 
-                var notifyLevel = member.notify_props.desktop;
+                var notifyLevel = member && member.notify_props ? member.notify_props.desktop : 'default';
                 if (notifyLevel === 'default') {
                     notifyLevel = user.notify_props.desktop;
                 }
@@ -262,7 +262,7 @@ export default class Sidebar extends React.Component {
             if (msg.user_id === UserStore.getCurrentId()) {
                 AsyncClient.getChannels(true);
 
-                if (msg.props.channel_id === ChannelStore.getCurrentId() && $('#removed_from_channel').length > 0) {
+                if (msg.props.remover !== msg.user_id && msg.props.channel_id === ChannelStore.getCurrentId() && $('#removed_from_channel').length > 0) {
                     var sentState = {};
                     sentState.channelName = ChannelStore.getCurrent().display_name;
                     sentState.remover = UserStore.getProfile(msg.props.remover).username;

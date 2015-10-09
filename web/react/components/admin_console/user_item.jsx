@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var Client = require('../../utils/client.jsx');
@@ -126,7 +126,6 @@ export default class UserItem extends React.Component {
         let showMakeNotActive = user.roles !== 'system_admin';
 
         if (user.delete_at > 0) {
-            currentRoles = 'Inactive';
             currentRoles = 'Inactive';
             showMakeMember = false;
             showMakeAdmin = false;

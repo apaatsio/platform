@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 package api
@@ -30,11 +30,15 @@ func PublishAndForget(message *model.Message) {
 	}()
 }
 
+func UpdateChannelAccessCache(teamId, userId, channelId string) {
+	if nh, ok := hub.teamHubs[teamId]; ok {
+		nh.UpdateChannelAccessCache(userId, channelId)
+	}
+}
+
 func UpdateChannelAccessCacheAndForget(teamId, userId, channelId string) {
 	go func() {
-		if nh, ok := hub.teamHubs[teamId]; ok {
-			nh.UpdateChannelAccessCache(userId, channelId)
-		}
+		UpdateChannelAccessCache(teamId, userId, channelId)
 	}()
 }
 

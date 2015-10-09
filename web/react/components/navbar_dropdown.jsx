@@ -1,10 +1,12 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var Utils = require('../utils/utils.jsx');
 var client = require('../utils/client.jsx');
 var UserStore = require('../stores/user_store.jsx');
 var TeamStore = require('../stores/team_store.jsx');
+
+var AboutBuildModal = require('./about_build_modal.jsx');
 
 var Constants = require('../utils/constants.jsx');
 
@@ -18,13 +20,21 @@ export default class NavbarDropdown extends React.Component {
         this.blockToggle = false;
 
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.handleAboutModal = this.handleAboutModal.bind(this);
         this.onListenerChange = this.onListenerChange.bind(this);
+        this.aboutModalDismissed = this.aboutModalDismissed.bind(this);
 
         this.state = getStateFromStores();
     }
     handleLogoutClick(e) {
         e.preventDefault();
         client.logout();
+    }
+    handleAboutModal() {
+        this.setState({showAboutModal: true});
+    }
+    aboutModalDismissed() {
+        this.setState({showAboutModal: false});
     }
     componentDidMount() {
         UserStore.addTeamsChangeListener(this.onListenerChange);
@@ -135,30 +145,35 @@ export default class NavbarDropdown extends React.Component {
 
         var teams = [];
 
-        teams.push(
-            <li
-                className='divider'
-                key='div'
-            >
-            </li>
-        );
-
         if (this.state.teams.length > 1) {
+            teams.push(
+                <li
+                    className='divider'
+                    key='div'
+                >
+                </li>
+            );
+
             this.state.teams.forEach((teamName) => {
                 if (teamName !== this.props.teamName) {
                     teams.push(<li key={teamName}><a href={Utils.getWindowLocationOrigin() + '/' + teamName}>{'Siirry ' + teamName}</a></li>);
                 }
             });
         }
-        teams.push(<li key='newTeam_li'>
-                        <a
-                            key='newTeam_a'
-                            target='_blank'
-                            href={Utils.getWindowLocationOrigin() + '/signup_team'}
-                        >
-                            {'Luo uusi tiimi'}
-                        </a>
-                    </li>);
+
+        if (global.window.config.EnableTeamCreation === 'true') {
+            teams.push(
+                <li key='newTeam_li'>
+                    <a
+                        key='newTeam_a'
+                        target='_blank'
+                        href={Utils.getWindowLocationOrigin() + '/signup_team'}
+                    >
+                        {'Luo uusi tiimi'}
+                    </a>
+                </li>
+            );
+        }
 
         return (
             <ul className='nav navbar-nav navbar-right'>
@@ -223,6 +238,18 @@ export default class NavbarDropdown extends React.Component {
                                 {'Ilmoita ongelmasta'}
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href='#'
+                                onClick={this.handleAboutModal}
+                            >
+                                {'About Mattermost'}
+                            </a>
+                        </li>
+                        <AboutBuildModal
+                            show={this.state.showAboutModal}
+                            onModalDismissed={this.aboutModalDismissed}
+                        />
                     </ul>
                 </li>
             </ul>

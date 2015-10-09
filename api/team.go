@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 package api
@@ -248,7 +248,7 @@ func createTeam(c *Context, w http.ResponseWriter, r *http.Request) {
 func CreateTeam(c *Context, team *model.Team) *model.Team {
 	if !utils.Cfg.EmailSettings.EnableSignUpWithEmail {
 		c.Err = model.NewAppError("createTeam", "Team sign-up with email is disabled.", "")
-		c.Err.StatusCode = http.StatusNotImplemented
+		c.Err.StatusCode = http.StatusForbidden
 		return nil
 	}
 
@@ -432,9 +432,9 @@ func emailTeams(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	subjectPage := NewServerTemplatePage("find_teams_subject")
-	subjectPage.Props["SiteURL"] = c.GetSiteURL()
+	subjectPage.ClientProps["SiteURL"] = c.GetSiteURL()
 	bodyPage := NewServerTemplatePage("find_teams_body")
-	bodyPage.Props["SiteURL"] = c.GetSiteURL()
+	bodyPage.ClientProps["SiteURL"] = c.GetSiteURL()
 
 	if result := <-Srv.Store.Team().GetTeamsForEmail(email); result.Err != nil {
 		c.Err = result.Err

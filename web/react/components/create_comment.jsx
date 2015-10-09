@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 const AppDispatcher = require('../dispatcher/app_dispatcher.jsx');
@@ -106,10 +106,11 @@ export default class CreateComment extends React.Component {
                 let state = {};
 
                 if (err.message === 'Invalid RootId parameter') {
+                    PostStore.removePendingPost(post.channel_id, post.pending_post_id);
+
                     if ($('#post_deleted').length > 0) {
                         $('#post_deleted').modal('show');
                     }
-                    PostStore.removePendingPost(post.pending_post_id);
                 } else {
                     post.state = Constants.POST_FAILED;
                     PostStore.updatePendingPost(post);

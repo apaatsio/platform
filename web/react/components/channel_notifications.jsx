@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var SettingItemMin = require('./setting_item_min.jsx');
@@ -195,9 +195,7 @@ export default class ChannelNotifications extends React.Component {
 
             const extraInfo = (
                 <span>
-                    {'Valitsemalla muun kuin "Oletus", asetukset yliajavat yleiset ilmoitusasetukset.'}
-                    <br/>
-                    {'Työpöytäilmoitukset ovat saatavilla Firefox-, Safari- ja Chrome-selaimissa.'}
+                    {'Valitsemalla muun kuin "Oletus", asetukset yliajavat yleiset ilmoitusasetukset. Työpöytäilmoitukset ovat saatavilla Firefox-, Safari- ja Chrome-selaimissa.'}
                 </span>
             );
 

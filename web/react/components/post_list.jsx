@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var PostStore = require('../stores/post_store.jsx');
@@ -379,17 +379,12 @@ export default class PostList extends React.Component {
                 <p className='channel-intro__content'>
                     Tervetuloa kanavalle {channel.display_name}!
                     <br/><br/>
-                    Tämä on ensimmäinen kanava, jonka tiimin jäsenet näkevät
-                    <br/>
-                    kun he kirjautuvat. Käytä sitä viesteihin, jotka haluat
-                    <br/>
-                    kaikkien näkevän.
+                    Tämä on ensimmäinen kanava, jonka tiimin jäsenet näkevät kun
+                    he kirjautuvat. Käytä sitä viesteihin, jotka haluat kaikkien näkevän.
                     <br/><br/>
                     Luodaksesi uuden kanavan tai liittyäksesi olemassolevalle
-                    <br/>
-                    kanavalle mene vasemmalla olevaan valikkoon ja "Kanavat"-
-                    <br/>
-                    otsikon alta klikkaa "Lisää…"
+                    kanavalle mene vasemmalla olevaan valikkoon ja "Kanavat"-otsikon
+                    alta klikkaa "Lisää…"
                     <br/>
                 </p>
             </div>

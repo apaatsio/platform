@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var UserStore = require('../../stores/user_store.jsx');
@@ -214,14 +214,14 @@ export default class UserSettingsAppearance extends React.Component {
                     <div className='divider-dark first'/>
                     {themeUI}
                     <div className='divider-dark'/>
+                    <br/>
+                    <a
+                        className='theme'
+                        onClick={this.handleImportModal}
+                    >
+                        {'Import theme colors from Slack'}
+                    </a>
                 </div>
-                <br/>
-                <a
-                    className='theme'
-                    onClick={this.handleImportModal}
-                >
-                    {'Tuo teeman värit Slackistä'}
-                </a>
             </div>
         );
     }

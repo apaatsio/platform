@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var utils = require('../utils/utils.jsx');
@@ -40,17 +40,17 @@ export default class SSOSignUpPage extends React.Component {
 
         client.createTeamWithSSO(team,
             this.props.service,
-            function success(data) {
+            (data) => {
                 if (data.follow_link) {
                     window.location.href = data.follow_link;
                 } else {
                     window.location.href = '/' + team.name + '/channels/town-square';
                 }
             },
-            function fail(err) {
+            (err) => {
                 state.serverError = err.message;
                 this.setState(state);
-            }.bind(this)
+            }
         );
     }
     nameChange() {
@@ -85,7 +85,7 @@ export default class SSOSignUpPage extends React.Component {
                     disabled={disabled}
                 >
                     <span className='icon'/>
-                    <span>Create team with GitLab Account</span>
+                    <span>{'Create team with GitLab Account'}</span>
                 </a>
             );
         }
@@ -112,7 +112,7 @@ export default class SSOSignUpPage extends React.Component {
                     {serverError}
                 </div>
                 <div className='form-group margin--extra-2x'>
-                    <span><a href='/find_team'>{'Find my team'}</a></span>
+                    <span><a href='/find_team'>{'Find my teams'}</a></span>
                 </div>
             </form>
         );

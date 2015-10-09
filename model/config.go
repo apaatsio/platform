@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 package model
@@ -110,9 +110,9 @@ type RateLimitSettings struct {
 }
 
 type PrivacySettings struct {
-	ShowEmailAddress bool
-	ShowFullName     bool
-	EnableDiagnostic bool
+	ShowEmailAddress       bool
+	ShowFullName           bool
+	EnableSecurityFixAlert bool
 }
 
 type TeamSettings struct {

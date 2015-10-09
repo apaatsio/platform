@@ -16,7 +16,7 @@
 }
 
 .bad-connection {
-	background-color: rgb(255, 255, 172);
+	background-color: rgb(255, 255, 172) !important;
 }
 
 .textarea-div {
@@ -257,7 +257,7 @@ body.ios {
 			line-height: 18px;
 			display: inline-block;
 			font-size: 13px;
-			@include opacity(0.6);
+			@include opacity(0.7);
 		}
 	}
 }

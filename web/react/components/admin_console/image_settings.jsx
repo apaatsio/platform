@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var Client = require('../../utils/client.jsx');
@@ -460,7 +460,7 @@ export default class FileSettings extends React.Component {
                             <p className='help-text'>{'32-character salt added to signing of public image links. Randomly generated on install. Click "Re-Generate" to create new salt.'}</p>
                             <div className='help-text'>
                                 <button
-                                    className='help-link'
+                                    className='btn btn-default'
                                     onClick={this.handleGenerate}
                                 >
                                     {'Re-Generate'}

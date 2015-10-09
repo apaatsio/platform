@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var AdminSidebar = require('./admin_sidebar.jsx');
@@ -147,7 +147,7 @@ export default class AdminController extends React.Component {
         }
 
         return (
-            <div className='container-fluid'>
+            <div>
                 <div
                     className='sidebar--menu'
                     id='sidebar-menu'

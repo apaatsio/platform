@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 const UserStore = require('../stores/user_store.jsx');
@@ -31,6 +31,11 @@ export default class ActivityLogModal extends React.Component {
     }
     submitRevoke(altId, e) {
         e.preventDefault();
+        var modalContent = $(e.target).closest('.modal-content');
+        modalContent.addClass('animation--highlight');
+        setTimeout(() => {
+            modalContent.removeClass('animation--highlight');
+        }, 1500);
         Client.revokeSession(altId,
             function handleRevokeSuccess() {
                 AsyncClient.getSessions();

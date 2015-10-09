@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 const UserStore = require('../../stores/user_store.jsx');
@@ -49,7 +49,6 @@ export default class ImportThemeModal extends React.Component {
         theme.sidebarText = colors[5];
         theme.sidebarUnreadText = colors[5];
         theme.sidebarTextHoverBg = colors[4];
-        theme.sidebarTextHoverColor = colors[5];
         theme.sidebarTextActiveBg = colors[2];
         theme.sidebarTextActiveColor = colors[3];
         theme.sidebarHeaderBg = colors[1];

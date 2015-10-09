@@ -1,14 +1,14 @@
 # Production Installation on Ubuntu 14.04 LTS
 
-## Install Ubuntu Server 14.04 LTS
-1. Set up 3 machines with Ubuntu 14.04 with 2GB of RAM or more.  The servers will be used for the Load Balancer, Mattermost, and Database.
+## Install Ubuntu Server (x64) 14.04 LTS
+1. Set up 3 machines with Ubuntu 14.04 with 2GB of RAM or more.  The servers will be used for the Load Balancer, Mattermost (this must be x64 to use pre-built binaries), and Database.
 1. Make sure the system is up to date with the most recent security patches.
   * ``` sudo apt-get update```
   * ``` sudo apt-get upgrade```
 
 ## Set up Database Server
 1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1
-1. Install PostgreSQL 9.3+ (or MySQL 5.2+)
+1. Install PostgreSQL 9.3+ (or MySQL 5.6+)
   * ``` sudo apt-get install postgresql postgresql-contrib```
 1. PostgreSQL created a user account called `postgres`.  You will need to log into that account with:
   * ``` sudo -i -u postgres```

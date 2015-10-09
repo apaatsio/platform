@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 package api
@@ -887,7 +887,11 @@ func updateUser(c *Context, w http.ResponseWriter, r *http.Request) {
 				l4g.Error(tresult.Err.Message)
 			} else {
 				team := tresult.Data.(*model.Team)
-				fireAndForgetEmailChangeEmail(rusers[1].Email, team.DisplayName, c.GetTeamURLFromTeam(team), c.GetSiteURL())
+				fireAndForgetEmailChangeEmail(rusers[1].Email, rusers[0].Email, team.DisplayName, c.GetTeamURLFromTeam(team), c.GetSiteURL())
+
+				if utils.Cfg.EmailSettings.RequireEmailVerification {
+					FireAndForgetEmailChangeVerifyEmail(rusers[0].Id, rusers[0].Email, team.Name, team.DisplayName, c.GetSiteURL(), c.GetTeamURLFromTeam(team))
+				}
 			}
 		}
 
@@ -991,7 +995,7 @@ func updateRoles(c *Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	if model.IsInRole(new_roles, model.ROLE_SYSTEM_ADMIN) && !c.IsSystemAdmin() {
-		c.Err = model.NewAppError("updateRoles", "The system_admin role can only be set by another system admin", "")
+		c.Err = model.NewAppError("updateRoles", "The system admin role can only be set by another system admin", "")
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
@@ -1010,6 +1014,12 @@ func updateRoles(c *Context, w http.ResponseWriter, r *http.Request) {
 
 	if !c.IsTeamAdmin() {
 		c.Err = model.NewAppError("updateRoles", "You do not have the appropriate permissions", "userId="+user_id)
+		c.Err.StatusCode = http.StatusForbidden
+		return
+	}
+
+	if user.IsInRole(model.ROLE_SYSTEM_ADMIN) && !c.IsSystemAdmin() {
+		c.Err = model.NewAppError("updateRoles", "The system admin role can only by modified by another system admin", "")
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
@@ -1322,7 +1332,7 @@ func fireAndForgetPasswordChangeEmail(email, teamDisplayName, teamURL, siteURL, 
 	}()
 }
 
-func fireAndForgetEmailChangeEmail(email, teamDisplayName, teamURL, siteURL string) {
+func fireAndForgetEmailChangeEmail(oldEmail, newEmail, teamDisplayName, teamURL, siteURL string) {
 	go func() {
 
 		subjectPage := NewServerTemplatePage("email_change_subject")
@@ -1332,11 +1342,31 @@ func fireAndForgetEmailChangeEmail(email, teamDisplayName, teamURL, siteURL stri
 		bodyPage.Props["SiteURL"] = siteURL
 		bodyPage.Props["TeamDisplayName"] = teamDisplayName
 		bodyPage.Props["TeamURL"] = teamURL
+		bodyPage.Props["NewEmail"] = newEmail
 
-		if err := utils.SendMail(email, subjectPage.Render(), bodyPage.Render()); err != nil {
-			l4g.Error("Failed to send update password email successfully err=%v", err)
+		if err := utils.SendMail(oldEmail, subjectPage.Render(), bodyPage.Render()); err != nil {
+			l4g.Error("Failed to send email change notification email successfully err=%v", err)
 		}
 
+	}()
+}
+
+func FireAndForgetEmailChangeVerifyEmail(userId, newUserEmail, teamName, teamDisplayName, siteURL, teamURL string) {
+	go func() {
+
+		link := fmt.Sprintf("%s/verify_email?uid=%s&hid=%s&teamname=%s&email=%s", siteURL, userId, model.HashPassword(userId), teamName, newUserEmail)
+
+		subjectPage := NewServerTemplatePage("email_change_verify_subject")
+		subjectPage.Props["SiteURL"] = siteURL
+		subjectPage.Props["TeamDisplayName"] = teamDisplayName
+		bodyPage := NewServerTemplatePage("email_change_verify_body")
+		bodyPage.Props["SiteURL"] = siteURL
+		bodyPage.Props["TeamDisplayName"] = teamDisplayName
+		bodyPage.Props["VerifyUrl"] = link
+
+		if err := utils.SendMail(newUserEmail, subjectPage.Render(), bodyPage.Render()); err != nil {
+			l4g.Error("Failed to send email change verification email successfully err=%v", err)
+		}
 	}()
 }
 

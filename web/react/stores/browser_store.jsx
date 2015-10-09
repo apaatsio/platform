@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var UserStore;
@@ -41,7 +41,13 @@ class BrowserStoreClass {
     }
 
     setGlobalItem(name, value) {
-        localStorage.setItem(name, JSON.stringify(value));
+        try {
+            localStorage.setItem(name, JSON.stringify(value));
+        } catch (err) {
+            console.log('An error occurred while setting local storage, clearing all props'); //eslint-disable-line no-console
+            localStorage.clear();
+            window.location.href = window.location.href;
+        }
     }
 
     getGlobalItem(name, defaultValue) {

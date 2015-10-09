@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 const Client = require('../utils/client.jsx');
@@ -356,7 +356,7 @@ export default class ViewImageModal extends React.Component {
                             totalFiles={this.props.filenames.length}
                             filename={name}
                             fileURL={fileUrl}
-                            onGetPublicLinkPressed={this.getPublicLink}
+                            getPublicLink={this.getPublicLink}
                         />
                     </div>
                     {leftArrow}

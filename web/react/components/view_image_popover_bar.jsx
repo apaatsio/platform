@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 export default class ViewImagePopoverBar extends React.Component {
@@ -14,7 +14,7 @@ export default class ViewImagePopoverBar extends React.Component {
                         href='#'
                         className='public-link text'
                         data-title='Julkinen kuva'
-                        onClick={this.getPublicLink}
+                        onClick={this.props.getPublicLink}
                     >
                         {'Näytä julkinen linkki'}
                     </a>
@@ -62,5 +62,5 @@ ViewImagePopoverBar.propTypes = {
     totalFiles: React.PropTypes.number.isRequired,
     filename: React.PropTypes.string.isRequired,
     fileURL: React.PropTypes.string.isRequired,
-    onGetPublicLinkPressed: React.PropTypes.func.isRequired
+    getPublicLink: React.PropTypes.func.isRequired
 };

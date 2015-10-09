@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var keyMirror = require('keymirror');
@@ -143,10 +143,9 @@ module.exports = {
         defaultmattermost: {
             type: 'Mattermost',
             sidebarBg: '#fafafa',
-            sidebarText: '#999999',
+            sidebarText: '#333333',
             sidebarUnreadText: '#333333',
             sidebarTextHoverBg: '#e6f2fa',
-            sidebarTextHoverColor: '#999999',
             sidebarTextActiveBg: '#e1e1e1',
             sidebarTextActiveColor: '#111111',
             sidebarHeaderBg: '#2389d7',
@@ -159,15 +158,16 @@ module.exports = {
             newMessageSeparator: '#FF8800',
             linkColor: '#2389d7',
             buttonBg: '#2389d7',
-            buttonColor: '#FFFFFF'
+            buttonColor: '#FFFFFF',
+            mentionHighlightBg: '#fff2bb',
+            mentionHighlightLink: '#2f81b7'
         },
         organization: {
             type: 'Organization',
             sidebarBg: '#2071a7',
-            sidebarText: '#bfcde8',
+            sidebarText: '#fff',
             sidebarUnreadText: '#fff',
             sidebarTextHoverBg: '#136197',
-            sidebarTextHoverColor: '#bfcde8',
             sidebarTextActiveBg: '#136197',
             sidebarTextActiveColor: '#FFFFFF',
             sidebarHeaderBg: '#2f81b7',
@@ -180,15 +180,16 @@ module.exports = {
             newMessageSeparator: '#FF8800',
             linkColor: '#2f81b7',
             buttonBg: '#1dacfc',
-            buttonColor: '#FFFFFF'
+            buttonColor: '#FFFFFF',
+            mentionHighlightBg: '#fff2bb',
+            mentionHighlightLink: '#2f81b7'
         },
         mattermostDark: {
             type: 'Mattermost Dark',
             sidebarBg: '#1B2C3E',
-            sidebarText: '#bbbbbb',
+            sidebarText: '#fff',
             sidebarUnreadText: '#fff',
             sidebarTextHoverBg: '#4A5664',
-            sidebarTextHoverColor: '#bbbbbb',
             sidebarTextActiveBg: '#39769C',
             sidebarTextActiveColor: '#FFFFFF',
             sidebarHeaderBg: '#1B2C3E',
@@ -201,15 +202,16 @@ module.exports = {
             newMessageSeparator: '#5de5da',
             linkColor: '#A4FFEB',
             buttonBg: '#4CBBA4',
-            buttonColor: '#FFFFFF'
+            buttonColor: '#FFFFFF',
+            mentionHighlightBg: '#984063',
+            mentionHighlightLink: '#A4FFEB'
         },
         windows10: {
             type: 'Windows Dark',
             sidebarBg: '#171717',
-            sidebarText: '#eee',
+            sidebarText: '#fff',
             sidebarUnreadText: '#fff',
             sidebarTextHoverBg: '#302e30',
-            sidebarTextHoverColor: '#fff',
             sidebarTextActiveBg: '#484748',
             sidebarTextActiveColor: '#FFFFFF',
             sidebarHeaderBg: '#1f1f1f',
@@ -222,7 +224,9 @@ module.exports = {
             newMessageSeparator: '#CC992D',
             linkColor: '#0177e7',
             buttonBg: '#0177e7',
-            buttonColor: '#FFFFFF'
+            buttonColor: '#FFFFFF',
+            mentionHighlightBg: '#784098',
+            mentionHighlightLink: '#A4FFEB'
         }
     },
     THEME_ELEMENTS: [
@@ -249,10 +253,6 @@ module.exports = {
         {
             id: 'sidebarTextHoverBg',
             uiName: 'Sidebar Text Hover BG'
-        },
-        {
-            id: 'sidebarTextHoverColor',
-            uiName: 'Sidebar Text Hover Color'
         },
         {
             id: 'sidebarTextActiveBg',
@@ -284,7 +284,7 @@ module.exports = {
         },
         {
             id: 'newMessageSeparator',
-            uiName: 'New message separator'
+            uiName: 'New Message Separator'
         },
         {
             id: 'linkColor',
@@ -294,10 +294,17 @@ module.exports = {
             id: 'buttonBg',
             uiName: 'Button BG'
         },
-
         {
             id: 'buttonColor',
             uiName: 'Button Text'
+        },
+        {
+            id: 'mentionHighlightBg',
+            uiName: 'Mention Highlight BG'
+        },
+        {
+            id: 'mentionHighlightLink',
+            uiName: 'Mention Highlight Link'
         }
     ]
 };

@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 const Utils = require('../utils/utils.jsx');
@@ -14,8 +14,8 @@ export default class EmailSignUpPage extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        let team = {};
-        let state = {serverError: ''};
+        var team = {};
+        var state = {serverError: ''};
 
         team.email = React.findDOMNode(this.refs.email).value.trim().toLowerCase();
         if (!team.email || !Utils.isEmail(team.email)) {
@@ -31,20 +31,25 @@ export default class EmailSignUpPage extends React.Component {
         }
 
         Client.signupTeam(team.email,
-            function success(data) {
+            (data) => {
                 if (data.follow_link) {
                     window.location.href = data.follow_link;
                 } else {
                     window.location.href = `/signup_team_confirm/?email=${encodeURIComponent(team.email)}`;
                 }
             },
-            function fail(err) {
+            (err) => {
                 state.serverError = err.message;
                 this.setState(state);
-            }.bind(this)
+            }
         );
     }
     render() {
+        var serverError = null;
+        if (this.state.serverError) {
+            serverError = <div className='form-group has-error'><label className='control-label'>{this.state.serverError}</label></div>;
+        }
+
         return (
             <form
                 role='form'
@@ -65,8 +70,9 @@ export default class EmailSignUpPage extends React.Component {
                         className='btn btn-md btn-primary'
                         type='submit'
                     >
-                        Rekisteröidy
+                        {'Rekisteröidy'}
                     </button>
+                    {serverError}
                 </div>
                 <div className='form-group margin--extra-2x'>
                     <span><a href='/find_team'>{`Etsi tiimini`}</a></span>

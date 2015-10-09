@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
+// Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 var Utils = require('../utils/utils.jsx');
@@ -20,8 +20,6 @@ export default class SignupUserComplete extends React.Component {
             initialState.user = {};
             initialState.user.team_id = this.props.teamId;
             initialState.user.email = this.props.email;
-            initialState.hash = this.props.hash;
-            initialState.data = this.props.data;
             initialState.original_email = this.props.email;
         }
 
@@ -47,7 +45,7 @@ export default class SignupUserComplete extends React.Component {
             return;
         }
 
-        const usernameError = Utils.isValidUsername(this.state.user.username);
+        const usernameError = Utils.isValidUsername(providedUsername);
         if (usernameError === 'Cannot use a reserved word as a username.') {
             this.setState({nameError: 'Tämä käyttäjänimi on jo käytössä. Valitse toinen.', emailError: '', passwordError: '', serverError: ''});
             return;
@@ -67,26 +65,29 @@ export default class SignupUserComplete extends React.Component {
             return;
         }
 
+        const user = {
+            team_id: this.props.teamId,
+            email: providedEmail,
+            username: providedUsername,
+            password: providedPassword,
+            allow_marketing: true
+        };
+
         this.setState({
-            user: {
-                email: providedEmail,
-                username: providedUsername,
-                password: providedPassword,
-                allow_marketing: true
-            },
+            user,
             nameError: '',
             emailError: '',
             passwordError: '',
             serverError: ''
         });
 
-        client.createUser(this.state.user, this.state.data, this.state.hash,
+        client.createUser(user, this.props.data, this.props.hash,
             function createUserSuccess() {
                 client.track('signup', 'signup_user_02_complete');
 
-                client.loginByEmail(this.props.teamName, this.state.user.email, this.state.user.password,
+                client.loginByEmail(this.props.teamName, user.email, user.password,
                     function emailLoginSuccess(data) {
-                        UserStore.setLastEmail(this.state.user.email);
+                        UserStore.setLastEmail(user.email);
                         UserStore.setCurrentUser(data);
                         if (this.props.hash > 0) {
                             BrowserStore.setGlobalItem(this.props.hash, JSON.stringify({wizard: 'finished'}));
@@ -95,7 +96,7 @@ export default class SignupUserComplete extends React.Component {
                     }.bind(this),
                     function emailLoginFailure(err) {
                         if (err.message === 'Kirjautuminen epäonnistui, koska sähköpostiosoitetta ei ole vahvistettu.') {
-                            window.location.href = '/verify_email?email=' + encodeURIComponent(this.state.user.email) + '&teamname=' + encodeURIComponent(this.props.teamName);
+                            window.location.href = '/verify_email?email=' + encodeURIComponent(user.email) + '&teamname=' + encodeURIComponent(this.props.teamName);
                         } else {
                             this.setState({serverError: err.message});
                         }
