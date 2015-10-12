@@ -20,6 +20,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         this.submitNickname = this.submitNickname.bind(this);
         this.submitName = this.submitName.bind(this);
         this.submitEmail = this.submitEmail.bind(this);
+        this.submitPhone = this.submitPhone.bind(this);
         this.submitUser = this.submitUser.bind(this);
         this.submitPicture = this.submitPicture.bind(this);
 
@@ -28,6 +29,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         this.updateLastName = this.updateLastName.bind(this);
         this.updateNickname = this.updateNickname.bind(this);
         this.updateEmail = this.updateEmail.bind(this);
+        this.updatePhone = this.updatePhone.bind(this);
         this.updateConfirmEmail = this.updateConfirmEmail.bind(this);
         this.updatePicture = this.updatePicture.bind(this);
         this.updateSection = this.updateSection.bind(this);
@@ -117,6 +119,24 @@ export default class UserSettingsGeneralTab extends React.Component {
         user.email = email;
         this.submitUser(user);
     }
+    submitPhone(e) {
+        e.preventDefault();
+
+        var user = UserStore.getCurrentUser();
+        var phone = this.state.phone.trim().replace(/\D/g,'');
+
+        if (user.props.phone === phone) {
+            return;
+        }
+
+        if (phone === '' || !utils.isPhone(phone)) {
+            this.setState({phoneError: 'Syötä toimiva matkapuhelinnumero'});
+            return;
+        }
+
+        user.props.phone = phone;
+        this.submitUser(user);
+    }
     submitUser(user) {
         client.updateUser(user,
             function updateSuccess() {
@@ -191,6 +211,9 @@ export default class UserSettingsGeneralTab extends React.Component {
     updateEmail(e) {
         this.setState({email: e.target.value});
     }
+    updatePhone(e) {
+        this.setState({phone: e.target.value});
+    }
     updateConfirmEmail(e) {
         this.setState({confirmEmail: e.target.value});
     }
@@ -228,7 +251,7 @@ export default class UserSettingsGeneralTab extends React.Component {
         var user = props.user;
 
         return {username: user.username, firstName: user.first_name, lastName: user.last_name, nickname: user.nickname,
-                        email: user.email, confirmEmail: '', picture: null, loadingPicture: false, emailChangeInProgress: false};
+                        email: user.email, phone: user.props.phone, confirmEmail: '', picture: null, loadingPicture: false, emailChangeInProgress: false};
     }
     render() {
         var user = this.props.user;
@@ -244,6 +267,10 @@ export default class UserSettingsGeneralTab extends React.Component {
         var emailError = null;
         if (this.state.emailError) {
             emailError = this.state.emailError;
+        }
+        var phoneError = null;
+        if (this.state.phoneError) {
+            phoneError = this.state.phoneError;
         }
 
         var nameSection;
@@ -536,6 +563,54 @@ export default class UserSettingsGeneralTab extends React.Component {
             );
         }
 
+        var phoneSection;
+        if (this.props.activeSection === 'phone') {
+            let extraInfo = 'Puhelinnumeroa käytetään ilmoitustekstiviestien lähettämiseen.';
+
+            inputs.push(
+                <div key='phoneSetting'>
+                    <div className='form-group'>
+                        <label className='col-sm-5 control-label'>{'Matkapuhelinnumero'}</label>
+                        <div className='col-sm-7'>
+                            <input
+                                className='form-control'
+                                type='text'
+                                onChange={this.updatePhone}
+                                value={this.state.phone}
+                            />
+                            <span className="help-block">Esim. 0401234567</span>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            phoneSection = (
+                <SettingItemMax
+                    title='Matkapuhelin'
+                    inputs={inputs}
+                    submit={this.submitPhone}
+                    server_error={serverError}
+                    client_error={phoneError}
+                    updateSection={function clearSection(e) {
+                        this.updateSection('');
+                        e.preventDefault();
+                    }.bind(this)}
+                    extraInfo={extraInfo}
+                />
+            );
+        } else {
+            let phone = UserStore.getCurrentUser().props.phone;
+            phoneSection = (
+                <SettingItemMin
+                    title='Matkapuhelin'
+                    describe={phone || ''}
+                    updateSection={function updatePhoneSection() {
+                        this.updateSection('phone');
+                    }.bind(this)}
+                />
+            );
+        }
+
         var pictureSection;
         if (this.props.activeSection === 'picture') {
             pictureSection = (
@@ -599,6 +674,8 @@ export default class UserSettingsGeneralTab extends React.Component {
                     {nicknameSection}
                     <div className='divider-light'/>
                     {emailSection}
+                    <div className='divider-light'/>
+                    {phoneSection}
                     <div className='divider-light'/>
                     {pictureSection}
                     <div className='divider-dark'/>

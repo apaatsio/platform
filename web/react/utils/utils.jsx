@@ -16,6 +16,11 @@ export function isEmail(email) {
     return regex.test(email);
 }
 
+export function isPhone(phone) {
+    var regex = /^(\d){5,32}$/;
+    return regex.test(phone);
+}
+
 export function cleanUpUrlable(input) {
     var cleaned = input.trim().replace(/-/g, ' ').replace(/[^\w\s]/gi, '').toLowerCase().replace(/\s/g, '-');
     cleaned = cleaned.replace(/^\-+/, '');
