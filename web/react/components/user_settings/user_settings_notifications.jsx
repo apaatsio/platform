@@ -25,6 +25,10 @@ function getNotificationsStateFromStores() {
     if (user.notify_props && user.notify_props.email) {
         email = user.notify_props.email;
     }
+    var phone = 'true';
+    if (user.notify_props && user.notify_props.phone) {
+        phone = user.notify_props.phone;
+    }
 
     var usernameKey = false;
     var mentionKey = false;
@@ -67,7 +71,7 @@ function getNotificationsStateFromStores() {
         }
     }
 
-    return {notifyLevel: desktop, enableEmail: email, soundNeeded: soundNeeded, enableSound: sound,
+    return {notifyLevel: desktop, enableEmail: email, enablePhone: phone, soundNeeded: soundNeeded, enableSound: sound,
             usernameKey: usernameKey, mentionKey: mentionKey, customKeys: customKeys, customKeysChecked: customKeys.length > 0,
             firstNameKey: firstNameKey, allKey: allKey, channelKey: channelKey};
 }
@@ -82,6 +86,7 @@ export default class NotificationsTab extends React.Component {
         this.onListenerChange = this.onListenerChange.bind(this);
         this.handleNotifyRadio = this.handleNotifyRadio.bind(this);
         this.handleEmailRadio = this.handleEmailRadio.bind(this);
+        this.handlePhoneRadio = this.handlePhoneRadio.bind(this);
         this.handleSoundRadio = this.handleSoundRadio.bind(this);
         this.updateUsernameKey = this.updateUsernameKey.bind(this);
         this.updateMentionKey = this.updateMentionKey.bind(this);
@@ -97,6 +102,7 @@ export default class NotificationsTab extends React.Component {
         var data = {};
         data.user_id = this.props.user.id;
         data.email = this.state.enableEmail;
+        data.phone = this.state.enablePhone;
         data.desktop_sound = this.state.enableSound;
         data.desktop = this.state.notifyLevel;
 
@@ -162,6 +168,10 @@ export default class NotificationsTab extends React.Component {
     }
     handleEmailRadio(enableEmail) {
         this.setState({enableEmail: enableEmail});
+        React.findDOMNode(this.refs.wrapper).focus();
+    }
+    handlePhoneRadio(enablePhone) {
+        this.setState({enablePhone: enablePhone});
         React.findDOMNode(this.refs.wrapper).focus();
     }
     handleSoundRadio(enableSound) {
@@ -459,6 +469,98 @@ export default class NotificationsTab extends React.Component {
             );
         }
 
+        var phoneSection;
+        var handleUpdatePhoneSection;
+        if (this.props.activeSection === 'phone') {
+            let phoneActive = [false, false];
+            if (this.state.enablePhone === 'false') {
+                phoneActive[1] = true;
+            } else {
+                phoneActive[0] = true;
+            }
+
+            let inputs = [];
+
+            let phoneNumberReminder;
+            if (!utils.isPhone(user.props.phone)) {
+                phoneNumberReminder = (
+                    <p>
+                        {'Muistathan syöttää matkapuhelinnumerosi Yleisissä asetuksissa.'}
+                    </p>
+                );
+            } else {
+                phoneNumberReminder = '';
+            }
+
+            inputs.push(
+                <div key='userNotificationPhoneOptions'>
+                    <div className='radio'>
+                        <label>
+                            <input
+                                type='radio'
+                                checked={phoneActive[0]}
+                                onChange={this.handlePhoneRadio.bind(this, 'true')}
+                            >
+                                Päällä
+                            </input>
+                        </label>
+                        <br/>
+                    </div>
+                    <div className='radio'>
+                        <label>
+                            <input
+                                type='radio'
+                                checked={phoneActive[1]}
+                                onChange={this.handlePhoneRadio.bind(this, 'false')}
+                            >
+                                Pois
+                            </input>
+                        </label>
+                        <br/>
+                    </div>
+                    <br/>
+                    <p>
+                        {'Tekstiviesti-ilmoitukset lähetetään maininnoista ja yksityisviesteistä mikäli et ole ollut online 60 sekuntiin tai olet ollut poissa ' + global.window.config.SiteName + '-palvelusta yli 5 minuuttia.'}
+                    </p>
+                    {phoneNumberReminder}
+                </div>
+            );
+
+            handleUpdatePhoneSection = function (e) {
+                this.props.updateSection('');
+                e.preventDefault();
+            }.bind(this);
+
+            phoneSection = (
+                <SettingItemMax
+                    title='Tekstiviesti-ilmoitukset'
+                    inputs={inputs}
+                    submit={this.handleSubmit}
+                    server_error={serverError}
+                    updateSection={handleUpdatePhoneSection}
+                />
+            );
+        } else {
+            let describe = '';
+            if (this.state.enablePhone === 'false') {
+                describe = 'Pois';
+            } else {
+                describe = 'Päällä';
+            }
+
+            handleUpdatePhoneSection = function () {
+                this.props.updateSection('phone');
+            }.bind(this);
+
+            phoneSection = (
+                <SettingItemMin
+                    title='Tekstiviesti-ilmoitukset'
+                    describe={describe}
+                    updateSection={handleUpdatePhoneSection}
+                />
+            );
+        }
+
         var keysSection;
         var handleUpdateKeysSection;
         if (this.props.activeSection === 'keys') {
@@ -679,6 +781,8 @@ export default class NotificationsTab extends React.Component {
                     {soundSection}
                     <div className='divider-light'/>
                     {emailSection}
+                    <div className='divider-light'/>
+                    {phoneSection}
                     <div className='divider-light'/>
                     {keysSection}
                     <div className='divider-dark'/>
