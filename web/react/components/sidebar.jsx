@@ -39,6 +39,7 @@ export default class Sidebar extends React.Component {
         var members = ChannelStore.getAllMembers();
         var teamMemberMap = UserStore.getActiveOnlyProfiles();
         var currentId = ChannelStore.getCurrentId();
+        var currentUser = UserStore.getCurrentUser();
 
         var teammates = [];
         for (var id in teamMemberMap) {
@@ -140,7 +141,8 @@ export default class Sidebar extends React.Component {
             channels: ChannelStore.getAll(),
             members: members,
             showDirectChannels: showDirectChannels,
-            hideDirectChannels: readDirectChannels
+            hideDirectChannels: readDirectChannels,
+            currentUser: currentUser
         };
     }
     componentDidMount() {
@@ -583,6 +585,7 @@ export default class Sidebar extends React.Component {
                         {directMessageMore}
                     </ul>
                 </div>
+                <div className='sidebar-bottom'>{'Kirjautunut käyttäjä: ' + this.state.currentUser.username}</div>
             </div>
         );
     }
