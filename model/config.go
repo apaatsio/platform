@@ -101,6 +101,11 @@ type EmailSettings struct {
 	ApplePushCertPrivate string
 }
 
+type SmsSettings struct {
+	Url      string
+	SenderId string
+}
+
 type RateLimitSettings struct {
 	EnableRateLimiter bool
 	PerSec            int
@@ -130,6 +135,7 @@ type Config struct {
 	LogSettings       LogSettings
 	FileSettings      FileSettings
 	EmailSettings     EmailSettings
+	SmsSettings       SmsSettings
 	RateLimitSettings RateLimitSettings
 	PrivacySettings   PrivacySettings
 	GitLabSettings    SSOSettings

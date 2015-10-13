@@ -68,6 +68,10 @@
         "ApplePushCertPublic": "",
         "ApplePushCertPrivate": ""
     },
+    "SmsSettings": {
+        "Url": "",
+        "SenderId": ""
+    },
     "RateLimitSettings": {
         "EnableRateLimiter": true,
         "PerSec": 10,
