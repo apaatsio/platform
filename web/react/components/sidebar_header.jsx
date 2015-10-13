@@ -45,7 +45,6 @@ export default class SidebarHeader extends React.Component {
                 >
                     {profilePicture}
                     <div className='header__info'>
-                        <div className='user__name'>{'@' + me.username}</div>
                         <div className='team__name'>{this.props.teamDisplayName}</div>
                     </div>
                 </a>
