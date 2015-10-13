@@ -221,6 +221,8 @@ export default class Navbar extends React.Component {
                 );
             }
 
+            let teamDisplayNameShort = this.props.teamDisplayName.split(' ')[0];
+
             return (
                 <div className='navbar-brand'>
                     <div className='dropdown'>
@@ -240,6 +242,7 @@ export default class Navbar extends React.Component {
                             <span className='heading'>{channelTitle} </span>
                             <span className='glyphicon glyphicon-chevron-down header-dropdown__icon'></span>
                         </a>
+                        <span className='pull-right heading'>{teamDisplayNameShort}</span>
                         <ul
                             className='dropdown-menu'
                             role='menu'

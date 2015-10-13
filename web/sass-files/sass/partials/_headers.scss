@@ -89,6 +89,7 @@
 	.team__header {
 		position: relative;
 		padding: 10px;
+		min-height: 58px;
 		@include legacy-pie-clearfix;
 		&:before {
 			@include single-transition(all, 0.05s, linear);
