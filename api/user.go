@@ -326,7 +326,7 @@ func checkUserPassword(c *Context, user *model.User, password string) bool {
 
 	if !model.ComparePassword(user.Password, password) {
 		c.LogAuditWithUserId(user.Id, "fail")
-		c.Err = model.NewAppError("checkUserPassword", "Login failed because of invalid password", "user_id="+user.Id)
+		c.Err = model.NewAppError("checkUserPassword", "Väärä salasana", "user_id="+user.Id)
 		c.Err.StatusCode = http.StatusForbidden
 
 		if result := <-Srv.Store.User().UpdateFailedPasswordAttempts(user.Id, user.FailedAttempts+1); result.Err != nil {

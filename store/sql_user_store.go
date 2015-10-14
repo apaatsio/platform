@@ -433,16 +433,20 @@ func (us SqlUserStore) GetAllUsersByEmail(email string) StoreChannel {
 		// interface is []*model.User, not map[string]*model.User
 
 		if _, err := us.GetReplica().Select(&users, "SELECT * FROM Users WHERE Email = :Email", map[string]interface{}{"Email": email}); err != nil {
-			result.Err = model.NewAppError("SqlUserStore.GetAllUsersByEmail", "We couldn't find existing accounts", "email="+email+", "+err.Error())
+			result.Err = model.NewAppError("SqlUserStore.GetAllUsersByEmail", "Error with the database", "email="+email+", "+err.Error())
 		} else {
-			// result.Data = users
-			userMap := make(map[string]*model.User)
+			if len(users) == 0 {
+				result.Err = model.NewAppError("SqlUserStore.GetAllUsersByEmail", "Sähköpostiosoitteella ei löytynyt käyttäjää. Tarkista sähköpostiosoite.", "email="+email)
+			} else {
+				userMap := make(map[string]*model.User)
 
-			for _, u := range users {
-				userMap[u.Id] = u
+				for _, u := range users {
+					userMap[u.Id] = u
+				}
+
+				result.Data = userMap
 			}
 
-			result.Data = userMap
 		}
 
 		storeChannel <- result
