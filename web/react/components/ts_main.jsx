@@ -8,28 +8,24 @@ export default class TsMain extends React.Component {
         super(props);
 
         this.updateState = this.updateState.bind(this);
-        this.getInitialState = this.getInitialState.bind(this);
+        this.getInitialStateFromStore = this.getInitialStateFromStore.bind(this);
         this.getStateFromStores = this.getStateFromStores.bind(this);
         this.onUserStoreChange = this.onUserStoreChange.bind(this);
 
-        this.state = this.getInitialState();
+        this.state = this.getInitialStateFromStore();
     }
 
     componentDidMount() {
-        console.log("componentDidMount");
         UserStore.addChangeListener(this.onUserStoreChange);
     }
 
     onUserStoreChange() {
-        console.log("onUserStoreChange", arguments);
         this.setState(this.getStateFromStores());
     }
 
-    getInitialState() {
+    getInitialStateFromStore() {
         let currentUser = UserStore.getCurrentUserForceSync();
         let isLoggedIn = currentUser !== null;
-        console.log("getInitialState, currentUser", currentUser);
-        console.log("getInitialState, isLoggedIn", isLoggedIn);
         return {
             user: currentUser,
             isLoggedIn: isLoggedIn

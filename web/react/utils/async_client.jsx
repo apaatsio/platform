@@ -405,11 +405,13 @@ export function findTeams(email) {
     }
 
     var user = UserStore.getCurrentUser();
+    console.log("findTeams", user.email);
     if (user) {
         callTracker['findTeams_' + email] = utils.getTimestamp();
         client.findTeams(
             user.email,
             function findTeamsSuccess(data, textStatus, xhr) {
+                console.log("find teams success", data);
                 callTracker['findTeams_' + email] = 0;
 
                 if (xhr.status === 304 || !data) {
@@ -422,6 +424,7 @@ export function findTeams(email) {
                 });
             },
             function findTeamsFailure(err) {
+                console.log("findTeamsFailure");
                 callTracker['findTeams_' + email] = 0;
                 dispatchError(err, 'findTeams');
             }

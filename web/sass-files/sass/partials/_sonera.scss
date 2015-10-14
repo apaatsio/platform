@@ -2,7 +2,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #3a3a3a;
 }
 
-a, a:link, a:visited {
+a:not(.btn) {
+    &, &:link, &:visited {
+        color: #652D86;
+    }
+}
+aa, aa:link, aa:visited {
     color: #652D86;
 }
 a:active {
