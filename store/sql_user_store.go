@@ -422,6 +422,36 @@ func (us SqlUserStore) GetByEmail(teamId string, email string) StoreChannel {
 	return storeChannel
 }
 
+func (us SqlUserStore) GetAllUsersByEmail(email string) StoreChannel {
+	storeChannel := make(StoreChannel)
+
+	go func() {
+		result := StoreResult{}
+
+		var users []*model.User
+
+		// interface is []*model.User, not map[string]*model.User
+
+		if _, err := us.GetReplica().Select(&users, "SELECT * FROM Users WHERE Email = :Email", map[string]interface{}{"Email": email}); err != nil {
+			result.Err = model.NewAppError("SqlUserStore.GetAllUsersByEmail", "We couldn't find existing accounts", "email="+email+", "+err.Error())
+		} else {
+			// result.Data = users
+			userMap := make(map[string]*model.User)
+
+			for _, u := range users {
+				userMap[u.Id] = u
+			}
+
+			result.Data = userMap
+		}
+
+		storeChannel <- result
+		close(storeChannel)
+	}()
+
+	return storeChannel
+}
+
 func (us SqlUserStore) GetByAuth(teamId string, authData string, authService string) StoreChannel {
 
 	storeChannel := make(StoreChannel)

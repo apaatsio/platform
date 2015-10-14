@@ -41,6 +41,7 @@ class UserStoreClass extends EventEmitter {
         this.setCurrentId = this.setCurrentId.bind(this);
         this.getCurrentId = this.getCurrentId.bind(this);
         this.getCurrentUser = this.getCurrentUser.bind(this);
+        this.getCurrentUserForceSync = this.getCurrentUserForceSync.bind(this);
         this.setCurrentUser = this.setCurrentUser.bind(this);
         this.getLastEmail = this.getLastEmail.bind(this);
         this.setLastEmail = this.setLastEmail.bind(this);
@@ -162,6 +163,16 @@ class UserStoreClass extends EventEmitter {
         }
 
         return this.pGetProfiles()[this.getCurrentId()];
+    }
+    // Force request to backend; synchronous
+    getCurrentUserForceSync() {
+        let me = client.getMeSynchronous();
+        let currentId = null;
+        if (me !== null) {
+            this.setCurrentUser(me);
+            currentId = me.id;
+        }
+        return currentId;
     }
     setCurrentUser(user) {
         this.setCurrentId(user.id);
@@ -315,6 +326,7 @@ UserStore.dispatchToken = AppDispatcher.register(function registry(payload) {
         }
         break;
     case ActionTypes.RECIEVED_ME:
+        console.log("UserStore: case ActionTypes.RECIEVED_ME", action.me);
         UserStore.setCurrentUser(action.me);
         UserStore.emitChange(action.me.id);
         break;

@@ -255,6 +255,26 @@ export function loginByEmail(name, email, password, success, error) {
     });
 }
 
+export function loginByEmailWithoutTeam(email, password, success, error) {
+    $.ajax({
+        url: '/api/v1/users/login_without_team',
+        dataType: 'json',
+        contentType: 'application/json',
+        type: 'POST',
+        data: JSON.stringify({email: email, password: password}),
+        success: function onSuccess(data, textStatus, xhr) {
+            track('api', 'api_users_login_success', data.team_id, 'email', data.email);
+            success(data, textStatus, xhr);
+        },
+        error: function onError(xhr, status, err) {
+            track('api', 'api_users_login_fail', name, 'email', email);
+
+            var e = handleError('loginByEmail', xhr, status, err);
+            error(e);
+        }
+    });
+}
+
 export function revokeSession(altId, success, error) {
     $.ajax({
         url: '/api/v1/users/revoke_session',

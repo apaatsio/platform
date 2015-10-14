@@ -145,14 +145,20 @@ func root(c *api.Context, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	page := NewHtmlTemplatePage("ts_main", "Etusivu")
+	page.Render(c, w)
+	/*
 	if len(c.Session.UserId) == 0 {
-		page := NewHtmlTemplatePage("signup_team", "Signup")
+		//page := NewHtmlTemplatePage("signup_team", "Signup")
+		page := NewHtmlTemplatePage("ts_main", "Etusivu")
 		page.Render(c, w)
 	} else {
+		// TODO don't use this at all. just do everything on ts_main
 		page := NewHtmlTemplatePage("home", "Home")
 		page.Props["TeamURL"] = c.GetTeamURL()
 		page.Render(c, w)
 	}
+	*/
 }
 
 func signup(c *api.Context, w http.ResponseWriter, r *http.Request) {

@@ -43,6 +43,7 @@ func InitUser(r *mux.Router) {
 	sr.Handle("/send_password_reset", ApiAppHandler(sendPasswordReset)).Methods("POST")
 	sr.Handle("/reset_password", ApiAppHandler(resetPassword)).Methods("POST")
 	sr.Handle("/login", ApiAppHandler(login)).Methods("POST")
+	sr.Handle("/login_without_team", ApiAppHandler(loginWithoutTeam)).Methods("POST")
 	sr.Handle("/logout", ApiUserRequired(logout)).Methods("POST")
 	sr.Handle("/revoke_session", ApiUserRequired(revokeSession)).Methods("POST")
 
@@ -293,6 +294,27 @@ func LoginByEmail(c *Context, w http.ResponseWriter, r *http.Request, email, nam
 	return nil
 }
 
+func LoginByEmailWithoutTeam(c *Context, w http.ResponseWriter, r *http.Request, email, password, deviceId string) *model.User {
+	if results := <-Srv.Store.User().GetAllUsersByEmail(email); results.Err != nil {
+		c.Err = results.Err
+		return nil
+	} else {
+		users := results.Data.(map[string]*model.User)
+
+		for _, user := range users {
+			if checkUserPassword(c, user, password) {
+				l4g.Debug("password matched for user %v / %v", user.Username, user.TeamId)
+				Login(c, w, r, user, deviceId)
+				return user
+			} else {
+				l4g.Debug("password failed for user %v / %v", user.Username, user.TeamId)
+			}
+		}
+	}
+
+	return nil
+}
+
 func checkUserPassword(c *Context, user *model.User, password string) bool {
 
 	if user.FailedAttempts >= utils.Cfg.ServiceSettings.MaximumLoginAttempts {
@@ -449,6 +471,36 @@ func login(c *Context, w http.ResponseWriter, r *http.Request) {
 		user = LoginByEmail(c, w, r, props["email"], props["name"], props["password"], props["device_id"])
 	} else {
 		c.Err = model.NewAppError("login", "Either user id or team name and user email must be provided", "")
+		c.Err.StatusCode = http.StatusForbidden
+		return
+	}
+
+	if c.Err != nil {
+		return
+	}
+
+	if user != nil {
+		user.Sanitize(map[string]bool{})
+	} else {
+		user = &model.User{}
+	}
+	w.Write([]byte(user.ToJson()))
+}
+
+func loginWithoutTeam(c *Context, w http.ResponseWriter, r *http.Request) {
+	props := model.MapFromJson(r.Body)
+
+	if len(props["password"]) == 0 {
+		c.Err = model.NewAppError("login", "Password field must not be blank", "")
+		c.Err.StatusCode = http.StatusForbidden
+		return
+	}
+
+	var user *model.User
+	if len(props["email"]) != 0 {
+		user = LoginByEmailWithoutTeam(c, w, r, props["email"], props["password"], props["device_id"])
+	} else {
+		c.Err = model.NewAppError("login", "Email field must not be blank", "")
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
