@@ -19,7 +19,14 @@ export default class TsTeamList extends React.Component {
 
     onTeamsChange() {
         let teamNames = UserStore.getTeams();
+
+        if (teamNames.length === 1) {
+            let channelPath = '/' + teamNames[0];
+            window.location = channelPath;
+        }
+
         this.setState({teamNames: teamNames});
+
     }
 
     getStateFromStores() {
