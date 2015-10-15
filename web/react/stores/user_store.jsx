@@ -326,7 +326,6 @@ UserStore.dispatchToken = AppDispatcher.register(function registry(payload) {
         }
         break;
     case ActionTypes.RECIEVED_ME:
-        console.log("UserStore: case ActionTypes.RECIEVED_ME", action.me);
         UserStore.setCurrentUser(action.me);
         UserStore.emitChange(action.me.id);
         break;
